@@ -1,0 +1,5 @@
+release/build
+release/deps
+.future-incompat-report.json
+.rustc_info.json
+.rustdoc_fingerprint.json
