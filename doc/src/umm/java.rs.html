@@ -1315,6 +1315,22 @@
 <a href="#1315" id="1315">1315</a>
 <a href="#1316" id="1316">1316</a>
 <a href="#1317" id="1317">1317</a>
+<a href="#1318" id="1318">1318</a>
+<a href="#1319" id="1319">1319</a>
+<a href="#1320" id="1320">1320</a>
+<a href="#1321" id="1321">1321</a>
+<a href="#1322" id="1322">1322</a>
+<a href="#1323" id="1323">1323</a>
+<a href="#1324" id="1324">1324</a>
+<a href="#1325" id="1325">1325</a>
+<a href="#1326" id="1326">1326</a>
+<a href="#1327" id="1327">1327</a>
+<a href="#1328" id="1328">1328</a>
+<a href="#1329" id="1329">1329</a>
+<a href="#1330" id="1330">1330</a>
+<a href="#1331" id="1331">1331</a>
+<a href="#1332" id="1332">1332</a>
+<a href="#1333" id="1333">1333</a>
 </pre><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
 #![warn(clippy::missing_docs_in_private_items)]
 
@@ -1661,17 +1677,14 @@
                     .unwrap_or_default();
                 <span class="kw">let </span>declaration = query_result.first().unwrap_or(<span class="kw-2">&amp;</span>empty_dict);
 
-                <span class="kw">let </span>parameters = declaration.get(<span class="string">&quot;parameters&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
-                <span class="kw">let </span>extends = declaration.get(<span class="string">&quot;extends&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
+                <span class="kw">let </span>parameters = declaration.get(<span class="string">&quot;parameters&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty).trim();
+                <span class="kw">let </span>extends = declaration.get(<span class="string">&quot;extends&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty).trim();
 
                 <span class="kw">let </span>consts = parser
                     .query(INTERFACE_CONSTANTS_QUERY)
                     .unwrap_or_default()
                     .iter()
-                    .map(|c| {
-                        <span class="kw">let </span>name = c.get(<span class="string">&quot;constant&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found);
-                        <span class="macro">format!</span>(<span class="string">&quot;\t\t- `{}`&quot;</span>, name)
-                    })
+                    .map(|c| c.get(<span class="string">&quot;constant&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).to_string())
                     .collect::&lt;Vec&lt;String&gt;&gt;()
                     .join(<span class="string">&quot;\n&quot;</span>);
 
@@ -1679,33 +1692,37 @@
                     .query(INTERFACE_METHODS_QUERY)
                     .unwrap_or_default()
                     .iter()
-                    .map(|m| {
-                        <span class="kw">let </span>sig = m.get(<span class="string">&quot;signature&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found);
-                        <span class="macro">format!</span>(<span class="string">&quot;\t\t- `{}`&quot;</span>, sig)
-                    })
+                    .map(|m| m.get(<span class="string">&quot;signature&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).to_string())
                     .collect::&lt;Vec&lt;String&gt;&gt;()
                     .join(<span class="string">&quot;\n&quot;</span>);
 
                 <span class="kw">let </span>methods = <span class="kw">if </span>methods.trim().is_empty() {
-                    String::from(<span class="string">&quot;\t\t[NOT FOUND]&quot;</span>)
+                    String::from(<span class="string">&quot;[NOT FOUND]&quot;</span>)
                 } <span class="kw">else </span>{
-                    methods
+                    methods.trim().to_string()
+                };
+
+                <span class="kw">let </span>consts = <span class="kw">if </span>consts.trim().is_empty() {
+                    String::from(<span class="string">&quot;[NOT FOUND]&quot;</span>)
+                } <span class="kw">else </span>{
+                    consts.trim().to_string()
                 };
 
                 <span class="kw">let </span><span class="kw-2">mut </span>result = <span class="macro">vec!</span>[];
                 result.push(<span class="macro">format!</span>(
-                    <span class="string">&quot;- Interface: `{proper_name} {parameters} {extends}`:\n&quot;
+                    <span class="string">&quot;Interface: {proper_name} {parameters} {extends}:\n&quot;
                 </span>));
-                <span class="kw">if </span>!consts.trim().is_empty() || !consts.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
-                    result.push(String::from(<span class="string">&quot;\t- Constants:&quot;</span>));
+
+                <span class="kw">if </span>!consts.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
+                    result.push(String::from(<span class="string">&quot;Constants:&quot;</span>));
                     result.push(consts);
                 }
-                <span class="kw">if </span>!methods.trim().is_empty() || !methods.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
-                    result.push(String::from(<span class="string">&quot;\t- Methods:&quot;</span>));
+                <span class="kw">if </span>!methods.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
+                    result.push(String::from(<span class="string">&quot;Methods:&quot;</span>));
                     result.push(methods);
                 }
 
-                result.join(<span class="string">&quot;\n&quot;</span>)
+                <span class="macro">format!</span>(<span class="string">&quot;```\n{r}\n```&quot;</span>, r = result.join(<span class="string">&quot;\n&quot;</span>))
             }
             <span class="kw">_ </span>=&gt; {
                 <span class="kw">let </span>empty_dict = Dict::new();
@@ -1715,17 +1732,14 @@
                 <span class="kw">let </span>query_result = parser.query(CLASS_DECLARATION_QUERY).unwrap_or_default();
                 <span class="kw">let </span>declaration = query_result.first().unwrap_or(<span class="kw-2">&amp;</span>empty_dict);
 
-                <span class="kw">let </span>parameters = declaration.get(<span class="string">&quot;typeParameters&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
-                <span class="kw">let </span>implements = declaration.get(<span class="string">&quot;interfaces&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
+                <span class="kw">let </span>parameters = declaration.get(<span class="string">&quot;typeParameters&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty).trim();
+                <span class="kw">let </span>implements = declaration.get(<span class="string">&quot;interfaces&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty).trim();
 
                 <span class="kw">let </span>fields = parser
                     .query(CLASS_FIELDS_QUERY)
                     .unwrap_or_default()
                     .iter()
-                    .map(|f| {
-                        <span class="kw">let </span>field = f.get(<span class="string">&quot;field&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found);
-                        <span class="macro">format!</span>(<span class="string">&quot;\t\t- `{}`&quot;</span>, field)
-                    })
+                    .map(|f| f.get(<span class="string">&quot;field&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).to_string())
                     .collect::&lt;Vec&lt;String&gt;&gt;()
                     .join(<span class="string">&quot;\n&quot;</span>);
 
@@ -1742,11 +1756,11 @@
                         <span class="kw">let </span>throws = m.get(<span class="string">&quot;throws&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
 
                         <span class="kw">if </span>identifier.as_str() == not_found.as_str() {
-                            <span class="string">&quot;\t\t- [NOT FOUND]&quot;</span>.to_string()
+                            <span class="string">&quot;[NOT FOUND]&quot;</span>.to_string()
                         } <span class="kw">else </span>{
                             <span class="macro">format!</span>(
-                                <span class="string">&quot;\t\t- `{annotation} {modifier} {return_type} {identifier} \
-                                 {parameters} {throws}`&quot;</span>,
+                                <span class="string">&quot;{annotation} {modifier} {return_type} {identifier} {parameters} \
+                                 {throws}&quot;</span>,
                             )
                         }
                     })
@@ -1765,35 +1779,49 @@
                         <span class="kw">let </span>throws = m.get(<span class="string">&quot;throws&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
 
                         <span class="kw">if </span>identifier.as_str() == not_found.as_str() {
-                            <span class="string">&quot;\t\t- [NOT FOUND]&quot;</span>.to_string()
+                            <span class="string">&quot;[NOT FOUND]&quot;</span>.to_string()
                         } <span class="kw">else </span>{
-                            <span class="macro">format!</span>(
-                                <span class="string">&quot;\t\t- `{annotation} {modifier} {identifier} {parameters} \
-                                 {throws}`&quot;</span>,
-                            )
+                            <span class="macro">format!</span>(<span class="string">&quot;{annotation} {modifier} {identifier} {parameters} {throws}&quot;</span>,)
                         }
                     })
                     .collect::&lt;Vec&lt;String&gt;&gt;()
                     .join(<span class="string">&quot;\n&quot;</span>);
 
+                <span class="kw">let </span>fields = <span class="kw">if </span>fields.trim().is_empty() {
+                    String::from(<span class="string">&quot;[NOT FOUND]&quot;</span>)
+                } <span class="kw">else </span>{
+                    fields.trim().to_string()
+                };
+
+                <span class="kw">let </span>methods = <span class="kw">if </span>methods.trim().is_empty() {
+                    String::from(<span class="string">&quot;[NOT FOUND]&quot;</span>)
+                } <span class="kw">else </span>{
+                    methods.trim().to_string()
+                };
+
+                <span class="kw">let </span>constructors = <span class="kw">if </span>constructors.trim().is_empty() {
+                    String::from(<span class="string">&quot;[NOT FOUND]&quot;</span>)
+                } <span class="kw">else </span>{
+                    constructors.trim().to_string()
+                };
+
                 <span class="kw">let </span><span class="kw-2">mut </span>result = <span class="macro">vec!</span>[];
-                result.push(<span class="macro">format!</span>(
-                    <span class="string">&quot;- Class: `{proper_name} {parameters} {implements}`:\n&quot;
-                </span>));
-                <span class="kw">if </span>!fields.trim().is_empty() || !fields.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
-                    result.push(String::from(<span class="string">&quot;\t- Fields:&quot;</span>));
+                result.push(<span class="macro">format!</span>(<span class="string">&quot;Class: {proper_name} {parameters} {implements}:\n&quot;</span>));
+
+                <span class="kw">if </span>!fields.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
+                    result.push(String::from(<span class="string">&quot;Fields:&quot;</span>));
                     result.push(fields);
                 }
-                <span class="kw">if </span>!constructors.trim().is_empty() || !constructors.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
-                    result.push(String::from(<span class="string">&quot;\t- Constructors:&quot;</span>));
+                <span class="kw">if </span>!constructors.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
+                    result.push(String::from(<span class="string">&quot;Constructors:&quot;</span>));
                     result.push(constructors);
                 }
-                <span class="kw">if </span>!methods.trim().is_empty() || !methods.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
-                    result.push(String::from(<span class="string">&quot;\t- Methods:&quot;</span>));
+                <span class="kw">if </span>!methods.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
+                    result.push(String::from(<span class="string">&quot;Methods:&quot;</span>));
                     result.push(methods);
                 }
 
-                result.join(<span class="string">&quot;\n&quot;</span>)
+                <span class="macro">format!</span>(<span class="string">&quot;```\n{r}\n```&quot;</span>, r = result.join(<span class="string">&quot;\n&quot;</span>))
             }
         };
 
@@ -1832,8 +1860,7 @@
                 <span class="string">&quot;-Xdiags:verbose&quot;</span>,
                 <span class="string">&quot;-Xdoclint&quot;</span>,
                 <span class="comment">// &quot;-Xlint&quot;,
-                </span><span class="string">&quot;-Xprefer:source&quot;</span>,
-            ])
+            </span>])
             .output()
             .context(<span class="string">&quot;Failed to spawn javac process.&quot;</span>)<span class="question-mark">?</span>;
 
@@ -1863,8 +1890,7 @@
                 path.as_str(),
                 <span class="string">&quot;-Xdiags:verbose&quot;</span>,
                 <span class="comment">// &quot;-Xlint&quot;,
-                </span><span class="string">&quot;-Xprefer:source&quot;</span>,
-            ])
+            </span>])
             .output()
             .context(<span class="string">&quot;Failed to spawn javac process.&quot;</span>);
 
@@ -1907,8 +1933,6 @@
 
         Command::new(java_path()<span class="question-mark">?</span>)
             .stdin(Stdio::inherit())
-            .stdout(Stdio::inherit())
-            .stderr(Stdio::inherit())
             .args([<span class="string">&quot;--class-path&quot;</span>, classpath()<span class="question-mark">?</span>.as_str(), name.as_str()])
             .output()
             .context(<span class="string">&quot;Failed to spawn javac process.&quot;</span>)
@@ -2144,6 +2168,12 @@
             <span class="prelude-val">Ok</span>(<span class="self">self</span>.files[i].clone())
         } <span class="kw">else if let </span><span class="prelude-val">Some</span>(i) = <span class="self">self</span>.files.iter().position(|n| n.file_name == name) {
             <span class="prelude-val">Ok</span>(<span class="self">self</span>.files[i].clone())
+        } <span class="kw">else if let </span><span class="prelude-val">Some</span>(i) = <span class="self">self
+            </span>.files
+            .iter()
+            .position(|n| n.file_name.replace(<span class="string">&quot;.java&quot;</span>, <span class="string">&quot;&quot;</span>) == name)
+        {
+            <span class="prelude-val">Ok</span>(<span class="self">self</span>.files[i].clone())
         } <span class="kw">else if let </span><span class="prelude-val">Some</span>(i) = <span class="self">self</span>.files.iter().position(|n| n.name.clone() == name) {
             <span class="prelude-val">Ok</span>(<span class="self">self</span>.files[i].clone())
         } <span class="kw">else if let </span><span class="prelude-val">Some</span>(i) = <span class="self">self
@@ -2151,6 +2181,8 @@
             .iter()
             .position(|n| n.path.display().to_string() == name)
         {
+            <span class="prelude-val">Ok</span>(<span class="self">self</span>.files[i].clone())
+        } <span class="kw">else if let </span><span class="prelude-val">Some</span>(i) = <span class="self">self</span>.files.iter().position(|n| n.proper_name == name) {
             <span class="prelude-val">Ok</span>(<span class="self">self</span>.files[i].clone())
         } <span class="kw">else </span>{
             <span class="macro">bail!</span>(<span class="string">&quot;Could not find {} in the project&quot;</span>, name)

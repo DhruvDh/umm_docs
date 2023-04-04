@@ -9,9 +9,11 @@ var sourcesIndex = JSON.parse('{\
 "base64":["",[["engine",[["general_purpose",[],["decode.rs","decode_suffix.rs","mod.rs"]]],["mod.rs"]],["read",[],["decoder.rs","mod.rs"]],["write",[],["encoder.rs","encoder_string_writer.rs","mod.rs"]]],["alphabet.rs","chunked_encoder.rs","decode.rs","display.rs","encode.rs","lib.rs","prelude.rs"]],\
 "bitflags":["",[],["lib.rs"]],\
 "bpaf":["",[],["arg.rs","args.rs","buffer.rs","color.rs","from_os_str.rs","help.rs","info.rs","item.rs","lib.rs","meta.rs","meta_help.rs","meta_usage.rs","meta_youmean.rs","params.rs","structs.rs"]],\
+"bstr":["",[["byteset",[],["mod.rs","scalar.rs"]],["unicode",[["fsm",[],["grapheme_break_fwd.rs","grapheme_break_rev.rs","mod.rs","regional_indicator_rev.rs","sentence_break_fwd.rs","simple_word_fwd.rs","whitespace_anchored_fwd.rs","whitespace_anchored_rev.rs","word_break_fwd.rs"]]],["grapheme.rs","mod.rs","sentence.rs","whitespace.rs","word.rs"]]],["ascii.rs","bstr.rs","ext_slice.rs","impls.rs","lib.rs","utf8.rs"]],\
 "bytecount":["",[],["integer_simd.rs","lib.rs","naive.rs"]],\
 "bytes":["",[["buf",[],["buf_impl.rs","buf_mut.rs","chain.rs","iter.rs","limit.rs","mod.rs","reader.rs","take.rs","uninit_slice.rs","vec_deque.rs","writer.rs"]],["fmt",[],["debug.rs","hex.rs","mod.rs"]]],["bytes.rs","bytes_mut.rs","lib.rs","loom.rs"]],\
 "cfg_if":["",[],["lib.rs"]],\
+"colored":["",[],["color.rs","control.rs","lib.rs","style.rs"]],\
 "console":["",[],["ansi.rs","common_term.rs","kb.rs","lib.rs","term.rs","unix_term.rs","utils.rs"]],\
 "const_random":["",[],["lib.rs"]],\
 "const_random_macro":["",[],["lib.rs","span.rs"]],\
@@ -103,6 +105,7 @@ var sourcesIndex = JSON.parse('{\
 "rand_chacha":["",[],["chacha.rs","guts.rs","lib.rs"]],\
 "rand_core":["",[],["block.rs","error.rs","impls.rs","le.rs","lib.rs","os.rs"]],\
 "regex":["",[["literal",[],["imp.rs","mod.rs"]]],["backtrack.rs","compile.rs","dfa.rs","error.rs","exec.rs","expand.rs","find_byte.rs","input.rs","lib.rs","pikevm.rs","pool.rs","prog.rs","re_builder.rs","re_bytes.rs","re_set.rs","re_trait.rs","re_unicode.rs","sparse.rs","utf8.rs"]],\
+"regex_automata":["",[],["byteorder.rs","classes.rs","dense.rs","dfa.rs","lib.rs","regex.rs","sparse.rs","state_id.rs"]],\
 "regex_syntax":["",[["ast",[],["mod.rs","parse.rs","print.rs","visitor.rs"]],["hir",[["literal",[],["mod.rs"]]],["interval.rs","mod.rs","print.rs","translate.rs","visitor.rs"]],["unicode_tables",[],["age.rs","case_folding_simple.rs","general_category.rs","grapheme_cluster_break.rs","mod.rs","perl_word.rs","property_bool.rs","property_names.rs","property_values.rs","script.rs","script_extension.rs","sentence_break.rs","word_break.rs"]]],["either.rs","error.rs","lib.rs","parser.rs","unicode.rs","utf8.rs"]],\
 "reqwest":["",[["async_impl",[],["body.rs","client.rs","decoder.rs","mod.rs","multipart.rs","request.rs","response.rs","upgrade.rs"]],["blocking",[],["body.rs","client.rs","mod.rs","multipart.rs","request.rs","response.rs","wait.rs"]],["dns",[],["gai.rs","mod.rs","resolve.rs"]]],["connect.rs","error.rs","into_url.rs","lib.rs","proxy.rs","redirect.rs","response.rs","tls.rs","util.rs"]],\
 "reqwest_eventsource":["",[],["error.rs","event_source.rs","lib.rs","reqwest_ext.rs","retry.rs"]],\
@@ -128,6 +131,7 @@ var sourcesIndex = JSON.parse('{\
 "serde_urlencoded":["",[["ser",[],["key.rs","mod.rs","pair.rs","part.rs","value.rs"]]],["de.rs","lib.rs"]],\
 "sharded_slab":["",[["page",[],["mod.rs","slot.rs","stack.rs"]]],["cfg.rs","clear.rs","implementation.rs","iter.rs","lib.rs","macros.rs","pool.rs","shard.rs","sync.rs","tid.rs"]],\
 "signal_hook_registry":["",[],["half_lock.rs","lib.rs"]],\
+"similar":["",[["algorithms",[],["capture.rs","compact.rs","hook.rs","lcs.rs","mod.rs","myers.rs","patience.rs","replace.rs","utils.rs"]],["text",[],["abstraction.rs","inline.rs","mod.rs","utils.rs"]]],["common.rs","iter.rs","lib.rs","types.rs","udiff.rs","utils.rs"]],\
 "slab":["",[],["builder.rs","lib.rs"]],\
 "smallvec":["",[],["lib.rs"]],\
 "smartstring":["",[],["boxed.rs","casts.rs","config.rs","inline.rs","iter.rs","lib.rs","marker_byte.rs","ops.rs","serde.rs"]],\
@@ -168,6 +172,7 @@ var sourcesIndex = JSON.parse('{\
 "unicode_categories":["",[],["lib.rs","tables.rs"]],\
 "unicode_ident":["",[],["lib.rs","tables.rs"]],\
 "unicode_normalization":["",[],["__test_api.rs","decompose.rs","lib.rs","lookups.rs","no_std_prelude.rs","normalize.rs","perfect_hash.rs","quick_check.rs","recompose.rs","replace.rs","stream_safe.rs","tables.rs"]],\
+"unicode_segmentation":["",[],["grapheme.rs","lib.rs","sentence.rs","tables.rs","word.rs"]],\
 "unicode_width":["",[],["lib.rs","tables.rs"]],\
 "untrusted":["",[],["untrusted.rs"]],\
 "url":["",[],["host.rs","lib.rs","origin.rs","parser.rs","path_segments.rs","quirks.rs","slicing.rs"]],\

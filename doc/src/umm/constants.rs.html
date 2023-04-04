@@ -112,6 +112,8 @@
 <a href="#112" id="112">112</a>
 <a href="#113" id="113">113</a>
 <a href="#114" id="114">114</a>
+<a href="#115" id="115">115</a>
+<a href="#116" id="116">116</a>
 </pre><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
 #![warn(clippy::missing_docs_in_private_items)]
 
@@ -146,8 +148,10 @@
             .insert_header(<span class="string">&quot;apiKey&quot;</span>, SUPABASE_KEY.clone());
     <span class="doccomment">/// Runtime
     </span><span class="kw">pub static </span><span class="kw-2">ref </span>RUNTIME: tokio::runtime::Runtime = tokio::runtime::Runtime::new().unwrap();
-    <span class="doccomment">/// ChatGPT System Message
-    </span><span class="kw">pub static </span><span class="kw-2">ref </span>SYSTEM_MESSAGE: String = <span class="macro">include_str!</span>(<span class="string">&quot;prompts/system_message.md&quot;</span>).into();
+    <span class="doccomment">/// ChatGPT System Message intro
+    </span><span class="kw">pub static </span><span class="kw-2">ref </span>SYSTEM_MESSAGE_INTRO: String = <span class="macro">include_str!</span>(<span class="string">&quot;prompts/system_message_intro.md&quot;</span>).into();
+    <span class="doccomment">/// ChatGPT System Message outro
+    </span><span class="kw">pub static </span><span class="kw-2">ref </span>SYSTEM_MESSAGE_OUTRO: String = <span class="macro">include_str!</span>(<span class="string">&quot;prompts/system_message_outro.md&quot;</span>).into();
 
 }
 
