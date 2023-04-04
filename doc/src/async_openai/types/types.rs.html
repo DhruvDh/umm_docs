@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/Users/dhruvdh/.cargo/registry/src/github.com-1ecc6299db9ec823/async-openai-0.10.0/src/types/types.rs`."><title>types.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-be46fdc453a55015.css"><script src="../../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../../../static.files/source-script-1b95b7cca98b26e5.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../async_openai/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/Users/dhruvdh/.cargo/registry/src/github.com-1ecc6299db9ec823/async-openai-0.10.2/src/types/types.rs`."><title>types.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-be46fdc453a55015.css"><script src="../../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../../../static.files/source-script-1b95b7cca98b26e5.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../async_openai/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -903,7 +903,7 @@
 
 <span class="kw">use </span><span class="kw">crate</span>::error::OpenAIError;
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>Model {
     <span class="kw">pub </span>id: String,
     <span class="kw">pub </span>object: String,
@@ -911,13 +911,13 @@
     <span class="kw">pub </span>owned_by: String,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>ListModelResponse {
     <span class="kw">pub </span>object: String,
     <span class="kw">pub </span>data: Vec&lt;Model&gt;,
 }
 
-<span class="attr">#[derive(Debug, Serialize, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 #[serde(untagged)]
 </span><span class="kw">pub enum </span>Prompt {
     String(String),
@@ -927,14 +927,14 @@
     ArrayOfIntegerArray(Vec&lt;Vec&lt;u16&gt;&gt;),
 }
 
-<span class="attr">#[derive(Debug, Serialize, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 #[serde(untagged)]
 </span><span class="kw">pub enum </span>Stop {
     String(String),           <span class="comment">// nullable: true
     </span>StringArray(Vec&lt;String&gt;), <span class="comment">// minItems: 1; maxItems: 4
 </span>}
 
-<span class="attr">#[derive(Clone, Serialize, Default, Debug, Builder)]
+<span class="attr">#[derive(Clone, Serialize, Default, Debug, Builder, PartialEq)]
 #[builder(name = <span class="string">&quot;CreateCompletionRequestArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1031,7 +1031,7 @@
     </span><span class="kw">pub </span>user: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>Logprobs {
     <span class="kw">pub </span>tokens: Vec&lt;String&gt;,
     <span class="kw">pub </span>token_logprobs: Vec&lt;<span class="prelude-ty">Option</span>&lt;f32&gt;&gt;, <span class="comment">// Option is to account for null value in the list
@@ -1039,7 +1039,7 @@
     <span class="kw">pub </span>text_offset: Vec&lt;u32&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>Choice {
     <span class="kw">pub </span>text: String,
     <span class="kw">pub </span>index: u32,
@@ -1047,14 +1047,14 @@
     <span class="kw">pub </span>finish_reason: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>Usage {
     <span class="kw">pub </span>prompt_tokens: u32,
     <span class="kw">pub </span>completion_tokens: u32,
     <span class="kw">pub </span>total_tokens: u32,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>CreateCompletionResponse {
     <span class="kw">pub </span>id: String,
     <span class="kw">pub </span>object: String,
@@ -1068,7 +1068,7 @@
 </span><span class="kw">pub type </span>CompletionResponseStream =
     Pin&lt;Box&lt;<span class="kw">dyn </span>Stream&lt;Item = <span class="prelude-ty">Result</span>&lt;CreateCompletionResponse, OpenAIError&gt;&gt; + Send&gt;&gt;;
 
-<span class="attr">#[derive(Debug, Clone, Serialize, Default, Builder)]
+<span class="attr">#[derive(Debug, Clone, Serialize, Default, Builder, PartialEq)]
 #[builder(name = <span class="string">&quot;CreateEditRequestArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1102,7 +1102,7 @@
     </span><span class="kw">pub </span>top_p: <span class="prelude-ty">Option</span>&lt;f32&gt;, <span class="comment">// min: 0, max: 1, default: 1
 </span>}
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>CreateEditResponse {
     <span class="kw">pub </span>object: String,
     <span class="kw">pub </span>created: u32,
@@ -1110,7 +1110,7 @@
     <span class="kw">pub </span>usage: Usage,
 }
 
-<span class="attr">#[derive(Default, Debug, Serialize, Clone)]
+<span class="attr">#[derive(Default, Debug, Serialize, Clone, PartialEq)]
 </span><span class="kw">pub enum </span>ImageSize {
     <span class="attr">#[serde(rename = <span class="string">&quot;256x256&quot;</span>)]
     </span>S256x256,
@@ -1121,7 +1121,7 @@
     </span>S1024x1024,
 }
 
-<span class="attr">#[derive(Debug, Serialize, Default, Clone)]
+<span class="attr">#[derive(Debug, Serialize, Default, Clone, PartialEq)]
 #[serde(rename_all = <span class="string">&quot;lowercase&quot;</span>)]
 </span><span class="kw">pub enum </span>ResponseFormat {
     <span class="attr">#[default]
@@ -1130,7 +1130,7 @@
     </span>B64Json,
 }
 
-<span class="attr">#[derive(Debug, Clone, Serialize, Default, Builder)]
+<span class="attr">#[derive(Debug, Clone, Serialize, Default, Builder, PartialEq)]
 #[builder(name = <span class="string">&quot;CreateImageRequestArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1157,7 +1157,7 @@
     </span><span class="kw">pub </span>user: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 #[serde(rename_all = <span class="string">&quot;lowercase&quot;</span>)]
 </span><span class="kw">pub enum </span>ImageData {
     Url(std::sync::Arc&lt;String&gt;),
@@ -1165,18 +1165,18 @@
     </span>B64Json(std::sync::Arc&lt;String&gt;),
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>ImageResponse {
     <span class="kw">pub </span>created: u32,
     <span class="kw">pub </span>data: Vec&lt;std::sync::Arc&lt;ImageData&gt;&gt;,
 }
 
-<span class="attr">#[derive(Debug, Default, Clone)]
+<span class="attr">#[derive(Debug, Default, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>ImageInput {
     <span class="kw">pub </span>path: PathBuf,
 }
 
-<span class="attr">#[derive(Debug, Clone, Default, Builder)]
+<span class="attr">#[derive(Debug, Clone, Default, Builder, PartialEq)]
 #[builder(name = <span class="string">&quot;CreateImageEditRequestArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1205,7 +1205,7 @@
     </span><span class="kw">pub </span>user: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
-<span class="attr">#[derive(Debug, Default, Clone, Builder)]
+<span class="attr">#[derive(Debug, Default, Clone, Builder, PartialEq)]
 #[builder(name = <span class="string">&quot;CreateImageVariationRequestArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1228,14 +1228,14 @@
     </span><span class="kw">pub </span>user: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
-<span class="attr">#[derive(Debug, Serialize, Clone)]
+<span class="attr">#[derive(Debug, Serialize, Clone, PartialEq)]
 #[serde(untagged)]
 </span><span class="kw">pub enum </span>ModerationInput {
     String(String),
     StringArray(Vec&lt;String&gt;),
 }
 
-<span class="attr">#[derive(Debug, Serialize, Default, Clone)]
+<span class="attr">#[derive(Debug, Serialize, Default, Clone, PartialEq)]
 </span><span class="kw">pub enum </span>TextModerationModel {
     <span class="attr">#[default]
     #[serde(rename = <span class="string">&quot;text-moderation-latest&quot;</span>)]
@@ -1244,7 +1244,7 @@
     </span>Stable,
 }
 
-<span class="attr">#[derive(Debug, Default, Clone, Serialize, Builder)]
+<span class="attr">#[derive(Debug, Default, Clone, Serialize, Builder, PartialEq)]
 #[builder(name = <span class="string">&quot;CreateModerationRequestArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1261,7 +1261,7 @@
     </span><span class="kw">pub </span>model: <span class="prelude-ty">Option</span>&lt;TextModerationModel&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>Category {
     <span class="kw">pub </span>hate: bool,
     <span class="attr">#[serde(rename = <span class="string">&quot;hate/threatening&quot;</span>)]
@@ -1276,7 +1276,7 @@
     </span><span class="kw">pub </span>violence_graphic: bool,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>CategoryScore {
     <span class="kw">pub </span>hate: f32,
     <span class="attr">#[serde(rename = <span class="string">&quot;hate/threatening&quot;</span>)]
@@ -1291,26 +1291,26 @@
     </span><span class="kw">pub </span>violence_graphic: f32,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>ContentModerationResult {
     <span class="kw">pub </span>flagged: bool,
     <span class="kw">pub </span>categories: Category,
     <span class="kw">pub </span>category_scores: CategoryScore,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>CreateModerationResponse {
     <span class="kw">pub </span>id: String,
     <span class="kw">pub </span>model: String,
     <span class="kw">pub </span>results: Vec&lt;ContentModerationResult&gt;,
 }
 
-<span class="attr">#[derive(Debug, Default, Clone)]
+<span class="attr">#[derive(Debug, Default, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>FileInput {
     <span class="kw">pub </span>path: PathBuf,
 }
 
-<span class="attr">#[derive(Debug, Default, Clone, Builder)]
+<span class="attr">#[derive(Debug, Default, Clone, Builder, PartialEq)]
 #[builder(name = <span class="string">&quot;CreateFileRequestArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1328,20 +1328,20 @@
     </span><span class="kw">pub </span>purpose: String,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>ListFilesResponse {
     <span class="kw">pub </span>object: String,
     <span class="kw">pub </span>data: Vec&lt;OpenAIFile&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>DeleteFileResponse {
     <span class="kw">pub </span>id: String,
     <span class="kw">pub </span>object: String,
     <span class="kw">pub </span>deleted: bool,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, PartialEq, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>OpenAIFile {
     <span class="kw">pub </span>id: String,
     <span class="kw">pub </span>object: String,
@@ -1353,7 +1353,7 @@
     <span class="kw">pub </span>status_details: <span class="prelude-ty">Option</span>&lt;serde_json::Value&gt;, <span class="comment">// nullable: true
 </span>}
 
-<span class="attr">#[derive(Debug, Serialize, Clone, Default, Builder)]
+<span class="attr">#[derive(Debug, Serialize, Clone, Default, Builder, PartialEq)]
 #[builder(name = <span class="string">&quot;CreateFineTuneRequestArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1472,13 +1472,13 @@
     </span><span class="kw">pub </span>suffix: <span class="prelude-ty">Option</span>&lt;String&gt;, <span class="comment">// default: null, minLength:1, maxLength:40
 </span>}
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>ListFineTuneResponse {
     <span class="kw">pub </span>object: String,
     <span class="kw">pub </span>data: Vec&lt;FineTune&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>FineTune {
     <span class="kw">pub </span>id: String,
     <span class="kw">pub </span>object: String,
@@ -1495,7 +1495,7 @@
     <span class="kw">pub </span>events: <span class="prelude-ty">Option</span>&lt;Vec&lt;FineTuneEvent&gt;&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>FineTuneEvent {
     <span class="kw">pub </span>object: String,
     <span class="kw">pub </span>created_at: u32,
@@ -1503,7 +1503,7 @@
     <span class="kw">pub </span>message: String,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>ListFineTuneEventsResponse {
     <span class="kw">pub </span>object: String,
     <span class="kw">pub </span>data: Vec&lt;FineTuneEvent&gt;,
@@ -1513,14 +1513,14 @@
 </span><span class="kw">pub type </span>FineTuneEventsResponseStream =
     Pin&lt;Box&lt;<span class="kw">dyn </span>Stream&lt;Item = <span class="prelude-ty">Result</span>&lt;ListFineTuneEventsResponse, OpenAIError&gt;&gt; + Send&gt;&gt;;
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>DeleteModelResponse {
     <span class="kw">pub </span>id: String,
     <span class="kw">pub </span>object: String,
     <span class="kw">pub </span>deleted: bool,
 }
 
-<span class="attr">#[derive(Debug, Serialize, Clone)]
+<span class="attr">#[derive(Debug, Serialize, Clone, PartialEq)]
 #[serde(untagged)]
 </span><span class="kw">pub enum </span>EmbeddingInput {
     String(String),
@@ -1530,7 +1530,7 @@
     ArrayOfIntegerArray(Vec&lt;Vec&lt;u32&gt;&gt;),
 }
 
-<span class="attr">#[derive(Debug, Serialize, Default, Clone, Builder)]
+<span class="attr">#[derive(Debug, Serialize, Default, Clone, Builder, PartialEq)]
 #[builder(name = <span class="string">&quot;CreateEmbeddingRequestArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1556,20 +1556,20 @@
     </span><span class="kw">pub </span>user: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>Embedding {
     <span class="kw">pub </span>index: u32,
     <span class="kw">pub </span>object: String,
     <span class="kw">pub </span>embedding: Vec&lt;f32&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>EmbeddingUsage {
     <span class="kw">pub </span>prompt_tokens: u32,
     <span class="kw">pub </span>total_tokens: u32,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>CreateEmbeddingResponse {
     <span class="kw">pub </span>object: String,
     <span class="kw">pub </span>model: String,
@@ -1577,7 +1577,7 @@
     <span class="kw">pub </span>usage: EmbeddingUsage,
 }
 
-<span class="attr">#[derive(Debug, Serialize, Deserialize, Clone, Default)]
+<span class="attr">#[derive(Debug, Serialize, Deserialize, Clone, Default, PartialEq)]
 #[serde(rename_all = <span class="string">&quot;lowercase&quot;</span>)]
 </span><span class="kw">pub enum </span>Role {
     System,
@@ -1586,7 +1586,7 @@
     Assistant,
 }
 
-<span class="attr">#[derive(Debug, Serialize, Deserialize, Default, Clone, Builder)]
+<span class="attr">#[derive(Debug, Serialize, Deserialize, Default, Clone, Builder, PartialEq)]
 #[builder(name = <span class="string">&quot;ChatCompletionRequestMessageArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1602,13 +1602,13 @@
     </span><span class="kw">pub </span>name: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>ChatCompletionResponseMessage {
     <span class="kw">pub </span>role: Role,
     <span class="kw">pub </span>content: String,
 }
 
-<span class="attr">#[derive(Clone, Serialize, Default, Debug, Builder, Deserialize)]
+<span class="attr">#[derive(Clone, Serialize, Default, Debug, Builder, Deserialize, PartialEq)]
 #[builder(name = <span class="string">&quot;CreateChatCompletionRequestArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1672,14 +1672,14 @@
     </span><span class="kw">pub </span>user: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>ChatChoice {
     <span class="kw">pub </span>index: u32,
     <span class="kw">pub </span>message: ChatCompletionResponseMessage,
     <span class="kw">pub </span>finish_reason: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>CreateChatCompletionResponse {
     <span class="kw">pub </span>id: String,
     <span class="kw">pub </span>object: String,
@@ -1695,20 +1695,20 @@
 
 <span class="comment">// For reason (not documented by OpenAI) the response from stream is different
 
-</span><span class="attr">#[derive(Debug, Deserialize, Clone)]
+</span><span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>ChatCompletionResponseStreamMessage {
     <span class="kw">pub </span>content: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="kw">pub </span>role: <span class="prelude-ty">Option</span>&lt;Role&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>ChatChoiceDelta {
     <span class="kw">pub </span>index: u32,
     <span class="kw">pub </span>delta: ChatCompletionResponseStreamMessage,
     <span class="kw">pub </span>finish_reason: <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>CreateChatCompletionStreamResponse {
     <span class="kw">pub </span>id: <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="kw">pub </span>object: String,
@@ -1718,12 +1718,12 @@
     <span class="kw">pub </span>usage: <span class="prelude-ty">Option</span>&lt;Usage&gt;,
 }
 
-<span class="attr">#[derive(Debug, Default, Clone)]
+<span class="attr">#[derive(Debug, Default, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>AudioInput {
     <span class="kw">pub </span>path: PathBuf,
 }
 
-<span class="attr">#[derive(Debug, Serialize, Default, Clone)]
+<span class="attr">#[derive(Debug, Serialize, Default, Clone, PartialEq)]
 #[serde(rename_all = <span class="string">&quot;snake_case&quot;</span>)]
 </span><span class="kw">pub enum </span>AudioResponseFormat {
     <span class="attr">#[default]
@@ -1734,7 +1734,7 @@
     Vtt,
 }
 
-<span class="attr">#[derive(Clone, Default, Debug, Builder)]
+<span class="attr">#[derive(Clone, Default, Debug, Builder, PartialEq)]
 #[builder(name = <span class="string">&quot;CreateTranscriptionRequestArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1765,7 +1765,7 @@
     <span class="kw">pub </span>text: String,
 }
 
-<span class="attr">#[derive(Clone, Default, Debug, Builder)]
+<span class="attr">#[derive(Clone, Default, Debug, Builder, PartialEq)]
 #[builder(name = <span class="string">&quot;CreateTranslationRequestArgs&quot;</span>)]
 #[builder(pattern = <span class="string">&quot;mutable&quot;</span>)]
 #[builder(setter(into, strip_option), default)]
@@ -1788,7 +1788,7 @@
     </span><span class="kw">pub </span>temperature: <span class="prelude-ty">Option</span>&lt;f32&gt;, <span class="comment">// default: 0
 </span>}
 
-<span class="attr">#[derive(Debug, Deserialize, Clone)]
+<span class="attr">#[derive(Debug, Deserialize, Clone, PartialEq)]
 </span><span class="kw">pub struct </span>CreateTranslationResponse {
     <span class="kw">pub </span>text: String,
 }

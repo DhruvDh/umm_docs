@@ -1331,11 +1331,25 @@
 <a href="#1331" id="1331">1331</a>
 <a href="#1332" id="1332">1332</a>
 <a href="#1333" id="1333">1333</a>
+<a href="#1334" id="1334">1334</a>
+<a href="#1335" id="1335">1335</a>
+<a href="#1336" id="1336">1336</a>
+<a href="#1337" id="1337">1337</a>
+<a href="#1338" id="1338">1338</a>
+<a href="#1339" id="1339">1339</a>
+<a href="#1340" id="1340">1340</a>
+<a href="#1341" id="1341">1341</a>
+<a href="#1342" id="1342">1342</a>
+<a href="#1343" id="1343">1343</a>
+<a href="#1344" id="1344">1344</a>
+<a href="#1345" id="1345">1345</a>
+<a href="#1346" id="1346">1346</a>
 </pre><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
 #![warn(clippy::missing_docs_in_private_items)]
 
 </span><span class="kw">use </span>std::{
     fmt::Formatter,
+    io::Write,
     path::PathBuf,
     process::{
         Command,
@@ -1611,7 +1625,7 @@
         <span class="kw">let </span>(kind, name) = <span class="lifetime">&#39;outer</span>: {
             <span class="kw">let </span>work = <span class="macro">vec!</span>[
                 (FileType::Interface, INTERFACENAME_QUERY),
-                (FileType::ClassWithMain, MAIN_METHOD_QUERY),
+                (FileType::ClassWithMain, CLASSNAME_QUERY),
                 (FileType::Class, CLASSNAME_QUERY),
             ];
             <span class="kw">for </span>(kind, query) <span class="kw">in </span>work {
@@ -1921,7 +1935,7 @@
     /// TODO: instead of printing javac output, return it.
     /// TODO: have all such methods have generated versions that display output
     /// instead of returning.
-    </span><span class="kw">pub fn </span>run(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Output&gt; {
+    </span><span class="kw">pub fn </span>run(<span class="kw-2">&amp;</span><span class="self">self</span>, input: <span class="prelude-ty">Option</span>&lt;String&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;Output&gt; {
         <span class="self">self</span>.check()<span class="question-mark">?</span>;
 
         <span class="macro">ensure!</span>(
@@ -1929,13 +1943,25 @@
             <span class="string">&quot;File you wish to run doesn&#39;t have a main method.&quot;
         </span>);
 
-        <span class="kw">let </span>name = <span class="self">self</span>.proper_name.clone();
+        <span class="kw">let </span><span class="kw-2">mut </span>child = Command::new(java_path()<span class="question-mark">?</span>)
+            .args([
+                <span class="string">&quot;--class-path&quot;</span>,
+                classpath()<span class="question-mark">?</span>.as_str(),
+                <span class="self">self</span>.proper_name.clone().as_str(),
+            ])
+            .stdin(Stdio::piped())
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()
+            .context(<span class="string">&quot;Failed to spawn javac process.&quot;</span>)<span class="question-mark">?</span>;
 
-        Command::new(java_path()<span class="question-mark">?</span>)
-            .stdin(Stdio::inherit())
-            .args([<span class="string">&quot;--class-path&quot;</span>, classpath()<span class="question-mark">?</span>.as_str(), name.as_str()])
-            .output()
-            .context(<span class="string">&quot;Failed to spawn javac process.&quot;</span>)
+        <span class="kw">let </span><span class="kw-2">mut </span>stdin = child.stdin.take().unwrap();
+        <span class="kw">let </span>input = input.unwrap_or_default();
+
+        stdin.write_all(input.as_bytes()).unwrap();
+
+        <span class="kw">let </span>output = child.wait_with_output()<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(output)
     }
 
     <span class="attr">#[generate_rhai_variant(Fallible, Mut)]
