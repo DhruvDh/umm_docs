@@ -114,6 +114,12 @@
 <a href="#114" id="114">114</a>
 <a href="#115" id="115">115</a>
 <a href="#116" id="116">116</a>
+<a href="#117" id="117">117</a>
+<a href="#118" id="118">118</a>
+<a href="#119" id="119">119</a>
+<a href="#120" id="120">120</a>
+<a href="#121" id="121">121</a>
+<a href="#122" id="122">122</a>
 </pre><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
 #![warn(clippy::missing_docs_in_private_items)]
 
@@ -152,6 +158,8 @@
     </span><span class="kw">pub static </span><span class="kw-2">ref </span>SYSTEM_MESSAGE_INTRO: String = <span class="macro">include_str!</span>(<span class="string">&quot;prompts/system_message_intro.md&quot;</span>).into();
     <span class="doccomment">/// ChatGPT System Message outro
     </span><span class="kw">pub static </span><span class="kw-2">ref </span>SYSTEM_MESSAGE_OUTRO: String = <span class="macro">include_str!</span>(<span class="string">&quot;prompts/system_message_outro.md&quot;</span>).into();
+    <span class="doccomment">/// Entire ChatGPT System Message
+    </span><span class="kw">pub static </span><span class="kw-2">ref </span>SYSTEM_MESSAGE: String = <span class="macro">format!</span>(<span class="string">&quot;{}\n{}&quot;</span>, <span class="kw-2">*</span>SYSTEM_MESSAGE_INTRO, <span class="kw-2">*</span>SYSTEM_MESSAGE_OUTRO);
 
 }
 
@@ -230,5 +238,9 @@
 <span class="doccomment">/// Tree-sitter query that returns interface methods signatures
 /// * `signature`: entire method signature
 </span><span class="kw">pub const </span>INTERFACE_METHODS_QUERY: <span class="kw-2">&amp;</span>str = <span class="macro">include_str!</span>(<span class="string">&quot;queries/interface_methods.scm&quot;</span>);
+
+<span class="doccomment">/// Tree-sitter query that returns method call identifiers
+/// * `name`: method call identifier
+</span><span class="kw">pub const </span>METHOD_CALL_QUERY: <span class="kw-2">&amp;</span>str = <span class="macro">include_str!</span>(<span class="string">&quot;queries/method_invocation.scm&quot;</span>);
 </code></pre></div>
 </section></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="umm" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (f63ccaf25 2023-03-06)" data-search-js="search-8a59a8356673ec1f.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

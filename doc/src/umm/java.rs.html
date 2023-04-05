@@ -1344,11 +1344,58 @@
 <a href="#1344" id="1344">1344</a>
 <a href="#1345" id="1345">1345</a>
 <a href="#1346" id="1346">1346</a>
+<a href="#1347" id="1347">1347</a>
+<a href="#1348" id="1348">1348</a>
+<a href="#1349" id="1349">1349</a>
+<a href="#1350" id="1350">1350</a>
+<a href="#1351" id="1351">1351</a>
+<a href="#1352" id="1352">1352</a>
+<a href="#1353" id="1353">1353</a>
+<a href="#1354" id="1354">1354</a>
+<a href="#1355" id="1355">1355</a>
+<a href="#1356" id="1356">1356</a>
+<a href="#1357" id="1357">1357</a>
+<a href="#1358" id="1358">1358</a>
+<a href="#1359" id="1359">1359</a>
+<a href="#1360" id="1360">1360</a>
+<a href="#1361" id="1361">1361</a>
+<a href="#1362" id="1362">1362</a>
+<a href="#1363" id="1363">1363</a>
+<a href="#1364" id="1364">1364</a>
+<a href="#1365" id="1365">1365</a>
+<a href="#1366" id="1366">1366</a>
+<a href="#1367" id="1367">1367</a>
+<a href="#1368" id="1368">1368</a>
+<a href="#1369" id="1369">1369</a>
+<a href="#1370" id="1370">1370</a>
+<a href="#1371" id="1371">1371</a>
+<a href="#1372" id="1372">1372</a>
+<a href="#1373" id="1373">1373</a>
+<a href="#1374" id="1374">1374</a>
+<a href="#1375" id="1375">1375</a>
+<a href="#1376" id="1376">1376</a>
+<a href="#1377" id="1377">1377</a>
+<a href="#1378" id="1378">1378</a>
+<a href="#1379" id="1379">1379</a>
+<a href="#1380" id="1380">1380</a>
+<a href="#1381" id="1381">1381</a>
+<a href="#1382" id="1382">1382</a>
+<a href="#1383" id="1383">1383</a>
+<a href="#1384" id="1384">1384</a>
+<a href="#1385" id="1385">1385</a>
+<a href="#1386" id="1386">1386</a>
+<a href="#1387" id="1387">1387</a>
+<a href="#1388" id="1388">1388</a>
+<a href="#1389" id="1389">1389</a>
 </pre><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
 #![warn(clippy::missing_docs_in_private_items)]
 
 </span><span class="kw">use </span>std::{
     fmt::Formatter,
+    hash::{
+        Hash,
+        Hasher,
+    },
     io::Write,
     path::PathBuf,
     process::{
@@ -1435,6 +1482,23 @@
     </span>parser:       Parser,
     <span class="doccomment">/// Conscise description of the file
     </span>description:  String,
+}
+
+<span class="doccomment">/// Two `File`s are equal if their paths are equal
+</span><span class="kw">impl </span>PartialEq <span class="kw">for </span>File {
+    <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; bool {
+        <span class="self">self</span>.path == other.path
+    }
+}
+
+<span class="doccomment">/// Based on PartialEq
+</span><span class="kw">impl </span>Eq <span class="kw">for </span>File {}
+
+<span class="doccomment">/// Hash based on path
+</span><span class="kw">impl </span>Hash <span class="kw">for </span>File {
+    <span class="kw">fn </span>hash&lt;H: Hasher&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, state: <span class="kw-2">&amp;mut </span>H) {
+        <span class="self">self</span>.path.hash(state);
+    }
 }
 
 <span class="attr">#[derive(Debug, Clone, Serialize, Deserialize, Default)]
@@ -1935,7 +1999,7 @@
     /// TODO: instead of printing javac output, return it.
     /// TODO: have all such methods have generated versions that display output
     /// instead of returning.
-    </span><span class="kw">pub fn </span>run(<span class="kw-2">&amp;</span><span class="self">self</span>, input: <span class="prelude-ty">Option</span>&lt;String&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;Output&gt; {
+    </span><span class="kw">pub fn </span>run(<span class="kw-2">&amp;</span><span class="self">self</span>, input: <span class="prelude-ty">Option</span>&lt;String&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
         <span class="self">self</span>.check()<span class="question-mark">?</span>;
 
         <span class="macro">ensure!</span>(
@@ -1955,13 +2019,30 @@
             .spawn()
             .context(<span class="string">&quot;Failed to spawn javac process.&quot;</span>)<span class="question-mark">?</span>;
 
+        <span class="kw">let </span>input = <span class="macro">format!</span>(<span class="string">&quot;{}\r\n&quot;</span>, input.unwrap_or_default());
+
         <span class="kw">let </span><span class="kw-2">mut </span>stdin = child.stdin.take().unwrap();
-        <span class="kw">let </span>input = input.unwrap_or_default();
 
-        stdin.write_all(input.as_bytes()).unwrap();
+        stdin.write_all(input.as_bytes())<span class="question-mark">?</span>;
+        stdin.flush()<span class="question-mark">?</span>;
 
-        <span class="kw">let </span>output = child.wait_with_output()<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(output)
+        <span class="kw">let </span>out = child.wait_with_output();
+        <span class="kw">match </span>out {
+            <span class="prelude-val">Ok</span>(out) =&gt; {
+                <span class="kw">if </span>out.status.success() {
+                    <span class="prelude-val">Ok</span>([
+                        String::from_utf8(out.stderr)<span class="question-mark">?</span>,
+                        String::from_utf8(out.stdout)<span class="question-mark">?</span>,
+                    ]
+                    .concat())
+                } <span class="kw">else </span>{
+                    <span class="kw">let </span>output = String::from_utf8(out.stderr)<span class="question-mark">?</span>;
+
+                    <span class="prelude-val">Err</span>(<span class="macro">anyhow!</span>(output).context(<span class="string">&quot;Something went wrong while running the file.&quot;</span>))
+                }
+            }
+            <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">anyhow!</span>(e)),
+        }
     }
 
     <span class="attr">#[generate_rhai_variant(Fallible, Mut)]
@@ -2083,6 +2164,11 @@
     <span class="doccomment">/// Get a reference to the file&#39;s description.
     </span><span class="kw">pub fn </span>description(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
         <span class="self">self</span>.description.clone()
+    }
+
+    <span class="doccomment">/// Get the file&#39;s proper name.
+    </span><span class="kw">pub fn </span>proper_name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
+        <span class="self">self</span>.proper_name.clone()
     }
 }
 
