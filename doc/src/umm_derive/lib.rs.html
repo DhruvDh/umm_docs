@@ -305,7 +305,7 @@
             </span><span class="kw">pub fn </span>#new_fn_name(#sig_args) #output {
                 <span class="kw">match </span>#match_expr {
                     <span class="prelude-val">Ok</span>(res) =&gt; <span class="prelude-val">Ok</span>(res),
-                    <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(e.to_string().into()),
+                    <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into()),
                 }
             }
         }

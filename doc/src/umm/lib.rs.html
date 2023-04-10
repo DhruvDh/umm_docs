@@ -150,6 +150,22 @@
 <a href="#150" id="150">150</a>
 <a href="#151" id="151">151</a>
 <a href="#152" id="152">152</a>
+<a href="#153" id="153">153</a>
+<a href="#154" id="154">154</a>
+<a href="#155" id="155">155</a>
+<a href="#156" id="156">156</a>
+<a href="#157" id="157">157</a>
+<a href="#158" id="158">158</a>
+<a href="#159" id="159">159</a>
+<a href="#160" id="160">160</a>
+<a href="#161" id="161">161</a>
+<a href="#162" id="162">162</a>
+<a href="#163" id="163">163</a>
+<a href="#164" id="164">164</a>
+<a href="#165" id="165">165</a>
+<a href="#166" id="166">166</a>
+<a href="#167" id="167">167</a>
+<a href="#168" id="168">168</a>
 </pre><pre class="rust"><code><span class="doccomment">//! # umm
 //!
 //! A scriptable build tool/grader/test runner for Java projects that don&#39;t use
@@ -188,6 +204,7 @@
     POSTGREST_CLIENT,
     ROOT_DIR,
     RUNTIME,
+    SCRIPT_AST,
     TERM,
 };
 <span class="kw">use </span>grade::<span class="kw-2">*</span>;
@@ -206,8 +223,9 @@
 <span class="doccomment">/// Defined for convenience
 </span><span class="kw">type </span>Dict = std::collections::HashMap&lt;String, String&gt;;
 
-<span class="doccomment">/// Prints the result of grading
-</span><span class="kw">pub fn </span>grade(name_or_path: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
+<span class="doccomment">/// Creates and returns a new `Engine` with all the types and functions
+/// registered
+</span><span class="kw">pub fn </span>create_engine() -&gt; Engine {
     <span class="kw">let </span><span class="kw-2">mut </span>engine = Engine::new();
     engine
         .register_type_with_name::&lt;FileType&gt;(<span class="string">&quot;JavaFileType&quot;</span>)
@@ -220,10 +238,18 @@
         .build_type::&lt;GradeResult&gt;()
         .build_type::&lt;Parser&gt;()
         .build_type::&lt;File&gt;()
+        .build_type::&lt;Query&gt;()
+        .build_type::&lt;QueryGrader&gt;()
         .build_type::&lt;Project&gt;()
         .register_fn(<span class="string">&quot;clean&quot;</span>, clean_script)
         .register_fn(<span class="string">&quot;show_results&quot;</span>, show_result)
         .register_fn(<span class="string">&quot;generate_feedback&quot;</span>, generate_feedback_script);
+    engine
+}
+
+<span class="doccomment">/// Prints the result of grading
+</span><span class="kw">pub fn </span>grade(name_or_path: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
+    <span class="kw">let </span>engine = create_engine();
 
     <span class="comment">// println!(&quot;{}&quot;, engine.gen_fn_signatures(false).join(&quot;\n&quot;));
     </span><span class="kw">let </span>script = <span class="kw">match </span>std::fs::read_to_string(name_or_path) {
@@ -265,9 +291,15 @@
                 </span>))<span class="question-mark">?
         </span>}
     };
+    <span class="kw">let </span>ast = engine.compile(script)<span class="question-mark">?</span>;
+    {
+        <span class="kw">let </span>ast = std::sync::Arc::clone(<span class="kw-2">&amp;</span>SCRIPT_AST);
+        <span class="kw">let </span><span class="kw-2">mut </span>ast = ast.lock().unwrap();
+        <span class="kw-2">*</span>ast = ast.clone();
+    }
 
     <span class="comment">// Run the script
-    </span>engine.run(<span class="kw-2">&amp;</span>script)<span class="question-mark">?</span>;
+    </span>engine.run_ast(<span class="kw-2">&amp;</span>ast)<span class="question-mark">?</span>;
 
     <span class="prelude-val">Ok</span>(())
 }

@@ -1517,7 +1517,6 @@
 <a href="#1517" id="1517">1517</a>
 <a href="#1518" id="1518">1518</a>
 <a href="#1519" id="1519">1519</a>
-<a href="#1520" id="1520">1520</a>
 </pre><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
 #![warn(clippy::missing_docs_in_private_items)]
 
@@ -1733,7 +1732,6 @@
             .context(<span class="string">&quot;Treesitter could not parse code&quot;</span>)<span class="question-mark">?</span>;
 
         <span class="kw">let </span>query = Query::new(<span class="self">self</span>.lang, q).unwrap();
-
         <span class="kw">let </span><span class="kw-2">mut </span>cursor = QueryCursor::new();
         <span class="kw">let </span>matches = cursor.matches(<span class="kw-2">&amp;</span>query, tree.root_node(), <span class="self">self</span>.code.as_bytes());
         <span class="kw">let </span>capture_names = query.capture_names();
