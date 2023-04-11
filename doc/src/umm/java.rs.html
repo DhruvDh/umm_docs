@@ -1517,6 +1517,7 @@
 <a href="#1517" id="1517">1517</a>
 <a href="#1518" id="1518">1518</a>
 <a href="#1519" id="1519">1519</a>
+<a href="#1520" id="1520">1520</a>
 </pre><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
 #![warn(clippy::missing_docs_in_private_items)]
 
@@ -1794,7 +1795,7 @@
     <span class="doccomment">/// An error while compiling a Java file (running
     /// [fn@crate::java::File::check])
     </span><span class="attr">#[error(<span class="string">&quot;Something went wrong while compiling the Java file&quot;</span>)]
-    </span>CompilerError {
+    </span>DuringCompilation {
         <span class="doccomment">/// javac stacktrace
         </span>stacktrace: String,
         <span class="doccomment">/// javac stacktrace, parsed with
@@ -1804,7 +1805,7 @@
     <span class="doccomment">/// An error while running a Java file (running
     /// [fn@crate::java::File::run])
     </span><span class="attr">#[error(<span class="string">&quot;Something went wrong while running the Java file&quot;</span>)]
-    </span>RuntimeError {
+    </span>AtRuntime {
         <span class="doccomment">/// java output
         </span>output: String,
         <span class="doccomment">/// java stacktrace, parsed with [parser::junit_stacktrace_line_ref]
@@ -1813,7 +1814,7 @@
     <span class="doccomment">/// An error while testing a Java file (running
     /// [fn@crate::java::File::test])
     </span><span class="attr">#[error(<span class="string">&quot;Something went wrong while testing the Java file&quot;</span>)]
-    </span>FailedTestError {
+    </span>FailedTests {
         <span class="doccomment">/// junit test results
         </span>test_results: String,
         <span class="doccomment">/// junit stacktrace, parsed with [parser::junit_stacktrace_line_ref]
@@ -1821,7 +1822,7 @@
     },
     <span class="doccomment">/// Unknown error
     </span><span class="attr">#[error(transparent)]
-    </span>UnknownError(<span class="attr">#[from] </span>anyhow::Error),
+    </span>Unknown(<span class="attr">#[from] </span>anyhow::Error),
 }
 
 <span class="kw">impl </span>File {
@@ -1997,6 +1998,7 @@
                     .map(|m| {
                         <span class="kw">let </span>modifier = m.get(<span class="string">&quot;modifier&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
                         <span class="kw">let </span>annotation = m.get(<span class="string">&quot;annotation&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
+                        <span class="kw">let </span>type_parameters = m.get(<span class="string">&quot;typeParameters&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
                         <span class="kw">let </span>return_type = m.get(<span class="string">&quot;returnType&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found);
                         <span class="kw">let </span>identifier = m.get(<span class="string">&quot;identifier&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found);
                         <span class="kw">let </span>parameters = m.get(<span class="string">&quot;parameters&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
@@ -2006,8 +2008,8 @@
                             <span class="string">&quot;[NOT FOUND]&quot;</span>.to_string()
                         } <span class="kw">else </span>{
                             <span class="macro">format!</span>(
-                                <span class="string">&quot;{annotation} {modifier} {return_type} {identifier} {parameters} \
-                                 {throws}&quot;</span>,
+                                <span class="string">&quot;{annotation} {modifier} {type_parameters} {return_type} \
+                                 {identifier} {parameters} {throws}&quot;</span>,
                             )
                         }
                     })
@@ -2165,13 +2167,13 @@
                         }
                     }
 
-                    <span class="prelude-val">Err</span>(JavaFileError::CompilerError {
+                    <span class="prelude-val">Err</span>(JavaFileError::DuringCompilation {
                         stacktrace: output,
                         diags,
                     })
                 }
             }
-            <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(JavaFileError::UnknownError(e)),
+            <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(JavaFileError::Unknown(e)),
         }
     }
 
@@ -2233,7 +2235,7 @@
                         }
                     }
 
-                    <span class="prelude-val">Err</span>(JavaFileError::RuntimeError {
+                    <span class="prelude-val">Err</span>(JavaFileError::AtRuntime {
                         output,
                         diags,
                     })
@@ -2347,7 +2349,7 @@
                         }
                     }
 
-                    <span class="prelude-val">Err</span>(JavaFileError::FailedTestError {
+                    <span class="prelude-val">Err</span>(JavaFileError::FailedTests {
                         test_results: new_output.join(<span class="string">&quot;\n&quot;</span>),
                         diags,
                     })

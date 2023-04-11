@@ -2714,6 +2714,80 @@
 <a href="#2714" id="2714">2714</a>
 <a href="#2715" id="2715">2715</a>
 <a href="#2716" id="2716">2716</a>
+<a href="#2717" id="2717">2717</a>
+<a href="#2718" id="2718">2718</a>
+<a href="#2719" id="2719">2719</a>
+<a href="#2720" id="2720">2720</a>
+<a href="#2721" id="2721">2721</a>
+<a href="#2722" id="2722">2722</a>
+<a href="#2723" id="2723">2723</a>
+<a href="#2724" id="2724">2724</a>
+<a href="#2725" id="2725">2725</a>
+<a href="#2726" id="2726">2726</a>
+<a href="#2727" id="2727">2727</a>
+<a href="#2728" id="2728">2728</a>
+<a href="#2729" id="2729">2729</a>
+<a href="#2730" id="2730">2730</a>
+<a href="#2731" id="2731">2731</a>
+<a href="#2732" id="2732">2732</a>
+<a href="#2733" id="2733">2733</a>
+<a href="#2734" id="2734">2734</a>
+<a href="#2735" id="2735">2735</a>
+<a href="#2736" id="2736">2736</a>
+<a href="#2737" id="2737">2737</a>
+<a href="#2738" id="2738">2738</a>
+<a href="#2739" id="2739">2739</a>
+<a href="#2740" id="2740">2740</a>
+<a href="#2741" id="2741">2741</a>
+<a href="#2742" id="2742">2742</a>
+<a href="#2743" id="2743">2743</a>
+<a href="#2744" id="2744">2744</a>
+<a href="#2745" id="2745">2745</a>
+<a href="#2746" id="2746">2746</a>
+<a href="#2747" id="2747">2747</a>
+<a href="#2748" id="2748">2748</a>
+<a href="#2749" id="2749">2749</a>
+<a href="#2750" id="2750">2750</a>
+<a href="#2751" id="2751">2751</a>
+<a href="#2752" id="2752">2752</a>
+<a href="#2753" id="2753">2753</a>
+<a href="#2754" id="2754">2754</a>
+<a href="#2755" id="2755">2755</a>
+<a href="#2756" id="2756">2756</a>
+<a href="#2757" id="2757">2757</a>
+<a href="#2758" id="2758">2758</a>
+<a href="#2759" id="2759">2759</a>
+<a href="#2760" id="2760">2760</a>
+<a href="#2761" id="2761">2761</a>
+<a href="#2762" id="2762">2762</a>
+<a href="#2763" id="2763">2763</a>
+<a href="#2764" id="2764">2764</a>
+<a href="#2765" id="2765">2765</a>
+<a href="#2766" id="2766">2766</a>
+<a href="#2767" id="2767">2767</a>
+<a href="#2768" id="2768">2768</a>
+<a href="#2769" id="2769">2769</a>
+<a href="#2770" id="2770">2770</a>
+<a href="#2771" id="2771">2771</a>
+<a href="#2772" id="2772">2772</a>
+<a href="#2773" id="2773">2773</a>
+<a href="#2774" id="2774">2774</a>
+<a href="#2775" id="2775">2775</a>
+<a href="#2776" id="2776">2776</a>
+<a href="#2777" id="2777">2777</a>
+<a href="#2778" id="2778">2778</a>
+<a href="#2779" id="2779">2779</a>
+<a href="#2780" id="2780">2780</a>
+<a href="#2781" id="2781">2781</a>
+<a href="#2782" id="2782">2782</a>
+<a href="#2783" id="2783">2783</a>
+<a href="#2784" id="2784">2784</a>
+<a href="#2785" id="2785">2785</a>
+<a href="#2786" id="2786">2786</a>
+<a href="#2787" id="2787">2787</a>
+<a href="#2788" id="2788">2788</a>
+<a href="#2789" id="2789">2789</a>
+<a href="#2790" id="2790">2790</a>
 </pre><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
 #![warn(clippy::missing_docs_in_private_items)]
 
@@ -3158,7 +3232,10 @@
                             methods.insert(method_name.clone());
                         }
 
-                        <span class="kw">let </span>query = <span class="macro">format!</span>(<span class="macro">include_str!</span>(<span class="string">&quot;queries/method_body.scm&quot;</span>), <span class="kw-2">&amp;</span>method_name);
+                        <span class="kw">let </span>query = <span class="macro">format!</span>(
+                            <span class="macro">include_str!</span>(<span class="string">&quot;queries/method_body_with_name.scm&quot;</span>),
+                            <span class="kw-2">&amp;</span>method_name
+                        );
 
                         <span class="kw">for </span>f <span class="kw">in </span>proj.files() {
                             <span class="kw">if </span><span class="kw-2">*</span>f.kind() == FileType::Class || <span class="kw-2">*</span>f.kind() == FileType::ClassWithMain
@@ -3292,7 +3369,7 @@
             <span class="kw">let </span>file = <span class="self">self</span>.project.identify(name)<span class="question-mark">?</span>;
             <span class="kw">let </span>output = <span class="kw">match </span>file.doc_check() {
                 <span class="prelude-val">Ok</span>(o) =&gt; o,
-                <span class="prelude-val">Err</span>(JavaFileError::CompilerError {
+                <span class="prelude-val">Err</span>(JavaFileError::DuringCompilation {
                     stacktrace,
                     diags,
                 }) =&gt; {
@@ -3599,7 +3676,7 @@
                 {
                     <span class="prelude-val">Ok</span>(res) =&gt; res,
 
-                    <span class="prelude-val">Err</span>(JavaFileError::FailedTestError {
+                    <span class="prelude-val">Err</span>(JavaFileError::FailedTests {
                         test_results,
                         diags,
                     }) =&gt; {
@@ -3623,7 +3700,7 @@
                             prompt:      <span class="prelude-val">Some</span>(messages),
                         });
                     }
-                    <span class="prelude-val">Err</span>(JavaFileError::UnknownError(e)) =&gt; {
+                    <span class="prelude-val">Err</span>(JavaFileError::Unknown(e)) =&gt; {
                         <span class="kw">let </span>messages = <span class="macro">vec!</span>[
                             ChatCompletionRequestMessage {
                                 role:    Role::System,
@@ -3643,7 +3720,7 @@
                             prompt:      <span class="prelude-val">Some</span>(messages),
                         });
                     }
-                    <span class="prelude-val">Err</span>(JavaFileError::CompilerError {
+                    <span class="prelude-val">Err</span>(JavaFileError::DuringCompilation {
                         stacktrace,
                         diags,
                     }) =&gt; {
@@ -4344,7 +4421,7 @@
             <span class="kw">let </span>actual_out = {
                 <span class="kw">let </span>out = <span class="kw">match </span>file.run(<span class="prelude-val">Some</span>(input.clone())) {
                     <span class="prelude-val">Ok</span>(out) =&gt; out,
-                    <span class="prelude-val">Err</span>(JavaFileError::RuntimeError {
+                    <span class="prelude-val">Err</span>(JavaFileError::AtRuntime {
                         output,
                         diags,
                     }) =&gt; {
@@ -4368,7 +4445,7 @@
                             prompt:      <span class="prelude-val">Some</span>(messages),
                         });
                     }
-                    <span class="prelude-val">Err</span>(JavaFileError::CompilerError {
+                    <span class="prelude-val">Err</span>(JavaFileError::DuringCompilation {
                         stacktrace,
                         diags,
                     }) =&gt; {
@@ -4667,7 +4744,7 @@
         <span class="string">&quot;This query could not be run, likely due to a syntax \
          error.\nQuery:\n```\n{q}\n```\nError:\n```\n{e}\n```&quot;
     </span>)]
-    </span>QueryExecError {
+    </span>DuringQueryExecution {
         <span class="doccomment">/// The query that could not be run.
         </span>q: String,
         <span class="doccomment">/// The error that occurred.
@@ -4682,7 +4759,7 @@
     </span>NoMatchesFound(String),
     <span class="doccomment">/// Unknown error.
     </span><span class="attr">#[error(<span class="string">&quot;Unknown error: {0}&quot;</span>)]
-    </span>UnkownError(<span class="attr">#[from] </span>anyhow::Error),
+    </span>Unknown(<span class="attr">#[from] </span>anyhow::Error),
 }
 
 <span class="attr">#[derive(Default, Clone)]
@@ -4808,7 +4885,7 @@
     <span class="attr">#[generate_rhai_variant(Fallible)]
     </span><span class="doccomment">/// Adds a query to run.
     /// If no file has been selected, this will throw an error.
-    </span><span class="kw">pub fn </span>query(<span class="kw-2">mut </span><span class="self">self</span>, q: String) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, QueryError&gt; {
+    </span><span class="kw">pub fn </span>query(<span class="attr">#[allow(unused_mut)] </span><span class="kw-2">mut </span><span class="self">self</span>, q: String) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, QueryError&gt; {
         <span class="kw">if </span><span class="self">self</span>.file.is_empty() {
             <span class="kw">return </span><span class="prelude-val">Err</span>(QueryError::NoFileSelected);
         }
@@ -4825,7 +4902,7 @@
     <span class="attr">#[generate_rhai_variant(Fallible)]
     </span><span class="doccomment">/// Adds a capture to the last query.
     /// If no queries have been added, this will throw an error.
-    </span><span class="kw">pub fn </span>capture(<span class="kw-2">mut </span><span class="self">self</span>, c: String) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, QueryError&gt; {
+    </span><span class="kw">pub fn </span>capture(<span class="attr">#[allow(unused_mut)] </span><span class="kw-2">mut </span><span class="self">self</span>, c: String) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, QueryError&gt; {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(last) = <span class="self">self</span>.queries.last_mut() {
             <span class="kw-2">*</span>last = last.clone().set_capture(c);
             <span class="prelude-val">Ok</span>(<span class="self">self</span>)
@@ -4837,7 +4914,7 @@
     <span class="attr">#[generate_rhai_variant(Fallible)]
     </span><span class="doccomment">/// Adds a capture to the last query.
     /// If no queries have been added, this will throw an error.
-    </span><span class="kw">pub fn </span>filter(<span class="kw-2">mut </span><span class="self">self</span>, f: FnPtr) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, QueryError&gt; {
+    </span><span class="kw">pub fn </span>filter(<span class="attr">#[allow(unused_mut)] </span><span class="kw-2">mut </span><span class="self">self</span>, f: FnPtr) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, QueryError&gt; {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(last) = <span class="self">self</span>.queries.last_mut() {
             <span class="kw-2">*</span>last = last.clone().set_filter(f);
             <span class="prelude-val">Ok</span>(<span class="self">self</span>)
@@ -4849,8 +4926,24 @@
     <span class="doccomment">/// Selects entire method body and returns
     </span><span class="kw">pub fn </span>method_body_with_name(<span class="kw-2">mut </span><span class="self">self</span>, method_name: String) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.queries.push(Query {
-            query:   <span class="macro">format!</span>(<span class="macro">include_str!</span>(<span class="string">&quot;queries/method_body.scm&quot;</span>), method_name),
-            capture: method_name,
+            query:   <span class="macro">format!</span>(
+                <span class="macro">include_str!</span>(<span class="string">&quot;queries/method_body_with_name.scm&quot;</span>),
+                method_name
+            ),
+            capture: <span class="string">&quot;body&quot;</span>.to_string(),
+            filter:  <span class="prelude-val">None</span>,
+        });
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Selects entire method body and returns
+    </span><span class="kw">pub fn </span>method_body_with_return_type(<span class="kw-2">mut </span><span class="self">self</span>, return_type: String) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.queries.push(Query {
+            query:   <span class="macro">format!</span>(
+                <span class="macro">include_str!</span>(<span class="string">&quot;queries/method_body_with_return_type.scm&quot;</span>),
+                return_type
+            ),
+            capture: <span class="string">&quot;body&quot;</span>.to_string(),
             filter:  <span class="prelude-val">None</span>,
         });
         <span class="self">self
@@ -4890,7 +4983,20 @@
     </span><span class="kw">pub fn </span>local_variables_with_name(<span class="kw-2">mut </span><span class="self">self</span>, name: String) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.queries.push(Query {
             query:   <span class="macro">format!</span>(<span class="macro">include_str!</span>(<span class="string">&quot;queries/local_variable_with_name.scm&quot;</span>), name),
-            capture: name,
+            capture: <span class="string">&quot;body&quot;</span>.to_string(),
+            filter:  <span class="prelude-val">None</span>,
+        });
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Selects local variable declaration statements with supplied type
+    </span><span class="kw">pub fn </span>local_variables_with_type(<span class="kw-2">mut </span><span class="self">self</span>, type_name: String) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.queries.push(Query {
+            query:   <span class="macro">format!</span>(
+                <span class="macro">include_str!</span>(<span class="string">&quot;queries/local_variable_with_type.scm&quot;</span>),
+                type_name
+            ),
+            capture: <span class="string">&quot;body&quot;</span>.to_string(),
             filter:  <span class="prelude-val">None</span>,
         });
         <span class="self">self
@@ -4929,8 +5035,8 @@
     <span class="doccomment">/// Selects method invocations
     </span><span class="kw">pub fn </span>method_invocations(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.queries.push(Query {
-            query:   String::from(<span class="string">&quot;((method_invocation) @method)&quot;</span>),
-            capture: <span class="string">&quot;method&quot;</span>.to_string(),
+            query:   <span class="macro">include_str!</span>(<span class="string">&quot;queries/method_invocation.scm&quot;</span>).to_string(),
+            capture: <span class="string">&quot;body&quot;</span>.to_string(),
             filter:  <span class="prelude-val">None</span>,
         });
         <span class="self">self
@@ -4943,7 +5049,33 @@
                 <span class="macro">include_str!</span>(<span class="string">&quot;queries/method_invocations_with_name.scm&quot;</span>),
                 name
             ),
-            capture: name,
+            capture: <span class="string">&quot;body&quot;</span>.to_string(),
+            filter:  <span class="prelude-val">None</span>,
+        });
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Selects method invocations with supplied arguments
+    </span><span class="kw">pub fn </span>method_invocations_with_arguments(<span class="kw-2">mut </span><span class="self">self</span>, name: String) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.queries.push(Query {
+            query:   <span class="macro">format!</span>(
+                <span class="macro">include_str!</span>(<span class="string">&quot;queries/method_invocations_with_arguments.scm&quot;</span>),
+                name
+            ),
+            capture: <span class="string">&quot;body&quot;</span>.to_string(),
+            filter:  <span class="prelude-val">None</span>,
+        });
+        <span class="self">self
+    </span>}
+
+    <span class="doccomment">/// Selects method invocations with supplied object
+    </span><span class="kw">pub fn </span>method_invocations_with_object(<span class="kw-2">mut </span><span class="self">self</span>, name: String) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.queries.push(Query {
+            query:   <span class="macro">format!</span>(
+                <span class="macro">include_str!</span>(<span class="string">&quot;queries/method_invocations_with_object.scm&quot;</span>),
+                name
+            ),
+            capture: <span class="string">&quot;body&quot;</span>.to_string(),
             filter:  <span class="prelude-val">None</span>,
         });
         <span class="self">self
@@ -4951,6 +5083,9 @@
 
     <span class="attr">#[generate_rhai_variant(Fallible)]
     </span><span class="doccomment">/// Runs the queries, and returns the result.
+    /// TODO: Make it so that it doesn&#39;t parse a new peice of code, just filters
+    /// out the irrelevant line ranges. This performs better but more
+    /// importantly is more accurate.
     </span><span class="kw">pub fn </span>run_query(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Dynamic, QueryError&gt; {
         <span class="kw">let </span>engine = create_engine();
         <span class="kw">let </span>ast = std::sync::Arc::clone(<span class="kw-2">&amp;</span>SCRIPT_AST);
@@ -4992,7 +5127,7 @@
                 result
             }
             <span class="prelude-val">Err</span>(e) =&gt; {
-                <span class="kw">return </span><span class="prelude-val">Err</span>(QueryError::QueryExecError {
+                <span class="kw">return </span><span class="prelude-val">Err</span>(QueryError::DuringQueryExecution {
                     q: first.query(),
                     e: <span class="macro">format!</span>(<span class="string">&quot;{:#?}&quot;</span>, e),
                 })
@@ -5037,7 +5172,7 @@
                         new_matches.append(<span class="kw-2">&amp;mut </span>result)
                     }
                     <span class="prelude-val">Err</span>(e) =&gt; {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(QueryError::QueryExecError {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(QueryError::DuringQueryExecution {
                             q: q.query(),
                             e: <span class="macro">format!</span>(<span class="string">&quot;{:#?}&quot;</span>, e),
                         })
@@ -5412,10 +5547,15 @@
             )
             .with_fn(<span class="string">&quot;must_not_match&quot;</span>, <span class="self">Self</span>::must_not_match)
             .with_fn(<span class="string">&quot;method_body_with_name&quot;</span>, <span class="self">Self</span>::method_body_with_name)
+            .with_fn(
+                <span class="string">&quot;method_body_with_return_type&quot;</span>,
+                <span class="self">Self</span>::method_body_with_return_type,
+            )
             .with_fn(<span class="string">&quot;main_method&quot;</span>, <span class="self">Self</span>::main_method)
             .with_fn(<span class="string">&quot;class_body_with_name&quot;</span>, <span class="self">Self</span>::class_body_with_name)
             .with_fn(<span class="string">&quot;local_variables&quot;</span>, <span class="self">Self</span>::local_variables)
             .with_fn(<span class="string">&quot;local_variables_with_name&quot;</span>, <span class="self">Self</span>::local_variables_with_name)
+            .with_fn(<span class="string">&quot;local_variables_with_type&quot;</span>, <span class="self">Self</span>::local_variables_with_type)
             .with_fn(<span class="string">&quot;if_statements&quot;</span>, <span class="self">Self</span>::if_statements)
             .with_fn(<span class="string">&quot;for_loops&quot;</span>, <span class="self">Self</span>::for_loops)
             .with_fn(<span class="string">&quot;while_loops&quot;</span>, <span class="self">Self</span>::while_loops)
@@ -5423,6 +5563,14 @@
             .with_fn(
                 <span class="string">&quot;method_invocations_with_name&quot;</span>,
                 <span class="self">Self</span>::method_invocations_with_name,
+            )
+            .with_fn(
+                <span class="string">&quot;method_invocations_with_arguments&quot;</span>,
+                <span class="self">Self</span>::method_invocations_with_arguments,
+            )
+            .with_fn(
+                <span class="string">&quot;method_invocations_with_object&quot;</span>,
+                <span class="self">Self</span>::method_invocations_with_object,
             )
             .with_fn(<span class="string">&quot;filter&quot;</span>, <span class="self">Self</span>::filter_script)
             .with_fn(<span class="string">&quot;run_query&quot;</span>, <span class="self">Self</span>::run_query_script)
