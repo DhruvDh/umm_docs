@@ -1,0 +1,164 @@
+{
+  "main": {
+    "id": "b78d3ec4bd71c6dc",
+    "type": "split",
+    "children": [
+      {
+        "id": "808345c9c569d1ea",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5692d41678c3c0a8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Umm.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "0c7b68f21a0db6e3",
+    "type": "split",
+    "children": [
+      {
+        "id": "cc99d0f108e3b264",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7f287a41e1d6c324",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "f726822fb7ee6362",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "1432679b9fc67152",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "e42c6b0563ada970",
+    "type": "split",
+    "children": [
+      {
+        "id": "22339e83611a6420",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "15e64f5945da0b19",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Umm.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "598d90c7196002c1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Umm.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c76afce203445775",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "88917fd30a426f6b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Umm.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "5692d41678c3c0a8",
+  "lastOpenFiles": [
+    "Umm.pdf",
+    "attachments/Pasted image 20230411190009.png",
+    "attachments/Pasted image 20230411185331.png",
+    "attachments/Pasted image 20230411184826.png",
+    "attachments/Pasted image 20230411184221.png",
+    "attachments/Pasted image 20230411183743.png",
+    "Umm.md",
+    "attachments/Pasted image 20230411134106.png",
+    "attachments/Pasted image 20230411183733.png",
+    "attachments/Pasted image 20230411132959.png",
+    "attachments/Screenshot by Dropbox Capture.png",
+    "attachments"
+  ]
+}
