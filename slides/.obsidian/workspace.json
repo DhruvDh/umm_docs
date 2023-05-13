@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "808345c9c569d1ea",
+        "id": "70c4de1a75478a25",
         "type": "tabs",
         "children": [
           {
-            "id": "5692d41678c3c0a8",
+            "id": "ab1eed91e3e3b51c",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Umm.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Umm.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Umm.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Umm.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -146,15 +138,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5692d41678c3c0a8",
+  "active": "ab1eed91e3e3b51c",
   "lastOpenFiles": [
+    "Umm.md",
     "Umm.pdf",
     "attachments/Pasted image 20230411190009.png",
     "attachments/Pasted image 20230411185331.png",
     "attachments/Pasted image 20230411184826.png",
     "attachments/Pasted image 20230411184221.png",
     "attachments/Pasted image 20230411183743.png",
-    "Umm.md",
     "attachments/Pasted image 20230411134106.png",
     "attachments/Pasted image 20230411183733.png",
     "attachments/Pasted image 20230411132959.png",
