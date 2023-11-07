@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/grade.rs`."><title>grade.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../../static.files/ayu-be46fdc453a55015.css"><script src="../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../../static.files/source-script-1b95b7cca98b26e5.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../umm/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/grade.rs`."><title>grade.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="umm" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0-nightly (fee5518cd 2023-11-05)" data-channel="nightly" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -2788,7 +2788,129 @@
 <a href="#2788" id="2788">2788</a>
 <a href="#2789" id="2789">2789</a>
 <a href="#2790" id="2790">2790</a>
-</pre><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
+<a href="#2791" id="2791">2791</a>
+<a href="#2792" id="2792">2792</a>
+<a href="#2793" id="2793">2793</a>
+<a href="#2794" id="2794">2794</a>
+<a href="#2795" id="2795">2795</a>
+<a href="#2796" id="2796">2796</a>
+<a href="#2797" id="2797">2797</a>
+<a href="#2798" id="2798">2798</a>
+<a href="#2799" id="2799">2799</a>
+<a href="#2800" id="2800">2800</a>
+<a href="#2801" id="2801">2801</a>
+<a href="#2802" id="2802">2802</a>
+<a href="#2803" id="2803">2803</a>
+<a href="#2804" id="2804">2804</a>
+<a href="#2805" id="2805">2805</a>
+<a href="#2806" id="2806">2806</a>
+<a href="#2807" id="2807">2807</a>
+<a href="#2808" id="2808">2808</a>
+<a href="#2809" id="2809">2809</a>
+<a href="#2810" id="2810">2810</a>
+<a href="#2811" id="2811">2811</a>
+<a href="#2812" id="2812">2812</a>
+<a href="#2813" id="2813">2813</a>
+<a href="#2814" id="2814">2814</a>
+<a href="#2815" id="2815">2815</a>
+<a href="#2816" id="2816">2816</a>
+<a href="#2817" id="2817">2817</a>
+<a href="#2818" id="2818">2818</a>
+<a href="#2819" id="2819">2819</a>
+<a href="#2820" id="2820">2820</a>
+<a href="#2821" id="2821">2821</a>
+<a href="#2822" id="2822">2822</a>
+<a href="#2823" id="2823">2823</a>
+<a href="#2824" id="2824">2824</a>
+<a href="#2825" id="2825">2825</a>
+<a href="#2826" id="2826">2826</a>
+<a href="#2827" id="2827">2827</a>
+<a href="#2828" id="2828">2828</a>
+<a href="#2829" id="2829">2829</a>
+<a href="#2830" id="2830">2830</a>
+<a href="#2831" id="2831">2831</a>
+<a href="#2832" id="2832">2832</a>
+<a href="#2833" id="2833">2833</a>
+<a href="#2834" id="2834">2834</a>
+<a href="#2835" id="2835">2835</a>
+<a href="#2836" id="2836">2836</a>
+<a href="#2837" id="2837">2837</a>
+<a href="#2838" id="2838">2838</a>
+<a href="#2839" id="2839">2839</a>
+<a href="#2840" id="2840">2840</a>
+<a href="#2841" id="2841">2841</a>
+<a href="#2842" id="2842">2842</a>
+<a href="#2843" id="2843">2843</a>
+<a href="#2844" id="2844">2844</a>
+<a href="#2845" id="2845">2845</a>
+<a href="#2846" id="2846">2846</a>
+<a href="#2847" id="2847">2847</a>
+<a href="#2848" id="2848">2848</a>
+<a href="#2849" id="2849">2849</a>
+<a href="#2850" id="2850">2850</a>
+<a href="#2851" id="2851">2851</a>
+<a href="#2852" id="2852">2852</a>
+<a href="#2853" id="2853">2853</a>
+<a href="#2854" id="2854">2854</a>
+<a href="#2855" id="2855">2855</a>
+<a href="#2856" id="2856">2856</a>
+<a href="#2857" id="2857">2857</a>
+<a href="#2858" id="2858">2858</a>
+<a href="#2859" id="2859">2859</a>
+<a href="#2860" id="2860">2860</a>
+<a href="#2861" id="2861">2861</a>
+<a href="#2862" id="2862">2862</a>
+<a href="#2863" id="2863">2863</a>
+<a href="#2864" id="2864">2864</a>
+<a href="#2865" id="2865">2865</a>
+<a href="#2866" id="2866">2866</a>
+<a href="#2867" id="2867">2867</a>
+<a href="#2868" id="2868">2868</a>
+<a href="#2869" id="2869">2869</a>
+<a href="#2870" id="2870">2870</a>
+<a href="#2871" id="2871">2871</a>
+<a href="#2872" id="2872">2872</a>
+<a href="#2873" id="2873">2873</a>
+<a href="#2874" id="2874">2874</a>
+<a href="#2875" id="2875">2875</a>
+<a href="#2876" id="2876">2876</a>
+<a href="#2877" id="2877">2877</a>
+<a href="#2878" id="2878">2878</a>
+<a href="#2879" id="2879">2879</a>
+<a href="#2880" id="2880">2880</a>
+<a href="#2881" id="2881">2881</a>
+<a href="#2882" id="2882">2882</a>
+<a href="#2883" id="2883">2883</a>
+<a href="#2884" id="2884">2884</a>
+<a href="#2885" id="2885">2885</a>
+<a href="#2886" id="2886">2886</a>
+<a href="#2887" id="2887">2887</a>
+<a href="#2888" id="2888">2888</a>
+<a href="#2889" id="2889">2889</a>
+<a href="#2890" id="2890">2890</a>
+<a href="#2891" id="2891">2891</a>
+<a href="#2892" id="2892">2892</a>
+<a href="#2893" id="2893">2893</a>
+<a href="#2894" id="2894">2894</a>
+<a href="#2895" id="2895">2895</a>
+<a href="#2896" id="2896">2896</a>
+<a href="#2897" id="2897">2897</a>
+<a href="#2898" id="2898">2898</a>
+<a href="#2899" id="2899">2899</a>
+<a href="#2900" id="2900">2900</a>
+<a href="#2901" id="2901">2901</a>
+<a href="#2902" id="2902">2902</a>
+<a href="#2903" id="2903">2903</a>
+<a href="#2904" id="2904">2904</a>
+<a href="#2905" id="2905">2905</a>
+<a href="#2906" id="2906">2906</a>
+<a href="#2907" id="2907">2907</a>
+<a href="#2908" id="2908">2908</a>
+<a href="#2909" id="2909">2909</a>
+<a href="#2910" id="2910">2910</a>
+<a href="#2911" id="2911">2911</a>
+<a href="#2912" id="2912">2912</a>
+</pre></div><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
 #![warn(clippy::missing_docs_in_private_items)]
 
 </span><span class="kw">use </span>std::{
@@ -2812,6 +2934,7 @@
 };
 <span class="kw">use </span>async_openai::types::{
     ChatCompletionRequestMessage,
+    CreateChatCompletionResponse,
     Role,
 };
 <span class="kw">use </span>colored::Colorize;
@@ -2861,11 +2984,13 @@
         METHOD_CALL_QUERY,
         POSTGREST_CLIENT,
         PROMPT_TRUNCATE,
+        RETRIEVAL_MESSAGE_INTRO,
         ROOT_DIR,
         RUNTIME,
         SCRIPT_AST,
         SOURCE_DIR,
         SYSTEM_MESSAGE,
+        USE_ACTIVE_RETRIEVAL,
     },
     create_engine,
     java::{
@@ -3110,6 +3235,130 @@
     }
 }
 
+<span class="attr">#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+</span><span class="doccomment">/// `RetrievalFunctionCallParams` is a struct that holds the parameters for a
+/// retrieval function call.
+</span><span class="kw">struct </span>RetrievalFunctionCallParams {
+    <span class="doccomment">/// A string that holds the name of the class.
+    </span>class_name:  String,
+    <span class="doccomment">///  A string that holds the name of the method.
+    </span>method_name: String,
+}
+
+<span class="attr">#[derive(Serialize, Deserialize, Debug)]
+</span><span class="doccomment">/// `RetrievalFunctionCallParamsArray` is a struct that holds an array of
+/// `RetrievalFunctionCallParams`.
+</span><span class="kw">struct </span>RetrievalFunctionCallParamsArray {
+    <span class="doccomment">/// A vector of `RetrievalFunctionCallParams`.
+    </span>params: Vec&lt;RetrievalFunctionCallParams&gt;,
+}
+
+<span class="doccomment">/// Retrieves the active context for a retrieval operation.
+///
+/// This function takes a reference to a `Project` and an optional `String` as
+/// additional context. It ensures that the additional context is provided when
+/// using active retrieval. It then prepares a series of
+/// `ChatCompletionRequestMessage` and serializes them into a JSON string.
+///
+/// # Arguments
+///
+/// * `proj` - A reference to a `Project`.
+/// * `additional_context` - An optional `String` that provides additional
+///   context for the retrieval operation.
+///
+/// # Returns
+///
+/// * `Result&lt;ChatCompletionRequestMessage&gt;` - A `Result` that contains a
+///   `ChatCompletionRequestMessage` if the operation was successful, or an
+///   `Err` if it was not.
+</span><span class="kw">pub fn </span>get_active_retrieval_context(
+    proj: <span class="kw-2">&amp;</span>Project,
+    active_retrieval_context: <span class="prelude-ty">Option</span>&lt;String&gt;,
+) -&gt; <span class="prelude-ty">Result</span>&lt;ChatCompletionRequestMessage&gt; {
+    <span class="macro">ensure!</span>(
+        active_retrieval_context.is_some(),
+        <span class="string">&quot;Additional context must be provided when using active retrieval.&quot;
+    </span>);
+
+    <span class="macro">print!</span>(<span class="string">&quot;Trying to decide what to share with AI for feedback...&quot;</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>messages = Vec::new();
+
+    messages.push(ChatCompletionRequestMessage {
+        role:          Role::System,
+        content:       <span class="prelude-val">Some</span>(RETRIEVAL_MESSAGE_INTRO.to_string()),
+        name:          <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Instructor&quot;</span>)),
+        function_call: <span class="prelude-val">None</span>,
+    });
+    messages.push(ChatCompletionRequestMessage {
+        role:          Role::User,
+        content:       <span class="prelude-val">Some</span>(<span class="macro">format!</span>(
+            <span class="string">&quot;Here is the output (stdout and stderr) from running the auto-grader on my \
+             submission:\n```\n{}\n```&quot;</span>,
+            active_retrieval_context.unwrap()
+        )),
+        name:          <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Student&quot;</span>)),
+        function_call: <span class="prelude-val">None</span>,
+    });
+    messages.push(ChatCompletionRequestMessage {
+        role:          Role::System,
+        content:       <span class="prelude-val">Some</span>(<span class="macro">format!</span>(
+            <span class="macro">include_str!</span>(<span class="string">&quot;prompts/retrieval_system_message_outro.md&quot;</span>),
+            JAVA_FILE_NAMES = proj.files().iter().map(File::proper_name).join(<span class="string">&quot;, &quot;</span>),
+            SYNTHESIZED_OUTLINE = proj.describe(),
+        )),
+        name:          <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Instructor&quot;</span>)),
+        function_call: <span class="prelude-val">None</span>,
+    });
+    <span class="kw">let </span>messages = serde_json::to_string(<span class="kw-2">&amp;</span>messages).expect(<span class="string">&quot;Failed to serialize messages array&quot;</span>);
+
+    <span class="kw">let </span>client = reqwest::blocking::Client::new();
+    <span class="kw">let </span>response: CreateChatCompletionResponse = client
+        .post(<span class="string">&quot;https://umm-feedback-openai-func.deno.dev/&quot;</span>)
+        .body(messages)
+        .send()<span class="question-mark">?
+        </span>.json()<span class="question-mark">?</span>;
+    <span class="kw">let </span>response = response.choices[<span class="number">0</span>].message.clone();
+    <span class="macro">println!</span>(<span class="string">&quot; done!&quot;</span>);
+    <span class="macro">ensure!</span>(
+        response.function_call.is_some(),
+        <span class="string">&quot;No function call found in response.&quot;
+    </span>);
+    <span class="kw">let </span>function_call_args: RetrievalFunctionCallParamsArray =
+        serde_json::from_str(response.function_call.unwrap().arguments.as_str())<span class="question-mark">?</span>;
+
+    <span class="kw">let </span><span class="kw-2">mut </span>context = Vec::new();
+    <span class="kw">for </span>function_call_arg <span class="kw">in </span>function_call_args.params {
+        <span class="kw">let </span>file = proj.identify(<span class="kw-2">&amp;</span>function_call_arg.class_name)<span class="question-mark">?</span>;
+        <span class="kw">let </span>query = <span class="macro">format!</span>(
+            <span class="macro">include_str!</span>(<span class="string">&quot;queries/method_body_with_name.scm&quot;</span>),
+            <span class="kw-2">&amp;</span>function_call_arg.method_name
+        );
+
+        <span class="kw">let </span>res = file
+            .query(<span class="kw-2">&amp;</span>query)
+            .or_else(|<span class="kw">_</span>| <span class="prelude-val">Ok</span>::&lt;Vec&lt;Dict&gt;, anyhow::Error&gt;(<span class="macro">vec!</span>[]))
+            .unwrap();
+
+        <span class="kw">for </span>r <span class="kw">in </span>res {
+            <span class="kw">let </span>body = r.get(<span class="string">&quot;body&quot;</span>).unwrap().to_string();
+            context.push(<span class="macro">format!</span>(
+                <span class="string">&quot;Method body for `{}#{}`:&quot;</span>,
+                file.proper_name(),
+                function_call_arg.method_name
+            ));
+            context.push(<span class="macro">format!</span>(<span class="string">&quot;\n```\n{}\n```\n&quot;</span>, body));
+        }
+    }
+
+    <span class="prelude-val">Ok</span>(ChatCompletionRequestMessage {
+        role:          Role::System,
+        content:       <span class="prelude-val">Some</span>(context.join(<span class="string">&quot;\n&quot;</span>)),
+        name:          <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Instructor&quot;</span>)),
+        function_call: <span class="prelude-val">None</span>,
+    })
+}
+
 <span class="doccomment">/// Returns a ChatCompletionRequestMessage with the given line references that
 /// include contextual lines of code from the source
 ///
@@ -3119,23 +3368,27 @@
 /// * `num_lines`: the number of lines of code to include after the line
 /// * `max_line_refs`: the maximum number of _processed_ line references to
 ///   include in the final message
+/// * `try_use_active_retrieval`: whether to try to use active retrieval
+/// * `additional_context`: additional context to use for
 </span><span class="kw">pub fn </span>get_source_context&lt;T: Into&lt;LineRef&gt;&gt;(
     line_refs: Vec&lt;T&gt;,
     proj: Project,
     start_offset: usize,
     num_lines: usize,
     max_line_refs: usize,
+    try_use_active_retrieval: bool,
+    active_retrieval_context: <span class="prelude-ty">Option</span>&lt;String&gt;,
 ) -&gt; <span class="prelude-ty">Result</span>&lt;ChatCompletionRequestMessage&gt; {
-    <span class="kw">let </span>line_refs = line_refs
-        .into_iter()
-        .map(|x| x.into())
-        .collect::&lt;HashSet&lt;LineRef&gt;&gt;()
-        .into_iter()
-        .collect::&lt;Vec&lt;LineRef&gt;&gt;();
+    <span class="kw">if </span>try_use_active_retrieval {
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(message) = get_active_retrieval_context(<span class="kw-2">&amp;</span>proj, active_retrieval_context) {
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(message);
+        }
+    }
 
     <span class="kw">let </span><span class="kw-2">mut </span>line_refs: Vec&lt;(File, LineRef, RangeInclusive&lt;usize&gt;)&gt; = line_refs
         .into_iter()
         .map(|x| {
+            <span class="kw">let </span>x = x.into();
             <span class="kw">let </span>file = proj.identify(<span class="kw-2">&amp;</span>x.file_name)<span class="question-mark">?</span>;
             <span class="kw">let </span>start = <span class="kw">match </span>file.kind() {
                 FileType::Test =&gt; x.line_number.saturating_sub(num_lines),
@@ -3154,6 +3407,7 @@
             .cmp(<span class="kw-2">&amp;</span>lhs.<span class="number">1</span>.file_name)
             .then(lhs.<span class="number">1</span>.line_number.cmp(<span class="kw-2">&amp;</span>rhs.<span class="number">1</span>.line_number))
     });
+    line_refs.dedup();
 
     <span class="kw">let </span><span class="kw-2">mut </span>context = Vec::new();
     context.push(
@@ -3163,7 +3417,7 @@
 :\n&quot;
         </span>.to_string(),
     );
-    <span class="kw">let </span>end_ticks = <span class="string">&quot;\n```&quot;</span>.to_string();
+    <span class="kw">let </span>end_ticks = <span class="string">&quot;\n```\n&quot;</span>.to_string();
     <span class="kw">let </span><span class="kw-2">mut </span>methods: HashSet&lt;String&gt; = HashSet::new();
 
     line_refs
@@ -3187,16 +3441,14 @@
         })
         .take(max_line_refs)
         .for_each(|(file, f, r)| {
-            <span class="kw">let </span>(len, <span class="kw">_</span>) = r.size_hint();
+            <span class="kw">let </span>num_lines = r.size_hint().<span class="number">0</span>;
             <span class="kw">let </span>count = file.parser().code().lines().count();
 
-            <span class="kw">let </span>(f, r) = <span class="kw">if </span>len <span class="kw">as </span>f32 &gt;= <span class="number">0.6 </span>* (count <span class="kw">as </span>f32) {
+            <span class="kw">let </span>(f, r) = <span class="kw">if </span>num_lines <span class="kw">as </span>f32 &gt;= <span class="number">0.6 </span>* (count <span class="kw">as </span>f32) {
                 (f, <span class="number">0</span>..=count)
             } <span class="kw">else </span>{
                 (f, r)
             };
-
-            <span class="kw">let </span>(num_lines, <span class="kw">_</span>) = r.size_hint();
 
             context.push(<span class="macro">format!</span>(
                 <span class="string">&quot;- Lines {} to {} from {} -\n```&quot;</span>,
@@ -3214,6 +3466,7 @@
                 .take(num_lines)
                 .map(|x| x.to_string().replace(<span class="string">&quot;\\\\&quot;</span>, <span class="string">&quot;\\&quot;</span>).replace(<span class="string">&quot;\\\&quot;&quot;</span>, <span class="string">&quot;\&quot;&quot;</span>))
                 .collect::&lt;Vec&lt;String&gt;&gt;();
+
             context.append(<span class="kw-2">&amp;mut </span>(relevant_source.clone()));
             context.push(end_ticks.clone());
 
@@ -3226,11 +3479,7 @@
 
                     <span class="kw">for </span>method <span class="kw">in </span>method_names {
                         <span class="kw">let </span>method_name = method.get(<span class="string">&quot;name&quot;</span>).unwrap().to_string();
-                        <span class="kw">if </span>methods.contains(<span class="kw-2">&amp;</span>method_name) {
-                            <span class="kw">continue</span>;
-                        } <span class="kw">else </span>{
-                            methods.insert(method_name.clone());
-                        }
+                        methods.insert(method_name.clone());
 
                         <span class="kw">let </span>query = <span class="macro">format!</span>(
                             <span class="macro">include_str!</span>(<span class="string">&quot;queries/method_body_with_name.scm&quot;</span>),
@@ -3265,12 +3514,16 @@
         });
 
     <span class="kw">let </span><span class="kw-2">mut </span>context = context.join(<span class="string">&quot;\n&quot;</span>);
-    context.truncate(PROMPT_TRUNCATE);
+    <span class="kw">if </span>context.len() &gt; PROMPT_TRUNCATE {
+        context.truncate(PROMPT_TRUNCATE);
+        context.push_str(<span class="string">&quot;...[TRUNCATED]&quot;</span>);
+    }
 
     <span class="prelude-val">Ok</span>(ChatCompletionRequestMessage {
-        role:    Role::System,
-        content: context,
-        name:    <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Instructor&quot;</span>)),
+        role:          Role::System,
+        content:       <span class="prelude-val">Some</span>(context),
+        name:          <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Instructor&quot;</span>)),
+        function_call: <span class="prelude-val">None</span>,
     })
 }
 
@@ -3375,16 +3628,19 @@
                 }) =&gt; {
                     <span class="kw">let </span>messages = <span class="macro">vec!</span>[
                         ChatCompletionRequestMessage {
-                            role:    Role::System,
-                            content: SYSTEM_MESSAGE.to_string(),
-                            name:    <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Instructor&quot;</span>)),
+                            role:          Role::System,
+                            content:       <span class="prelude-val">Some</span>(SYSTEM_MESSAGE.to_string()),
+                            name:          <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Instructor&quot;</span>)),
+                            function_call: <span class="prelude-val">None</span>,
                         },
                         ChatCompletionRequestMessage {
-                            role:    Role::User,
-                            content: <span class="macro">format!</span>(<span class="string">&quot;Compiler error -\n```\n{}\n```&quot;</span>, stacktrace),
-                            name:    <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Student&quot;</span>)),
+                            role:          Role::User,
+                            content:       <span class="macro">format!</span>(<span class="string">&quot;Compiler error -\n```\n{}\n```&quot;</span>, stacktrace)
+                                .into(),
+                            name:          <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Student&quot;</span>)),
+                            function_call: <span class="prelude-val">None</span>,
                         },
-                        get_source_context(diags, <span class="self">self</span>.project, <span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>)<span class="question-mark">?</span>,
+                        get_source_context(diags, <span class="self">self</span>.project, <span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="bool-val">false</span>, <span class="prelude-val">None</span>)<span class="question-mark">?</span>,
                     ];
 
                     <span class="kw">return </span><span class="prelude-val">Ok</span>(GradeResult {
@@ -3397,14 +3653,16 @@
                 <span class="prelude-val">Err</span>(e) =&gt; {
                     <span class="kw">let </span>messages = <span class="macro">vec!</span>[
                         ChatCompletionRequestMessage {
-                            role:    Role::System,
-                            content: SYSTEM_MESSAGE.to_string(),
-                            name:    <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Instructor&quot;</span>)),
+                            role:          Role::System,
+                            content:       SYSTEM_MESSAGE.to_string().into(),
+                            name:          <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Instructor&quot;</span>)),
+                            function_call: <span class="prelude-val">None</span>,
                         },
                         ChatCompletionRequestMessage {
-                            role:    Role::User,
-                            content: <span class="macro">format!</span>(<span class="string">&quot;Unkown error -\n```\n{:?}\n```&quot;</span>, e),
-                            name:    <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Student&quot;</span>)),
+                            role:          Role::User,
+                            content:       <span class="macro">format!</span>(<span class="string">&quot;Unknown error -\n```\n{:?}\n```&quot;</span>, e).into(),
+                            name:          <span class="prelude-val">Some</span>(String::from(<span class="string">&quot;Student&quot;</span>)),
+                            function_call: <span class="prelude-val">None</span>,
                         },
                     ];
 
@@ -3463,7 +3721,7 @@
         );
 
         <span class="kw">let </span>prompt = <span class="kw">if </span>num_diags &gt; <span class="number">0 </span>{
-            <span class="kw">let </span>context = get_source_context(all_diags, <span class="self">self</span>.project, <span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>)<span class="question-mark">?</span>;
+            <span class="kw">let </span>context = get_source_context(all_diags, <span class="self">self</span>.project, <span class="number">1</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="bool-val">false</span>, <span class="prelude-val">None</span>)<span class="question-mark">?</span>;
 
             <span class="kw">let </span><span class="kw-2">mut </span>outputs = outputs
                 .iter()
@@ -3471,24 +3729,30 @@
                 .collect::&lt;Vec&lt;String&gt;&gt;()
                 .join(<span class="string">&quot;\n\n---\n\n&quot;</span>);
 
-            outputs.truncate(PROMPT_TRUNCATE);
+            <span class="kw">if </span>outputs.len() &gt; PROMPT_TRUNCATE {
+                outputs.truncate(PROMPT_TRUNCATE);
+                outputs.push_str(<span class="string">&quot;...[TRUNCATED]&quot;</span>);
+            }
 
             <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[
                 ChatCompletionRequestMessage {
-                    role:    Role::System,
-                    content: SYSTEM_MESSAGE.to_string(),
-                    name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                    role:          Role::System,
+                    content:       SYSTEM_MESSAGE.to_string().into(),
+                    name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                    function_call: <span class="prelude-val">None</span>,
                 },
                 ChatCompletionRequestMessage {
-                    role:    Role::User,
-                    content: outputs,
-                    name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                    role:          Role::User,
+                    content:       outputs.into(),
+                    name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                    function_call: <span class="prelude-val">None</span>,
                 },
                 context,
                 ChatCompletionRequestMessage {
-                    role:    Role::System,
-                    content: <span class="macro">include_str!</span>(<span class="string">&quot;prompts/javadoc.md&quot;</span>).to_string(),
-                    name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                    role:          Role::System,
+                    content:       <span class="macro">include_str!</span>(<span class="string">&quot;prompts/javadoc.md&quot;</span>).to_string().into(),
+                    name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                    function_call: <span class="prelude-val">None</span>,
                 },
             ])
         } <span class="kw">else </span>{
@@ -3582,82 +3846,110 @@
     /// Final grade is the same percentage of maximum grade as the number of
     /// tests passing.
     </span><span class="kw">pub fn </span>grade_by_tests(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;GradeResult&gt; {
-        <span class="kw">let </span>test_files = <span class="self">self</span>.test_files;
-        <span class="kw">let </span>expected_tests = <span class="self">self</span>.expected_tests;
+        <span class="kw">let </span>convert_to_string = |f: Vec&lt;Dynamic&gt;| -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;String&gt;&gt; {
+            f.iter()
+                .map(|f| <span class="kw">match </span>f.clone().into_string() {
+                    <span class="prelude-val">Ok</span>(n) =&gt; <span class="prelude-val">Ok</span>(n),
+                    <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">anyhow!</span>(
+                        <span class="string">&quot;test_files array has something that&#39;s not a string: {}&quot;</span>,
+                        e
+                    )),
+                })
+                .try_collect()
+        };
+
         <span class="kw">let </span>project = <span class="self">self</span>.project.clone();
         <span class="kw">let </span>out_of = <span class="self">self</span>.out_of;
         <span class="kw">let </span>req_name = <span class="self">self</span>.req_name;
+        <span class="kw">let </span>test_files: Vec&lt;String&gt; = convert_to_string(<span class="self">self</span>.test_files)<span class="question-mark">?</span>;
+        <span class="kw">let </span>expected_tests: Vec&lt;String&gt; = convert_to_string(<span class="self">self</span>.expected_tests)<span class="question-mark">?</span>;
 
-        <span class="kw">let </span>test_files: Vec&lt;String&gt; = test_files
-            .iter()
-            .map(|f| <span class="kw">match </span>f.clone().into_string() {
-                <span class="prelude-val">Ok</span>(n) =&gt; <span class="prelude-val">Ok</span>(n),
-                <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">anyhow!</span>(
-                    <span class="string">&quot;test_files array has something that&#39;s not a string: {}&quot;</span>,
-                    e
-                )),
-            })
-            .try_collect()<span class="question-mark">?</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>reasons = {
+            <span class="kw">let </span><span class="kw-2">mut </span>reasons = <span class="macro">vec!</span>[];
+            <span class="kw">let </span><span class="kw-2">mut </span>actual_tests = <span class="macro">vec!</span>[];
+            <span class="kw">let </span><span class="kw-2">mut </span>expected_tests = expected_tests;
+            expected_tests.sort();
 
-        <span class="kw">let </span>expected_tests: Vec&lt;String&gt; = expected_tests
-            .iter()
-            .map(|f| <span class="kw">match </span>f.clone().into_string() {
-                <span class="prelude-val">Ok</span>(n) =&gt; <span class="prelude-val">Ok</span>(n),
-                <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">anyhow!</span>(
-                    <span class="string">&quot;expected_tests array has something that&#39;s not a string: {}&quot;</span>,
-                    e
-                )),
-            })
-            .try_collect()<span class="question-mark">?</span>;
+            <span class="kw">for </span>test_file <span class="kw">in </span><span class="kw-2">&amp;</span>test_files {
+                <span class="kw">let </span>test_file = project.identify(test_file)<span class="question-mark">?</span>;
 
-        <span class="kw">let </span><span class="kw-2">mut </span>actual_tests = <span class="macro">vec!</span>[];
-        <span class="kw">let </span><span class="kw-2">mut </span>expected_tests = expected_tests;
-        <span class="kw">let </span><span class="kw-2">mut </span>reasons = <span class="macro">vec!</span>[];
-        expected_tests.sort();
+                actual_tests.append(<span class="kw-2">&amp;mut </span>test_file.test_methods());
+            }
+            actual_tests.sort();
 
-        <span class="kw">for </span>test_file <span class="kw">in </span><span class="kw-2">&amp;</span>test_files {
-            <span class="kw">let </span>test_file = project.identify(test_file)<span class="question-mark">?</span>;
+            <span class="kw">if </span>!expected_tests.is_empty() {
+                <span class="kw">for </span>expected <span class="kw">in </span><span class="kw-2">&amp;</span>expected_tests {
+                    <span class="kw">let </span>n = expected.split_once(<span class="string">&#39;#&#39;</span>).unwrap().<span class="number">1</span>;
+                    <span class="kw">if </span>!actual_tests.contains(expected) {
+                        reasons.push(<span class="macro">format!</span>(<span class="string">&quot;- {n} not found.&quot;</span>));
+                    }
+                }
 
-            actual_tests.append(<span class="kw-2">&amp;mut </span>test_file.test_methods());
-        }
-        actual_tests.sort();
-
-        <span class="kw">if </span>!expected_tests.is_empty() {
-            <span class="kw">for </span>expected <span class="kw">in </span><span class="kw-2">&amp;</span>expected_tests {
-                <span class="kw">let </span>n = expected.split_once(<span class="string">&#39;#&#39;</span>).unwrap().<span class="number">1</span>;
-                <span class="kw">if </span>!actual_tests.contains(expected) {
-                    reasons.push(<span class="macro">format!</span>(<span class="string">&quot;- {n} not found.&quot;</span>));
+                <span class="kw">for </span>actual <span class="kw">in </span><span class="kw-2">&amp;</span>actual_tests {
+                    <span class="kw">let </span>n = actual.split_once(<span class="string">&#39;#&#39;</span>).unwrap().<span class="number">1</span>;
+                    <span class="kw">if </span>!expected_tests.contains(actual) {
+                        reasons.push(<span class="macro">format!</span>(<span class="string">&quot;- Unexpected test called {n}&quot;</span>));
+                    }
                 }
             }
 
-            <span class="kw">for </span>actual <span class="kw">in </span><span class="kw-2">&amp;</span>actual_tests {
-                <span class="kw">let </span>n = actual.split_once(<span class="string">&#39;#&#39;</span>).unwrap().<span class="number">1</span>;
-                <span class="kw">if </span>!expected_tests.contains(actual) {
-                    reasons.push(<span class="macro">format!</span>(<span class="string">&quot;- Unexpected test called {n}&quot;</span>));
+            reasons
+        };
+
+        <span class="kw">let </span>new_user_message = |content: String| {
+            <span class="kw">let </span><span class="kw-2">mut </span>content = content;
+            <span class="kw">if </span>content.len() &gt; PROMPT_TRUNCATE {
+                content.truncate(PROMPT_TRUNCATE);
+                content.push_str(<span class="string">&quot;...[TRUNCATED]&quot;</span>);
+            }
+
+            ChatCompletionRequestMessage {
+                role:          Role::User,
+                content:       <span class="prelude-val">Some</span>(content),
+                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                function_call: <span class="prelude-val">None</span>,
+            }
+        };
+        <span class="kw">let </span>new_system_message = |content: String| ChatCompletionRequestMessage {
+            role:          Role::System,
+            content:       <span class="prelude-val">Some</span>(content),
+            name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+            function_call: <span class="prelude-val">None</span>,
+        };
+        <span class="kw">let </span>process_junit_stacktrace = |stacktrace: String| {
+            <span class="kw">let </span><span class="kw-2">mut </span>updated_stacktrace = Vec::new();
+            <span class="kw">let </span><span class="kw-2">mut </span>all_diags = Vec::new();
+
+            <span class="kw">for </span>line <span class="kw">in </span>stacktrace.lines() {
+                <span class="kw">if </span>line.contains(<span class="string">&quot;MethodSource&quot;</span>) || line.contains(<span class="string">&quot;Native Method&quot;</span>) {
+                    <span class="kw">continue</span>;
+                }
+
+                <span class="kw">if </span>line.contains(<span class="string">&quot;Test run finished after&quot;</span>) {
+                    <span class="kw">break</span>;
+                }
+
+                <span class="kw">if let </span><span class="prelude-val">Ok</span>(diag) = parser::junit_stacktrace_line_ref(line) {
+                    <span class="kw">if </span>project.identify(<span class="kw-2">&amp;</span>diag.file_name).is_ok() {
+                        updated_stacktrace
+                            .push(line.replace(<span class="string">&quot;\\\\&quot;</span>, <span class="string">&quot;\\&quot;</span>).replace(<span class="string">&quot;\\\&quot;&quot;</span>, <span class="string">&quot;\&quot;&quot;</span>).to_string());
+                    }
+                    all_diags.push(diag);
+                } <span class="kw">else </span>{
+                    updated_stacktrace
+                        .push(line.replace(<span class="string">&quot;\\\\&quot;</span>, <span class="string">&quot;\\&quot;</span>).replace(<span class="string">&quot;\\\&quot;&quot;</span>, <span class="string">&quot;\&quot;&quot;</span>).to_string());
                 }
             }
-        }
+
+            (updated_stacktrace, all_diags)
+        };
+
+        <span class="kw">let </span>initial_message = new_system_message(SYSTEM_MESSAGE.to_string());
 
         <span class="kw">if </span>!reasons.is_empty() {
             reasons.push(<span class="string">&quot;Tests will not be run until above is fixed.&quot;</span>.into());
             <span class="kw">let </span>reasons = reasons.join(<span class="string">&quot;\n&quot;</span>);
-            <span class="kw">let </span>messages = <span class="macro">vec!</span>[
-                ChatCompletionRequestMessage {
-                    role:    Role::System,
-                    content: SYSTEM_MESSAGE.to_string(),
-                    name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
-                },
-                <span class="comment">// ChatCompletionRequestMessage {
-                //     role:    Role::System,
-                //     content: self.project.describe(),
-                //     name:    Some(&quot;Instructor&quot;.into()),
-                // },
-                </span>ChatCompletionRequestMessage {
-                    role:    Role::User,
-                    content: reasons.clone(),
-                    name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
-                },
-            ];
+            <span class="kw">let </span>messages = <span class="macro">vec!</span>[initial_message, new_user_message(reasons.clone())];
             <span class="prelude-val">Ok</span>(GradeResult {
                 requirement: req_name,
                 grade:       Grade::new(<span class="number">0.0</span>, out_of),
@@ -3667,102 +3959,65 @@
         } <span class="kw">else </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>num_tests_passed = <span class="number">0.0</span>;
             <span class="kw">let </span><span class="kw-2">mut </span>num_tests_total = <span class="number">0.0</span>;
-            <span class="kw">let </span><span class="kw-2">mut </span>messages = <span class="macro">vec!</span>[];
+            <span class="kw">let </span><span class="kw-2">mut </span>messages = <span class="macro">vec!</span>[initial_message.clone()];
 
             <span class="kw">for </span>test_file <span class="kw">in </span>test_files {
                 <span class="kw">let </span>res = <span class="kw">match </span>project
                     .identify(test_file.as_str())<span class="question-mark">?
-                    </span>.test(Vec::new(), <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.project))
+                    </span>.test(Vec::new(), <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>project))
                 {
                     <span class="prelude-val">Ok</span>(res) =&gt; res,
-
                     <span class="prelude-val">Err</span>(JavaFileError::FailedTests {
                         test_results,
                         diags,
                     }) =&gt; {
-                        <span class="kw">let </span>messages = <span class="macro">vec!</span>[
-                            ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: SYSTEM_MESSAGE.to_string(),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
-                            },
-                            ChatCompletionRequestMessage {
-                                role:    Role::User,
-                                content: <span class="macro">format!</span>(<span class="string">&quot;Failed tests -\n```\n{}\n```&quot;</span>, test_results),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
-                            },
-                            get_source_context(diags, <span class="self">self</span>.project, <span class="number">3</span>, <span class="number">6</span>, <span class="number">6</span>)<span class="question-mark">?</span>,
-                        ];
-                        <span class="kw">return </span><span class="prelude-val">Ok</span>(GradeResult {
-                            requirement: req_name,
-                            grade:       Grade::new(<span class="number">0.0</span>, out_of),
-                            reason:      <span class="string">&quot;Error running tests.&quot;</span>.to_string(),
-                            prompt:      <span class="prelude-val">Some</span>(messages),
-                        });
+                        <span class="kw">let </span>(updated_stacktrace, <span class="kw">_</span>) =
+                            process_junit_stacktrace(test_results.clone());
+
+                        messages.extend(<span class="macro">vec!</span>[
+                            new_user_message(<span class="macro">format!</span>(
+                                <span class="string">&quot;Failed tests -\n```\n{}\n```&quot;</span>,
+                                updated_stacktrace.join(<span class="string">&quot;\n&quot;</span>)
+                            )),
+                            get_source_context(
+                                diags,
+                                project.clone(),
+                                <span class="number">3</span>,
+                                <span class="number">6</span>,
+                                <span class="number">6</span>,
+                                <span class="kw-2">*</span>USE_ACTIVE_RETRIEVAL.try_get().unwrap_or(<span class="kw-2">&amp;</span><span class="bool-val">false</span>),
+                                <span class="prelude-val">Some</span>(updated_stacktrace.join(<span class="string">&quot;\n&quot;</span>)),
+                            )<span class="question-mark">?</span>,
+                        ]);
+
+                        test_results
                     }
                     <span class="prelude-val">Err</span>(JavaFileError::Unknown(e)) =&gt; {
-                        <span class="kw">let </span>messages = <span class="macro">vec!</span>[
-                            ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: SYSTEM_MESSAGE.to_string(),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
-                            },
-                            ChatCompletionRequestMessage {
-                                role:    Role::User,
-                                content: <span class="macro">format!</span>(<span class="string">&quot;Unkown error -\n```\n{:#?}\n```&quot;</span>, e),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
-                            },
-                        ];
-                        <span class="kw">return </span><span class="prelude-val">Ok</span>(GradeResult {
-                            requirement: req_name,
-                            grade:       Grade::new(<span class="number">0.0</span>, out_of),
-                            reason:      <span class="string">&quot;Error running tests.&quot;</span>.to_string(),
-                            prompt:      <span class="prelude-val">Some</span>(messages),
-                        });
+                        <span class="kw">let </span>out = <span class="macro">format!</span>(<span class="string">&quot;Unknown error -\n```\n{:#?}\n```&quot;</span>, e);
+                        messages.push(new_user_message(out.clone()));
+                        out
                     }
                     <span class="prelude-val">Err</span>(JavaFileError::DuringCompilation {
                         stacktrace,
                         diags,
                     }) =&gt; {
-                        <span class="kw">let </span>messages = <span class="macro">vec!</span>[
-                            ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: SYSTEM_MESSAGE.to_string(),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
-                            },
-                            ChatCompletionRequestMessage {
-                                role:    Role::User,
-                                content: <span class="macro">format!</span>(<span class="string">&quot;Compiler error -\n```\n{}\n```&quot;</span>, stacktrace),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
-                            },
-                            get_source_context(diags, <span class="self">self</span>.project, <span class="number">3</span>, <span class="number">6</span>, <span class="number">6</span>)<span class="question-mark">?</span>,
-                        ];
-                        <span class="kw">return </span><span class="prelude-val">Ok</span>(GradeResult {
-                            requirement: req_name,
-                            grade:       Grade::new(<span class="number">0.0</span>, out_of),
-                            reason:      <span class="string">&quot;Error running tests.&quot;</span>.to_string(),
-                            prompt:      <span class="prelude-val">Some</span>(messages),
-                        });
+                        <span class="kw">let </span>out = <span class="macro">format!</span>(<span class="string">&quot;Compiler error -\n```\n{}\n```&quot;</span>, stacktrace);
+                        messages.extend(<span class="macro">vec!</span>[
+                            new_user_message(out.clone()),
+                            get_source_context(diags, project.clone(), <span class="number">3</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="bool-val">false</span>, <span class="prelude-val">None</span>)<span class="question-mark">?</span>,
+                        ]);
+                        out
                     }
-                    <span class="prelude-val">Err</span>(e) =&gt; {
-                        <span class="kw">let </span>messages = <span class="macro">vec!</span>[
-                            ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: SYSTEM_MESSAGE.to_string(),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
-                            },
-                            ChatCompletionRequestMessage {
-                                role:    Role::User,
-                                content: <span class="macro">format!</span>(<span class="string">&quot;Unkown Error -\n```\n{:#?}\n```&quot;</span>, e),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
-                            },
-                        ];
-                        <span class="kw">return </span><span class="prelude-val">Ok</span>(GradeResult {
-                            requirement: req_name,
-                            grade:       Grade::new(<span class="number">0.0</span>, out_of),
-                            reason:      <span class="string">&quot;Error running tests.&quot;</span>.to_string(),
-                            prompt:      <span class="prelude-val">Some</span>(messages),
-                        });
+                    <span class="prelude-val">Err</span>(JavaFileError::AtRuntime {
+                        output,
+                        diags,
+                    }) =&gt; {
+                        <span class="kw">let </span>out = <span class="macro">format!</span>(<span class="string">&quot;Error at runtime -\n```\n{}\n```&quot;</span>, output);
+                        messages.extend(<span class="macro">vec!</span>[
+                            new_user_message(out.clone()),
+                            get_source_context(diags, project.clone(), <span class="number">3</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="bool-val">false</span>, <span class="prelude-val">None</span>)<span class="question-mark">?</span>,
+                        ]);
+                        out
                     }
                 };
                 <span class="kw">let </span><span class="kw-2">mut </span>current_tests_passed = <span class="number">0.0</span>;
@@ -3779,59 +4034,6 @@
                     <span class="kw">if let </span><span class="prelude-val">Ok</span>(n) = parse_result {
                         current_tests_total = n <span class="kw">as </span>f64;
                     }
-                }
-
-                <span class="kw">if </span>current_tests_passed &lt; current_tests_total {
-                    <span class="kw">let </span>user_message = res.clone();
-                    <span class="kw">let </span><span class="kw-2">mut </span>all_diags = <span class="macro">vec!</span>[];
-                    <span class="kw">let </span><span class="kw-2">mut </span>new_user_message = Vec::new();
-
-                    <span class="kw">for </span>line <span class="kw">in </span>user_message.lines() {
-                        <span class="kw">if </span>line.contains(<span class="string">&quot;MethodSource&quot;</span>) || line.contains(<span class="string">&quot;Native Method&quot;</span>) {
-                            <span class="kw">continue</span>;
-                        }
-
-                        <span class="kw">if </span>line.contains(<span class="string">&quot;Test run finished after&quot;</span>) {
-                            <span class="kw">break</span>;
-                        }
-
-                        <span class="kw">if let </span><span class="prelude-val">Ok</span>(diag) = parser::junit_stacktrace_line_ref(line) {
-                            <span class="kw">if </span>project.identify(<span class="kw-2">&amp;</span>diag.file_name).is_ok() {
-                                new_user_message.push(
-                                    line.replace(<span class="string">&quot;\\\\&quot;</span>, <span class="string">&quot;\\&quot;</span>).replace(<span class="string">&quot;\\\&quot;&quot;</span>, <span class="string">&quot;\&quot;&quot;</span>).to_string(),
-                                );
-                            }
-                            all_diags.push(diag);
-                        } <span class="kw">else </span>{
-                            new_user_message
-                                .push(line.replace(<span class="string">&quot;\\\\&quot;</span>, <span class="string">&quot;\\&quot;</span>).replace(<span class="string">&quot;\\\&quot;&quot;</span>, <span class="string">&quot;\&quot;&quot;</span>).to_string());
-                        }
-                    }
-
-                    <span class="kw">let </span>context = get_source_context(all_diags, <span class="self">self</span>.project.clone(), <span class="number">3</span>, <span class="number">6</span>, <span class="number">6</span>)<span class="question-mark">?</span>;
-
-                    <span class="kw">let </span><span class="kw-2">mut </span>user_message = new_user_message.join(<span class="string">&quot;\n&quot;</span>);
-                    user_message.truncate(PROMPT_TRUNCATE);
-                    user_message = <span class="macro">format!</span>(<span class="string">&quot;```\n{user_message}\n```&quot;</span>);
-
-                    messages = <span class="macro">vec!</span>[
-                        ChatCompletionRequestMessage {
-                            role:    Role::System,
-                            content: SYSTEM_MESSAGE.to_string(),
-                            name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
-                        },
-                        <span class="comment">// ChatCompletionRequestMessage {
-                        //     role:    Role::System,
-                        //     content: self.project.describe(),
-                        //     name:    Some(&quot;Instructor&quot;.into()),
-                        // },
-                        </span>ChatCompletionRequestMessage {
-                            role:    Role::User,
-                            content: user_message,
-                            name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
-                        },
-                        context,
-                    ];
                 }
 
                 num_tests_passed += current_tests_passed;
@@ -4006,7 +4208,7 @@
                 <span class="string">&quot;--targetTests&quot;</span>,
                 target_test.join(<span class="string">&quot;,&quot;</span>).as_str(),
                 <span class="string">&quot;--sourceDirs&quot;</span>,
-                <span class="macro">vec!</span>[
+                [
                     SOURCE_DIR.to_str().unwrap_or(<span class="string">&quot;.&quot;</span>),
                     ROOT_DIR.to_str().unwrap_or(<span class="string">&quot;.&quot;</span>),
                 ]
@@ -4055,18 +4257,22 @@
             <span class="macro">eprintln!</span>(<span class="string">&quot;Problematic mutation test failures printed about.&quot;</span>);
 
             <span class="kw">let </span>prompt = <span class="kw">if </span>num_diags &gt; <span class="number">0 </span>{
-                <span class="kw">let </span>context = get_source_context(diags.clone(), project, <span class="number">3</span>, <span class="number">6</span>, <span class="number">6</span>)<span class="question-mark">?</span>;
+                <span class="kw">let </span>context = get_source_context(diags.clone(), project, <span class="number">3</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="bool-val">false</span>, <span class="prelude-val">None</span>)<span class="question-mark">?</span>;
 
                 <span class="kw">let </span><span class="kw-2">mut </span>feedback = ExpandedDisplay::new(diags).to_string();
                 <span class="macro">eprintln!</span>(<span class="string">&quot;{feedback}&quot;</span>);
 
-                feedback.truncate(PROMPT_TRUNCATE);
+                <span class="kw">if </span>feedback.len() &gt; PROMPT_TRUNCATE {
+                    feedback.truncate(PROMPT_TRUNCATE);
+                    feedback.push_str(<span class="string">&quot;...[TRUNCATED]&quot;</span>);
+                }
 
                 <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[
                     ChatCompletionRequestMessage {
-                        role:    Role::System,
-                        content: SYSTEM_MESSAGE.to_string(),
-                        name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                        role:          Role::System,
+                        content:       SYSTEM_MESSAGE.to_string().into(),
+                        name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                        function_call: <span class="prelude-val">None</span>,
                     },
                     <span class="comment">// ChatCompletionRequestMessage {
                     //     role:    Role::System,
@@ -4074,19 +4280,22 @@
                     //     name:    Some(&quot;Instructor&quot;.into()),
                     // },
                     </span>ChatCompletionRequestMessage {
-                        role:    Role::User,
-                        content: feedback,
-                        name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                        role:          Role::User,
+                        content:       feedback.into(),
+                        name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                        function_call: <span class="prelude-val">None</span>,
                     },
                     context,
                     ChatCompletionRequestMessage {
-                        role:    Role::System,
-                        content: <span class="macro">format!</span>(
+                        role:          Role::System,
+                        content:       <span class="macro">format!</span>(
                             <span class="macro">include_str!</span>(<span class="string">&quot;prompts/mutation_testing.md&quot;</span>),
                             test = target_test.join(<span class="string">&quot;, &quot;</span>),
                             class = target_class.join(<span class="string">&quot;, &quot;</span>)
-                        ),
-                        name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                        )
+                        .into(),
+                        name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                        function_call: <span class="prelude-val">None</span>,
                     },
                 ])
             } <span class="kw">else </span>{
@@ -4106,14 +4315,18 @@
             ]
             .concat();
             <span class="macro">eprintln!</span>(<span class="string">&quot;{output}&quot;</span>);
-            output.truncate(PROMPT_TRUNCATE);
+            <span class="kw">if </span>output.len() &gt; PROMPT_TRUNCATE {
+                output.truncate(PROMPT_TRUNCATE);
+                output.push_str(<span class="string">&quot;...[TRUNCATED]&quot;</span>);
+            }
 
             <span class="kw">let </span>prompt = <span class="kw">if </span>!output.is_empty() {
                 <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[
                     ChatCompletionRequestMessage {
-                        role:    Role::System,
-                        content: SYSTEM_MESSAGE.to_string(),
-                        name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                        role:          Role::System,
+                        content:       SYSTEM_MESSAGE.to_string().into(),
+                        name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                        function_call: <span class="prelude-val">None</span>,
                     },
                     <span class="comment">// ChatCompletionRequestMessage {
                     //     role:    Role::System,
@@ -4121,18 +4334,21 @@
                     //     name:    Some(&quot;Instructor&quot;.into()),
                     // },
                     </span>ChatCompletionRequestMessage {
-                        role:    Role::User,
-                        content: output,
-                        name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                        role:          Role::User,
+                        content:       <span class="prelude-val">Some</span>(output),
+                        name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                        function_call: <span class="prelude-val">None</span>,
                     },
                     ChatCompletionRequestMessage {
-                        role:    Role::System,
-                        content: <span class="macro">format!</span>(
+                        role:          Role::System,
+                        content:       <span class="macro">format!</span>(
                             <span class="macro">include_str!</span>(<span class="string">&quot;prompts/mutation_testing_2.md&quot;</span>),
                             test = target_test.join(<span class="string">&quot;, &quot;</span>),
                             class = target_class.join(<span class="string">&quot;, &quot;</span>)
-                        ),
-                        name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                        )
+                        .into(),
+                        name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                        function_call: <span class="prelude-val">None</span>,
                     },
                 ])
             } <span class="kw">else </span>{
@@ -4427,16 +4643,22 @@
                     }) =&gt; {
                         <span class="kw">let </span>messages = <span class="macro">vec!</span>[
                             ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: SYSTEM_MESSAGE.to_string(),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                role:          Role::System,
+                                content:       SYSTEM_MESSAGE.to_string().into(),
+                                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                function_call: <span class="prelude-val">None</span>,
                             },
                             ChatCompletionRequestMessage {
-                                role:    Role::User,
-                                content: <span class="macro">format!</span>(<span class="string">&quot;Error while running -\n```\n{}\n```&quot;</span>, output),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                                role:          Role::User,
+                                content:       <span class="macro">format!</span>(
+                                    <span class="string">&quot;Error while running -\n```\n{}\n```&quot;</span>,
+                                    output
+                                )
+                                .into(),
+                                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                                function_call: <span class="prelude-val">None</span>,
                             },
-                            get_source_context(diags, <span class="self">self</span>.project.clone(), <span class="number">3</span>, <span class="number">6</span>, <span class="number">6</span>)<span class="question-mark">?</span>,
+                            get_source_context(diags, <span class="self">self</span>.project.clone(), <span class="number">3</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="bool-val">false</span>, <span class="prelude-val">None</span>)<span class="question-mark">?</span>,
                         ];
                         <span class="kw">return </span><span class="prelude-val">Ok</span>(GradeResult {
                             requirement: <span class="self">self</span>.req_name.clone(),
@@ -4451,19 +4673,22 @@
                     }) =&gt; {
                         <span class="kw">let </span>messages = <span class="macro">vec!</span>[
                             ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: SYSTEM_MESSAGE.to_string(),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                role:          Role::System,
+                                content:       SYSTEM_MESSAGE.to_string().into(),
+                                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                function_call: <span class="prelude-val">None</span>,
                             },
                             ChatCompletionRequestMessage {
-                                role:    Role::User,
-                                content: <span class="macro">format!</span>(
+                                role:          Role::User,
+                                content:       <span class="macro">format!</span>(
                                     <span class="string">&quot;Error while compiling -\n```\n{}\n```&quot;</span>,
                                     stacktrace
-                                ),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                                )
+                                .into(),
+                                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                                function_call: <span class="prelude-val">None</span>,
                             },
-                            get_source_context(diags, <span class="self">self</span>.project.clone(), <span class="number">3</span>, <span class="number">6</span>, <span class="number">6</span>)<span class="question-mark">?</span>,
+                            get_source_context(diags, <span class="self">self</span>.project.clone(), <span class="number">3</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="bool-val">false</span>, <span class="prelude-val">None</span>)<span class="question-mark">?</span>,
                         ];
                         <span class="kw">return </span><span class="prelude-val">Ok</span>(GradeResult {
                             requirement: <span class="self">self</span>.req_name.clone(),
@@ -4475,14 +4700,16 @@
                     <span class="prelude-val">Err</span>(e) =&gt; {
                         <span class="kw">let </span>messages = <span class="macro">vec!</span>[
                             ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: SYSTEM_MESSAGE.to_string(),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                role:          Role::System,
+                                content:       SYSTEM_MESSAGE.to_string().into(),
+                                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                function_call: <span class="prelude-val">None</span>,
                             },
                             ChatCompletionRequestMessage {
-                                role:    Role::User,
-                                content: <span class="macro">format!</span>(<span class="string">&quot;Unkown error -\n```\n{:?}\n```&quot;</span>, e),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                                role:          Role::User,
+                                content:       <span class="macro">format!</span>(<span class="string">&quot;Unknown error -\n```\n{:?}\n```&quot;</span>, e).into(),
+                                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                                function_call: <span class="prelude-val">None</span>,
                             },
                         ];
                         <span class="kw">return </span><span class="prelude-val">Ok</span>(GradeResult {
@@ -4575,14 +4802,16 @@
                 reason:      <span class="string">&quot;See above.&quot;</span>.to_string(),
                 prompt:      <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[
                     ChatCompletionRequestMessage {
-                        role:    Role::System,
-                        content: SYSTEM_MESSAGE.to_string(),
-                        name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                        role:          Role::System,
+                        content:       SYSTEM_MESSAGE.to_string().into(),
+                        name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                        function_call: <span class="prelude-val">None</span>,
                     },
                     ChatCompletionRequestMessage {
-                        role:    Role::System,
-                        content: context,
-                        name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                        role:          Role::System,
+                        content:       <span class="prelude-val">Some</span>(context),
+                        name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Student&quot;</span>.into()),
+                        function_call: <span class="prelude-val">None</span>,
                     },
                 ]),
             })
@@ -5223,18 +5452,21 @@
                     reason,
                     prompt: <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[
                         ChatCompletionRequestMessage {
-                            role:    Role::System,
-                            content: SYSTEM_MESSAGE.to_string(),
-                            name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                            role:          Role::System,
+                            content:       SYSTEM_MESSAGE.to_string().into(),
+                            name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                            function_call: <span class="prelude-val">None</span>,
                         },
                         ChatCompletionRequestMessage {
-                            role:    Role::System,
-                            content: <span class="macro">format!</span>(
+                            role:          Role::System,
+                            content:       <span class="macro">format!</span>(
                                 <span class="string">&quot;Something went wrong when using treesitter queries to grade \
                                  `{}`. Error message:\n\n```\n{}\n```\n&quot;</span>,
                                 <span class="self">self</span>.file, e
-                            ),
-                            name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                            )
+                            .into(),
+                            name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                            function_call: <span class="prelude-val">None</span>,
                         },
                     ]),
                 })
@@ -5253,14 +5485,20 @@
                         reason,
                         prompt: <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[
                             ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: SYSTEM_MESSAGE.to_string(),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                role:          Role::System,
+                                content:       SYSTEM_MESSAGE.to_string().into(),
+                                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                function_call: <span class="prelude-val">None</span>,
                             },
                             ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: <span class="macro">format!</span>(<span class="string">&quot;For file `{}`: {}.&quot;</span>, <span class="self">self</span>.file, <span class="self">self</span>.reason),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                role:          Role::System,
+                                content:       <span class="macro">format!</span>(
+                                    <span class="string">&quot;For file `{}`: {}.&quot;</span>,
+                                    <span class="self">self</span>.file, <span class="self">self</span>.reason
+                                )
+                                .into(),
+                                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                function_call: <span class="prelude-val">None</span>,
                             },
                         ]),
                     })
@@ -5297,14 +5535,17 @@
                         reason,
                         prompt: <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[
                             ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: SYSTEM_MESSAGE.to_string(),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                role:          Role::System,
+                                content:       SYSTEM_MESSAGE.to_string().into(),
+                                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                function_call: <span class="prelude-val">None</span>,
                             },
                             ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: <span class="macro">format!</span>(<span class="string">&quot;For file `{}`: {}&quot;</span>, <span class="self">self</span>.file, <span class="self">self</span>.reason),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                role:          Role::System,
+                                content:       <span class="macro">format!</span>(<span class="string">&quot;For file `{}`: {}&quot;</span>, <span class="self">self</span>.file, <span class="self">self</span>.reason)
+                                    .into(),
+                                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                function_call: <span class="prelude-val">None</span>,
                             },
                         ]),
                     })
@@ -5331,14 +5572,17 @@
                         reason,
                         prompt: <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[
                             ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: SYSTEM_MESSAGE.to_string(),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                role:          Role::System,
+                                content:       SYSTEM_MESSAGE.to_string().into(),
+                                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                function_call: <span class="prelude-val">None</span>,
                             },
                             ChatCompletionRequestMessage {
-                                role:    Role::System,
-                                content: <span class="macro">format!</span>(<span class="string">&quot;For file `{}`: {}&quot;</span>, <span class="self">self</span>.file, <span class="self">self</span>.reason),
-                                name:    <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                role:          Role::System,
+                                content:       <span class="macro">format!</span>(<span class="string">&quot;For file `{}`: {}&quot;</span>, <span class="self">self</span>.file, <span class="self">self</span>.reason)
+                                    .into(),
+                                name:          <span class="prelude-val">Some</span>(<span class="string">&quot;Instructor&quot;</span>.into()),
+                                function_call: <span class="prelude-val">None</span>,
                             },
                         ]),
                     })
@@ -5578,5 +5822,4 @@
             .with_fn(<span class="string">&quot;new_query_grader&quot;</span>, <span class="self">Self</span>::default);
     }
 }
-</code></pre></div>
-</section></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="umm" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (f63ccaf25 2023-03-06)" data-search-js="search-8a59a8356673ec1f.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</code></pre></div></section></main></body></html>

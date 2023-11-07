@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"attr":["generate_rhai_variant"],"static":["_DECLS"]};
+window.SIDEBAR_ITEMS = {"attr":["generate_rhai_variant"]};

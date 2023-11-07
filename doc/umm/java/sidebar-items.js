@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"constant":["FIELDS","VARIANTS"],"enum":["FileType","JavaFileError","__Field"],"opaque":[""],"struct":["File","Parser","Project","__FieldVisitor","__Visitor"]};
+window.SIDEBAR_ITEMS = {"enum":["FileType","JavaFileError"],"struct":["File","Parser","Project","SubmissionRow"]};
