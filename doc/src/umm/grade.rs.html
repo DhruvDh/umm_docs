@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/grade.rs`."><title>grade.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="umm" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0-nightly (fee5518cd 2023-11-05)" data-channel="nightly" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/grade.rs`."><title>grade.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="umm" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0-nightly (189d6c71f 2023-11-06)" data-channel="nightly" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -3026,7 +3026,7 @@
 <span class="attr">#[derive(Clone, Default)]
 </span><span class="doccomment">/// A struct representing a grade
 </span><span class="kw">pub struct </span>Grade {
-    <span class="doccomment">/// The actual grade recieved
+    <span class="doccomment">/// The actual grade received
     </span><span class="kw">pub </span>grade:  f64,
     <span class="doccomment">/// The maximum grade possible
     </span><span class="kw">pub </span>out_of: f64,
@@ -3034,7 +3034,7 @@
 
 <span class="kw">impl </span>Grade {
     <span class="doccomment">/// Creates a new grade -
-    /// * `grade` - The actual grade recieved
+    /// * `grade` - The actual grade received
     /// * `out_of` - The maximum grade possible
     </span><span class="kw">pub fn </span>new(grade: f64, out_of: f64) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
@@ -3208,7 +3208,7 @@
     <span class="doccomment">/// * `source_method`: name of the source method being mutated
     </span><span class="attr">#[tabled(rename = <span class="string">&quot;Source method mutated&quot;</span>)]
     </span>source_method:    String,
-    <span class="doccomment">/// * `line_number`: source line number where mutation occured
+    <span class="doccomment">/// * `line_number`: source line number where mutation occurred
     </span><span class="attr">#[tabled(rename = <span class="string">&quot;Line no. of mutation&quot;</span>)]
     </span>line_number:      u32,
     <span class="doccomment">/// * `test_method`: name of the test examined
@@ -3343,7 +3343,7 @@
         <span class="kw">for </span>r <span class="kw">in </span>res {
             <span class="kw">let </span>body = r.get(<span class="string">&quot;body&quot;</span>).unwrap().to_string();
             context.push(<span class="macro">format!</span>(
-                <span class="string">&quot;Method body for `{}#{}`:&quot;</span>,
+                <span class="string">&quot;Method body from student&#39;s submission for `{}#{}`:&quot;</span>,
                 file.proper_name(),
                 function_call_arg.method_name
             ));
@@ -3497,7 +3497,7 @@
                                 <span class="kw">for </span>r <span class="kw">in </span>res {
                                     <span class="kw">let </span>body = r.get(<span class="string">&quot;body&quot;</span>).unwrap().to_string();
                                     context.push(<span class="macro">format!</span>(
-                                        <span class="string">&quot;Method body for `{}#{}`:&quot;</span>,
+                                        <span class="string">&quot;Method body from student&#39;s submission `{}#{}`:&quot;</span>,
                                         f.proper_name(),
                                         method_name
                                     ));
@@ -3528,7 +3528,7 @@
 }
 
 <span class="attr">#[derive(Clone, Default)]
-</span><span class="doccomment">/// A struct representing arguements to grade_docs function
+</span><span class="doccomment">/// A struct representing arguments to grade_docs function
 </span><span class="kw">pub struct </span>DocsGrader {
     <span class="doccomment">/// * `project`: the project to grade
     </span><span class="kw">pub </span>project:  Project,
@@ -4196,7 +4196,7 @@
             .args([
                 <span class="string">&quot;--class-path&quot;</span>,
                 classpath()<span class="question-mark">?</span>.as_str(),
-                <span class="string">&quot;org.pitest.mutationtest.commandline.MutationCoverageReport&quot;</span>,
+                <span class="string">&quot;org.pitest.mutation test.commandline.MutationCoverageReport&quot;</span>,
                 <span class="string">&quot;--reportDir&quot;</span>,
                 <span class="string">&quot;test_reports&quot;</span>,
                 <span class="string">&quot;--failWhenNoMutations&quot;</span>,
@@ -4229,8 +4229,8 @@
             .context(<span class="string">&quot;Failed to spawn javac process.&quot;</span>)<span class="question-mark">?</span>;
 
         <span class="kw">if </span>child.status.success() {
-            std::fs::create_dir_all(<span class="string">&quot;test_reports&quot;</span>)<span class="question-mark">?</span>;
-            <span class="kw">let </span>file = std::fs::File::open(ROOT_DIR.join(<span class="string">&quot;test_reports&quot;</span>).join(<span class="string">&quot;mutations.csv&quot;</span>))
+            fs::create_dir_all(<span class="string">&quot;test_reports&quot;</span>)<span class="question-mark">?</span>;
+            <span class="kw">let </span>file = fs::File::open(ROOT_DIR.join(<span class="string">&quot;test_reports&quot;</span>).join(<span class="string">&quot;mutations.csv&quot;</span>))
                 .context(<span class="string">&quot;Could not read ./test_reports/mutations.csv file&quot;</span>.to_string())<span class="question-mark">?</span>;
             <span class="kw">let </span>reader = BufReader::new(file);
             <span class="kw">let </span><span class="kw-2">mut </span>diags = <span class="macro">vec!</span>[];
@@ -4305,7 +4305,7 @@
             <span class="prelude-val">Ok</span>(GradeResult {
                 requirement: req_name,
                 grade: Grade::new((out_of <span class="kw">as </span>u32).saturating_sub(penalty).into(), out_of),
-                reason: <span class="macro">format!</span>(<span class="string">&quot;-{penalty} Penalty due to surviving muations&quot;</span>),
+                reason: <span class="macro">format!</span>(<span class="string">&quot;-{penalty} Penalty due to surviving mutations&quot;</span>),
                 prompt,
             })
         } <span class="kw">else </span>{
@@ -4440,13 +4440,13 @@
             .context(<span class="macro">format!</span>(<span class="string">&quot;Failed to get response as bytes: {url}&quot;</span>))<span class="question-mark">?</span>;
 
         <span class="kw">let </span>path = ROOT_DIR.join(<span class="macro">format!</span>(<span class="string">&quot;{test_class_name}.java&quot;</span>));
-        <span class="kw">let </span><span class="kw-2">mut </span>file = std::fs::File::create(<span class="kw-2">&amp;</span>path)<span class="question-mark">?</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>file = fs::File::create(<span class="kw-2">&amp;</span>path)<span class="question-mark">?</span>;
         file.write_all(<span class="kw-2">&amp;</span>test_source)<span class="question-mark">?</span>;
 
         <span class="kw">let </span>project = <span class="kw">match </span>Project::new() {
             <span class="prelude-val">Ok</span>(a) =&gt; a,
             <span class="prelude-val">Err</span>(e) =&gt; {
-                std::fs::remove_file(<span class="kw-2">&amp;</span>path)<span class="question-mark">?</span>;
+                fs::remove_file(<span class="kw-2">&amp;</span>path)<span class="question-mark">?</span>;
                 <span class="kw">return </span><span class="prelude-val">Err</span>(e);
             }
         };
@@ -4462,12 +4462,12 @@
         <span class="kw">let </span>out = <span class="kw">match </span>grader.grade_by_tests() {
             <span class="prelude-val">Ok</span>(o) =&gt; o,
             <span class="prelude-val">Err</span>(e) =&gt; {
-                std::fs::remove_file(<span class="kw-2">&amp;</span>path)<span class="question-mark">?</span>;
+                fs::remove_file(<span class="kw-2">&amp;</span>path)<span class="question-mark">?</span>;
                 <span class="kw">return </span><span class="prelude-val">Err</span>(e);
             }
         };
 
-        std::fs::remove_file(<span class="kw-2">&amp;</span>path)<span class="question-mark">?</span>;
+        fs::remove_file(<span class="kw-2">&amp;</span>path)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(out)
     }
 }
@@ -4832,7 +4832,7 @@
     </span>reason:           String,
     <span class="doccomment">/// Grade/out_of as a string
     </span>grade:            String,
-    <span class="doccomment">/// Status of prompt response generation - not_started, started, compeleted
+    <span class="doccomment">/// Status of prompt response generation - not_started, started, completed
     </span>status:           String,
 }
 
@@ -4903,7 +4903,7 @@
 }
 
 <span class="attr">#[derive(Default, Debug, Clone)]
-</span><span class="doccomment">/// A struct to represet a treesitter query.
+</span><span class="doccomment">/// A struct to represent a treesitter query.
 </span><span class="kw">pub struct </span>Query {
     <span class="doccomment">/// The query to run.
     </span>query:   String,
@@ -5312,7 +5312,7 @@
 
     <span class="attr">#[generate_rhai_variant(Fallible)]
     </span><span class="doccomment">/// Runs the queries, and returns the result.
-    /// TODO: Make it so that it doesn&#39;t parse a new peice of code, just filters
+    /// TODO: Make it so that it doesn&#39;t parse a new piece of code, just filters
     /// out the irrelevant line ranges. This performs better but more
     /// importantly is more accurate.
     </span><span class="kw">pub fn </span>run_query(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Dynamic, QueryError&gt; {
