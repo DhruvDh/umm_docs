@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/parsers.rs`."><title>parsers.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="umm" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0-nightly (189d6c71f 2023-11-06)" data-channel="nightly" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/parsers.rs`."><title>parsers.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-b1a3e7f8283b8434.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="umm" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (5d3d3479d 2024-01-23)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../umm/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -234,43 +236,43 @@
     </span><span class="kw">pub </span>grammar parser() <span class="kw">for </span>str {
         <span class="doccomment">/// matches any sequence of 1 or more numbers
         </span>rule number() -&gt; u32
-            = n:$([<span class="string">&#39;0&#39;</span>..=<span class="string">&#39;9&#39;</span>]+) {<span class="question-mark">? </span>n.parse().or(<span class="prelude-val">Err</span>(<span class="string">&quot;u32&quot;</span>)) }
+            = n:$([<span class="string">'0'</span>..=<span class="string">'9'</span>]+) {<span class="question-mark">? </span>n.parse().or(<span class="prelude-val">Err</span>(<span class="string">"u32"</span>)) }
 
         <span class="doccomment">/// matches any number of whitespace characters
-        </span>rule whitespace() = <span class="macro">quiet!</span>{[<span class="string">&#39; &#39; </span>| <span class="string">&#39;\n&#39; </span>| <span class="string">&#39;\t&#39; </span>| <span class="string">&#39;\r&#39;</span>]+}
+        </span>rule whitespace() = <span class="macro">quiet!</span>{[<span class="string">' ' </span>| <span class="string">'\n' </span>| <span class="string">'\t' </span>| <span class="string">'\r'</span>]+}
 
-        <span class="doccomment">/// matches the keyword &quot;tests successful&quot;
+        <span class="doccomment">/// matches the keyword "tests successful"
         </span>rule successful_tests()
-            = <span class="string">&quot; tests successful&quot;
+            = <span class="string">" tests successful"
 
-        </span><span class="doccomment">/// matches the keyword &quot;tests found&quot;
+        </span><span class="doccomment">/// matches the keyword "tests found"
         </span>rule found_tests()
-            = <span class="string">&quot; tests found&quot;
+            = <span class="string">" tests found"
 
         </span><span class="doccomment">/// parses and returns the number of tests passed
         </span><span class="kw">pub </span>rule num_tests_passed() -&gt; u32
-            = <span class="string">&quot;[&quot; </span>whitespace()<span class="question-mark">? </span>l:number() successful_tests() whitespace()<span class="question-mark">? </span><span class="string">&quot;]&quot; </span>{ l }
+            = <span class="string">"[" </span>whitespace()<span class="question-mark">? </span>l:number() successful_tests() whitespace()<span class="question-mark">? </span><span class="string">"]" </span>{ l }
 
         <span class="doccomment">/// parses and returns the number of tests found
         </span><span class="kw">pub </span>rule num_tests_found() -&gt; u32
-            = <span class="string">&quot;[&quot; </span>whitespace()<span class="question-mark">? </span>l:number() found_tests() whitespace()<span class="question-mark">? </span><span class="string">&quot;]&quot; </span>{ l }
+            = <span class="string">"[" </span>whitespace()<span class="question-mark">? </span>l:number() found_tests() whitespace()<span class="question-mark">? </span><span class="string">"]" </span>{ l }
 
         <span class="doccomment">/// matches any path separator, hopefully cross-platform
         </span>rule path_separator() =
             whitespace()<span class="question-mark">?
-            </span><span class="string">&quot;.&quot;</span><span class="question-mark">?
-            </span><span class="string">&quot;/&quot; </span>/ <span class="string">&quot;\\&quot; </span>/ <span class="string">&quot;\\\\&quot;
+            </span><span class="string">"."</span><span class="question-mark">?
+            </span><span class="string">"/" </span>/ <span class="string">"\\" </span>/ <span class="string">"\\\\"
             </span>whitespace()<span class="question-mark">?
 
         </span><span class="doccomment">/// matches any sequence of upper and lowercase alphabets
         </span>rule word() -&gt; String
             = whitespace()<span class="question-mark">?
                 </span>w:[
-                    <span class="string">&#39;a&#39;</span>..=<span class="string">&#39;z&#39; </span>|
-                    <span class="string">&#39;A&#39;</span>..=<span class="string">&#39;Z&#39; </span>|
-                    <span class="string">&#39;0&#39;</span>..=<span class="string">&#39;9&#39; </span>|
-                    <span class="string">&#39;-&#39; </span>| <span class="string">&#39;.&#39; </span>| <span class="string">&#39; &#39; </span>|
-                    <span class="string">&#39;[&#39; </span>| <span class="string">&#39;]&#39; </span>| <span class="string">&#39;_&#39;
+                    <span class="string">'a'</span>..=<span class="string">'z' </span>|
+                    <span class="string">'A'</span>..=<span class="string">'Z' </span>|
+                    <span class="string">'0'</span>..=<span class="string">'9' </span>|
+                    <span class="string">'-' </span>| <span class="string">'.' </span>| <span class="string">' ' </span>|
+                    <span class="string">'[' </span>| <span class="string">']' </span>| <span class="string">'_'
                 </span>]+
                 whitespace()<span class="question-mark">?
             </span>{ w.iter().collect::&lt;String&gt;() }
@@ -279,13 +281,13 @@
         </span>rule mutations_csv_word() -&gt; String
             = whitespace()<span class="question-mark">?
                 </span>w:[
-                    <span class="string">&#39;a&#39;</span>..=<span class="string">&#39;z&#39; </span>|
-                    <span class="string">&#39;A&#39;</span>..=<span class="string">&#39;Z&#39; </span>|
-                    <span class="string">&#39;0&#39;</span>..=<span class="string">&#39;9&#39; </span>|
-                    <span class="string">&#39;-&#39; </span>| <span class="string">&#39;.&#39; </span>| <span class="string">&#39; &#39; </span>|
-                    <span class="string">&#39;[&#39; </span>| <span class="string">&#39;]&#39; </span>| <span class="string">&#39;:&#39; </span>|
-                    <span class="string">&#39;&lt;&#39; </span>| <span class="string">&#39;&gt;&#39; </span>| <span class="string">&#39;_&#39; </span>|
-                    <span class="string">&#39;(&#39; </span>| <span class="string">&#39;)&#39;
+                    <span class="string">'a'</span>..=<span class="string">'z' </span>|
+                    <span class="string">'A'</span>..=<span class="string">'Z' </span>|
+                    <span class="string">'0'</span>..=<span class="string">'9' </span>|
+                    <span class="string">'-' </span>| <span class="string">'.' </span>| <span class="string">' ' </span>|
+                    <span class="string">'[' </span>| <span class="string">']' </span>| <span class="string">':' </span>|
+                    <span class="string">'&lt;' </span>| <span class="string">'&gt;' </span>| <span class="string">'_' </span>|
+                    <span class="string">'(' </span>| <span class="string">')'
                 </span>]+
                 whitespace()<span class="question-mark">?
             </span>{ w.iter().collect::&lt;String&gt;() }
@@ -296,17 +298,17 @@
               </span>path_separator()<span class="question-mark">?
               </span>p:(word() ++ path_separator())
               whitespace()<span class="question-mark">?
-            </span>{ p.iter().fold(String::new(), |acc, w| <span class="macro">format!</span>(<span class="string">&quot;{acc}/{w}&quot;</span>)) }
+            </span>{ p.iter().fold(String::new(), |acc, w| <span class="macro">format!</span>(<span class="string">"{acc}/{w}"</span>)) }
 
         <span class="doccomment">/// matches line numbers (colon followed by numbers, eg. :23)
         </span>rule line_number() -&gt; u32
-            = <span class="string">&quot;:&quot; </span>n:number() <span class="string">&quot;:&quot; </span>whitespace()<span class="question-mark">? </span>{ n }
+            = <span class="string">":" </span>n:number() <span class="string">":" </span>whitespace()<span class="question-mark">? </span>{ n }
 
-        <span class="doccomment">/// matches &quot;error&quot; or &quot;warning&quot;, returns true if error
+        <span class="doccomment">/// matches "error" or "warning", returns true if error
         </span>rule diag_type() -&gt; bool
             = whitespace()<span class="question-mark">?
-              </span>a:<span class="string">&quot;error&quot;</span><span class="question-mark">? </span>b:<span class="string">&quot;warning&quot;</span><span class="question-mark">?
-              </span><span class="string">&quot;:&quot;
+              </span>a:<span class="string">"error"</span><span class="question-mark">? </span>b:<span class="string">"warning"</span><span class="question-mark">?
+              </span><span class="string">":"
               </span>whitespace()<span class="question-mark">?
             </span>{ a.is_some() }
 
@@ -320,19 +322,19 @@
             = p:path() l:line_number() d:diag_type() m:diagnostic()
             {
                 <span class="kw">let </span>p = std::path::PathBuf::from(p);
-            <span class="kw">let </span>name = p.file_name().expect(<span class="string">&quot;Could not parse path to file in javac error/warning&quot;</span>);
+            <span class="kw">let </span>name = p.file_name().expect(<span class="string">"Could not parse path to file in javac error/warning"</span>);
 
             JavacDiagnostic::builder()
-                .path(<span class="macro">format!</span>(<span class="string">&quot;.{}&quot;</span>, p.display()))
+                .path(<span class="macro">format!</span>(<span class="string">".{}"</span>, p.display()))
                 .file_name(name.to_string_lossy().to_string())
                 .line_number(l)
                 .is_error(d)
-                .message(<span class="kw">if </span>d { <span class="macro">format!</span>(<span class="string">&quot;Error: {m}&quot;</span>) } <span class="kw">else </span>{ m })
+                .message(<span class="kw">if </span>d { <span class="macro">format!</span>(<span class="string">"Error: {m}"</span>) } <span class="kw">else </span>{ m })
                 .build()
             }
 
         rule mutation_test_examined_path() -&gt; Vec&lt;String&gt;
-            = a:mutations_csv_word()<span class="question-mark">? </span><span class="string">&quot;/&quot;</span><span class="question-mark">? </span>b:mutations_csv_word()<span class="question-mark">? </span><span class="string">&quot;/&quot;</span><span class="question-mark">?  </span>c:mutations_csv_word()<span class="question-mark">?
+            = a:mutations_csv_word()<span class="question-mark">? </span><span class="string">"/"</span><span class="question-mark">? </span>b:mutations_csv_word()<span class="question-mark">? </span><span class="string">"/"</span><span class="question-mark">?  </span>c:mutations_csv_word()<span class="question-mark">?
             </span>{
                 <span class="kw">let </span><span class="kw-2">mut </span>res = <span class="macro">vec!</span>[];
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(a) = a { res.push(a); }
@@ -341,56 +343,56 @@
                 res
             }
 
-        rule mutation_test_examined_none() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>str
-            = $(<span class="string">&quot;none&quot;</span>)
+        rule mutation_test_examined_none() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'input </span>str
+            = $(<span class="string">"none"</span>)
 
         <span class="doccomment">/// parses one row of mutation report
         </span><span class="kw">pub </span>rule mutation_report_row() -&gt; MutationDiagnostic
             = file_name:word()
-              <span class="string">&quot;,&quot;
+              <span class="string">","
               </span>source_file_name:word()
-              <span class="string">&quot;,&quot;
+              <span class="string">","
               </span>mutation:word()
-              <span class="string">&quot;,&quot;
+              <span class="string">","
               </span>source_method:mutations_csv_word()
-              <span class="string">&quot;,&quot;
+              <span class="string">","
               </span>line_no:number()
-              <span class="string">&quot;,&quot;
+              <span class="string">","
               </span>result:word()
-              <span class="string">&quot;,&quot;
+              <span class="string">","
               </span>test_method:mutation_test_examined_path()<span class="question-mark">?
               </span>whitespace()<span class="question-mark">?
                 </span>{
-                <span class="kw">let </span>test = test_method.unwrap_or_else(|| <span class="macro">panic!</span>(<span class="string">&quot;Had trouble parsing last column for mutation at {source_file_name}#{source_method}:{line_no}&quot;</span>));
+                <span class="kw">let </span>test = test_method.unwrap_or_else(|| <span class="macro">panic!</span>(<span class="string">"Had trouble parsing last column for mutation at {source_file_name}#{source_method}:{line_no}"</span>));
                 <span class="kw">let </span><span class="kw-2">mut </span>test_file_name;
                 <span class="kw">let </span><span class="kw-2">mut </span>test_method;
 
     <span class="kw">if </span>test.len() == <span class="number">3 </span>{
-                    <span class="kw">let </span>splitter = <span class="kw">if </span>test.get(<span class="number">1</span>).unwrap().contains(<span class="string">&quot;[runner:&quot;</span>) { <span class="string">&quot;[runner:&quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;[class:&quot; </span>};
+                    <span class="kw">let </span>splitter = <span class="kw">if </span>test.get(<span class="number">1</span>).unwrap().contains(<span class="string">"[runner:"</span>) { <span class="string">"[runner:" </span>} <span class="kw">else </span>{ <span class="string">"[class:" </span>};
                     test_file_name = test.get(<span class="number">1</span>)
                                 .unwrap()
                                 .to_string()
                                 .split_once(splitter)
-                                .unwrap_or_else(|| <span class="macro">panic!</span>(<span class="string">&quot;had trouble parsing test_file_class for mutation at {source_file_name}#{source_method}:{line_no}&quot;</span>))
+                                .unwrap_or_else(|| <span class="macro">panic!</span>(<span class="string">"had trouble parsing test_file_class for mutation at {source_file_name}#{source_method}:{line_no}"</span>))
                                 .<span class="number">1
-                                </span>.replace(<span class="string">&#39;]&#39;</span>, <span class="string">&quot;&quot;</span>);
+                                </span>.replace(<span class="string">']'</span>, <span class="string">""</span>);
 
-                    <span class="kw">let </span>splitter = <span class="kw">if </span>test.get(<span class="number">2</span>).unwrap().contains(<span class="string">&quot;[test:&quot;</span>) { <span class="string">&quot;[test:&quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;[method:&quot; </span>};
+                    <span class="kw">let </span>splitter = <span class="kw">if </span>test.get(<span class="number">2</span>).unwrap().contains(<span class="string">"[test:"</span>) { <span class="string">"[test:" </span>} <span class="kw">else </span>{ <span class="string">"[method:" </span>};
                     test_method = test.get(<span class="number">2</span>)
                                     .unwrap()
                                     .to_string()
                                     .split_once(splitter)
-                                    .unwrap_or_else(|| <span class="macro">panic!</span>(<span class="string">&quot;Had trouble parsing test_file_method for mutation at {source_file_name}#{source_method}:{line_no}&quot;</span>))
+                                    .unwrap_or_else(|| <span class="macro">panic!</span>(<span class="string">"Had trouble parsing test_file_method for mutation at {source_file_name}#{source_method}:{line_no}"</span>))
                                     .<span class="number">1
-                                    </span>.replace(<span class="string">&quot;()]&quot;</span>, <span class="string">&quot;&quot;</span>);
+                                    </span>.replace(<span class="string">"()]"</span>, <span class="string">""</span>);
                 } <span class="kw">else </span>{
-                    test_file_name = <span class="string">&quot;NA&quot;</span>.to_string();
-                    test_method = <span class="string">&quot;None&quot;</span>.to_string()
+                    test_file_name = <span class="string">"NA"</span>.to_string();
+                    test_method = <span class="string">"None"</span>.to_string()
                 }
                 <span class="kw">let </span>mutator = mutation
                                 .to_string()
-                                .split_once(<span class="string">&quot;.mutators.&quot;</span>)
-                                .expect(<span class="string">&quot;Could not split mutators while parsing mutations.csv.&quot;</span>)
+                                .split_once(<span class="string">".mutators."</span>)
+                                .expect(<span class="string">"Could not split mutators while parsing mutations.csv."</span>)
                                 .<span class="number">1</span>.to_string();
 
                 MutationDiagnostic::builder()
@@ -408,12 +410,12 @@
             </span>rule junit_stacktrace_word() -&gt; String
                 = whitespace()<span class="question-mark">?
                 </span>w:[
-                    <span class="string">&#39;a&#39;</span>..=<span class="string">&#39;z&#39; </span>|
-                    <span class="string">&#39;A&#39;</span>..=<span class="string">&#39;Z&#39; </span>|
-                    <span class="string">&#39;0&#39;</span>..=<span class="string">&#39;9&#39; </span>|
-                    <span class="string">&#39;-&#39; </span>| <span class="string">&#39;.&#39; </span>| <span class="string">&#39; &#39; </span>|
-                    <span class="string">&#39;[&#39; </span>| <span class="string">&#39;]&#39; </span>| <span class="string">&#39;/&#39; </span>|
-                    <span class="string">&#39;&gt;&#39; </span>| <span class="string">&#39;=&#39; </span>| <span class="string">&#39;$&#39;
+                    <span class="string">'a'</span>..=<span class="string">'z' </span>|
+                    <span class="string">'A'</span>..=<span class="string">'Z' </span>|
+                    <span class="string">'0'</span>..=<span class="string">'9' </span>|
+                    <span class="string">'-' </span>| <span class="string">'.' </span>| <span class="string">' ' </span>|
+                    <span class="string">'[' </span>| <span class="string">']' </span>| <span class="string">'/' </span>|
+                    <span class="string">'&gt;' </span>| <span class="string">'=' </span>| <span class="string">'$'
                 </span>]+
                 whitespace()<span class="question-mark">?
             </span>{ w.iter().collect::&lt;String&gt;() }
@@ -422,12 +424,12 @@
             </span>rule junit_stacktrace_filename() -&gt; String
                 = whitespace()<span class="question-mark">?
                 </span>w:[
-                    <span class="string">&#39;a&#39;</span>..=<span class="string">&#39;z&#39; </span>|
-                    <span class="string">&#39;A&#39;</span>..=<span class="string">&#39;Z&#39; </span>|
-                    <span class="string">&#39;0&#39;</span>..=<span class="string">&#39;9&#39; </span>|
-                    <span class="string">&#39;-&#39; </span>| <span class="string">&#39;_&#39; </span>| <span class="string">&#39;$&#39;
+                    <span class="string">'a'</span>..=<span class="string">'z' </span>|
+                    <span class="string">'A'</span>..=<span class="string">'Z' </span>|
+                    <span class="string">'0'</span>..=<span class="string">'9' </span>|
+                    <span class="string">'-' </span>| <span class="string">'_' </span>| <span class="string">'$'
                 </span>]+
-                <span class="string">&quot;.java:&quot;
+                <span class="string">".java:"
                 </span>whitespace()<span class="question-mark">?
             </span>{ w.iter().collect::&lt;String&gt;() }
 
@@ -437,11 +439,11 @@
                 = whitespace()<span class="question-mark">?
                 </span>junit_stacktrace_word()*
                 whitespace()<span class="question-mark">?
-                </span><span class="string">&quot;(&quot;
+                </span><span class="string">"("
                 </span>c:junit_stacktrace_filename()
                 d:number()
                 whitespace()<span class="question-mark">?
-                </span><span class="string">&quot;)&quot;
+                </span><span class="string">")"
                 </span>whitespace()<span class="question-mark">?
                 </span>{
                     LineRef { line_number: d <span class="kw">as </span>usize, file_name: c }

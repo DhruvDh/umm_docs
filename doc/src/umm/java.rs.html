@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/java.rs`."><title>java.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="umm" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0-nightly (189d6c71f 2023-11-06)" data-channel="nightly" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/java.rs`."><title>java.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-b1a3e7f8283b8434.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="umm" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (5d3d3479d 2024-01-23)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../umm/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1760,6 +1762,8 @@
 <a href="#1760" id="1760">1760</a>
 <a href="#1761" id="1761">1761</a>
 <a href="#1762" id="1762">1762</a>
+<a href="#1763" id="1763">1763</a>
+<a href="#1764" id="1764">1764</a>
 </pre></div><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
 #![warn(clippy::missing_docs_in_private_items)]
 
@@ -1915,7 +1919,7 @@
         <span class="kw">let </span>code = String::new();
         parser
             .set_language(<span class="kw-2">*</span>JAVA_TS_LANG)
-            .expect(<span class="string">&quot;Error loading Java grammar&quot;</span>);
+            .expect(<span class="string">"Error loading Java grammar"</span>);
         <span class="kw">let </span>tree = parser.parse(code, <span class="prelude-val">None</span>);
 
         <span class="self">Self </span>{
@@ -1927,7 +1931,7 @@
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>Parser {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
         <span class="prelude-val">Ok</span>(())
     }
 }
@@ -1943,10 +1947,10 @@
 
         parser
             .set_language(lang)
-            .expect(<span class="string">&quot;Error loading Java grammar&quot;</span>);
+            .expect(<span class="string">"Error loading Java grammar"</span>);
         <span class="kw">let </span>tree = parser
             .parse(source_code.clone(), <span class="prelude-val">None</span>)
-            .context(<span class="string">&quot;Error parsing Java code&quot;</span>)<span class="question-mark">?</span>;
+            .context(<span class="string">"Error parsing Java code"</span>)<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
             code: source_code,
@@ -1955,12 +1959,12 @@
         })
     }
 
-    <span class="doccomment">/// A getter for parser&#39;s source code
+    <span class="doccomment">/// A getter for parser's source code
     </span><span class="kw">pub fn </span>code(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; String {
         <span class="self">self</span>.code.clone()
     }
 
-    <span class="doccomment">/// A setter for parser&#39;s source code
+    <span class="doccomment">/// A setter for parser's source code
     </span><span class="kw">pub fn </span>set_code(<span class="kw-2">&amp;mut </span><span class="self">self</span>, code: String) {
         <span class="self">self</span>.code = code;
     }
@@ -1975,7 +1979,7 @@
         <span class="kw">let </span>tree = <span class="self">self
             </span>._tree
             .as_ref()
-            .context(<span class="string">&quot;Treesitter could not parse code&quot;</span>)<span class="question-mark">?</span>;
+            .context(<span class="string">"Treesitter could not parse code"</span>)<span class="question-mark">?</span>;
 
         <span class="kw">let </span>query = Query::new(<span class="self">self</span>.lang, q).unwrap();
         <span class="kw">let </span><span class="kw-2">mut </span>cursor = QueryCursor::new();
@@ -1990,8 +1994,8 @@
                 <span class="kw">let </span>index = <span class="kw">match </span>index {
                     <span class="prelude-val">Some</span>(i) =&gt; i,
                     <span class="prelude-val">None </span>=&gt; <span class="macro">bail!</span>(
-                        <span class="string">&quot;Error while querying source code. Capture name: {} has no index \
-                         associated.&quot;</span>,
+                        <span class="string">"Error while querying source code. Capture name: {} has no index \
+                         associated."</span>,
                         name
                     ),
                 };
@@ -2007,8 +2011,8 @@
                     .utf8_text(<span class="self">self</span>.code.as_bytes())
                     .with_context(|| {
                         <span class="macro">format!</span>(
-                            <span class="string">&quot;Cannot match query result indices with source code for capture name: \
-                             {name}.&quot;
+                            <span class="string">"Cannot match query result indices with source code for capture name: \
+                             {name}."
                         </span>)
                     })<span class="question-mark">?</span>;
 
@@ -2026,11 +2030,11 @@
 </span><span class="kw">impl </span>CustomType <span class="kw">for </span>Parser {
     <span class="kw">fn </span>build(<span class="kw-2">mut </span>builder: rhai::TypeBuilder&lt;<span class="self">Self</span>&gt;) {
         builder
-            .with_name(<span class="string">&quot;JavaParser&quot;</span>)
-            .with_fn(<span class="string">&quot;new_java_parser&quot;</span>, Parser::new_script)
-            .with_fn(<span class="string">&quot;code&quot;</span>, Parser::code)
-            .with_fn(<span class="string">&quot;set_code&quot;</span>, Parser::set_code)
-            .with_fn(<span class="string">&quot;query&quot;</span>, Parser::query_mut_script);
+            .with_name(<span class="string">"JavaParser"</span>)
+            .with_fn(<span class="string">"new_java_parser"</span>, Parser::new_script)
+            .with_fn(<span class="string">"code"</span>, Parser::code)
+            .with_fn(<span class="string">"set_code"</span>, Parser::set_code)
+            .with_fn(<span class="string">"query"</span>, Parser::query_mut_script);
     }
 }
 
@@ -2039,7 +2043,7 @@
 </span><span class="kw">pub enum </span>JavaFileError {
     <span class="doccomment">/// An error while compiling a Java file (running
     /// [fn@crate::java::File::check])
-    </span><span class="attr">#[error(<span class="string">&quot;Something went wrong while compiling the Java file&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Something went wrong while compiling the Java file"</span>)]
     </span>DuringCompilation {
         <span class="doccomment">/// javac stacktrace
         </span>stacktrace: String,
@@ -2049,7 +2053,7 @@
     },
     <span class="doccomment">/// An error while running a Java file (running
     /// [fn@crate::java::File::run])
-    </span><span class="attr">#[error(<span class="string">&quot;Something went wrong while running the Java file&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Something went wrong while running the Java file"</span>)]
     </span>AtRuntime {
         <span class="doccomment">/// java output
         </span>output: String,
@@ -2058,7 +2062,7 @@
     },
     <span class="doccomment">/// An error while testing a Java file (running
     /// [fn@crate::java::File::test])
-    </span><span class="attr">#[error(<span class="string">&quot;Something went wrong while testing the Java file&quot;</span>)]
+    </span><span class="attr">#[error(<span class="string">"Something went wrong while testing the Java file"</span>)]
     </span>FailedTests {
         <span class="doccomment">/// junit test results
         </span>test_results: String,
@@ -2078,7 +2082,7 @@
     </span><span class="kw">fn </span>new(path: PathBuf) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
         <span class="kw">let </span>parser = {
             <span class="kw">let </span>source_code = std::fs::read_to_string(<span class="kw-2">&amp;</span>path)
-                .with_context(|| <span class="macro">format!</span>(<span class="string">&quot;Could not read file: {:?}&quot;</span>, <span class="kw-2">&amp;</span>path))<span class="question-mark">?</span>;
+                .with_context(|| <span class="macro">format!</span>(<span class="string">"Could not read file: {:?}"</span>, <span class="kw-2">&amp;</span>path))<span class="question-mark">?</span>;
             Parser::new(source_code, <span class="kw-2">*</span>JAVA_TS_LANG)<span class="question-mark">?
         </span>};
 
@@ -2097,11 +2101,11 @@
             <span class="kw">if </span>package_name.is_empty() {
                 <span class="prelude-val">None
             </span>} <span class="kw">else </span>{
-                package_name[<span class="number">0</span>].get(<span class="string">&quot;name&quot;</span>).map(String::to_owned)
+                package_name[<span class="number">0</span>].get(<span class="string">"name"</span>).map(String::to_owned)
             }
         };
 
-        <span class="kw">let </span>(kind, name) = <span class="lifetime">&#39;outer</span>: {
+        <span class="kw">let </span>(kind, name) = <span class="lifetime">'outer</span>: {
             <span class="kw">let </span>work = <span class="macro">vec!</span>[
                 (FileType::Interface, INTERFACENAME_QUERY),
                 (FileType::ClassWithMain, CLASSNAME_QUERY),
@@ -2111,20 +2115,20 @@
                 <span class="kw">let </span>result = parser.query(query)<span class="question-mark">?</span>;
 
                 <span class="kw">if </span>!result.is_empty() {
-                    <span class="kw">break </span><span class="lifetime">&#39;outer </span>(
+                    <span class="kw">break </span><span class="lifetime">'outer </span>(
                         kind,
                         <span class="attr">#[allow(clippy::or_fun_call)]
                         </span>result
                             .first()
                             .ok_or(<span class="macro">anyhow!</span>(
-                                <span class="string">&quot;Could not find a valid class/interface declaration for {} (vec \
-                                 size is 0)&quot;</span>,
+                                <span class="string">"Could not find a valid class/interface declaration for {} (vec \
+                                 size is 0)"</span>,
                                 path.display()
                             ))<span class="question-mark">?
-                            </span>.get(<span class="string">&quot;name&quot;</span>)
+                            </span>.get(<span class="string">"name"</span>)
                             .ok_or(<span class="macro">anyhow!</span>(
-                                <span class="string">&quot;Could not find a valid class/interface declaration for {} \
-                                 (hashmap has no name key) &quot;</span>,
+                                <span class="string">"Could not find a valid class/interface declaration for {} \
+                                 (hashmap has no name key) "</span>,
                                 path.display()
                             ))<span class="question-mark">?
                             </span>.to_string(),
@@ -2136,7 +2140,7 @@
         };
 
         <span class="kw">let </span>proper_name = <span class="kw">if </span>package_name.is_some() {
-            <span class="macro">format!</span>(<span class="string">&quot;{}.{}&quot;</span>, package_name.as_ref().unwrap(), name)
+            <span class="macro">format!</span>(<span class="string">"{}.{}"</span>, package_name.as_ref().unwrap(), name)
         } <span class="kw">else </span>{
             name.clone()
         };
@@ -2145,8 +2149,8 @@
             <span class="kw">let </span>test_methods = parser.query(TEST_ANNOTATION_QUERY)<span class="question-mark">?</span>;
             <span class="kw">let </span><span class="kw-2">mut </span>tests = <span class="macro">vec!</span>[];
             <span class="kw">for </span>t <span class="kw">in </span>test_methods {
-                <span class="kw">if let </span><span class="prelude-val">Some</span>(t) = t.get(<span class="string">&quot;name&quot;</span>) {
-                    tests.push(<span class="macro">format!</span>(<span class="string">&quot;{}#{}&quot;</span>, <span class="kw-2">&amp;</span>proper_name, t));
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(t) = t.get(<span class="string">"name"</span>) {
+                    tests.push(<span class="macro">format!</span>(<span class="string">"{}#{}"</span>, <span class="kw-2">&amp;</span>proper_name, t));
                 }
             }
 
@@ -2163,145 +2167,145 @@
             FileType::Interface =&gt; {
                 <span class="kw">let </span>empty_dict = Dict::new();
                 <span class="kw">let </span>empty = String::new();
-                <span class="kw">let </span>not_found = String::from(<span class="string">&quot;[NOT FOUND]&quot;</span>);
+                <span class="kw">let </span>not_found = String::from(<span class="string">"[NOT FOUND]"</span>);
 
                 <span class="kw">let </span>query_result = parser
                     .query(INTERFACE_DECLARATION_QUERY)
                     .unwrap_or_default();
                 <span class="kw">let </span>declaration = query_result.first().unwrap_or(<span class="kw-2">&amp;</span>empty_dict);
 
-                <span class="kw">let </span>parameters = declaration.get(<span class="string">&quot;parameters&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty).trim();
-                <span class="kw">let </span>extends = declaration.get(<span class="string">&quot;extends&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty).trim();
+                <span class="kw">let </span>parameters = declaration.get(<span class="string">"parameters"</span>).unwrap_or(<span class="kw-2">&amp;</span>empty).trim();
+                <span class="kw">let </span>extends = declaration.get(<span class="string">"extends"</span>).unwrap_or(<span class="kw-2">&amp;</span>empty).trim();
 
                 <span class="kw">let </span>consts = parser
                     .query(INTERFACE_CONSTANTS_QUERY)
                     .unwrap_or_default()
                     .iter()
-                    .map(|c| c.get(<span class="string">&quot;constant&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).to_string())
+                    .map(|c| c.get(<span class="string">"constant"</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).to_string())
                     .collect::&lt;Vec&lt;String&gt;&gt;()
-                    .join(<span class="string">&quot;\n&quot;</span>);
+                    .join(<span class="string">"\n"</span>);
 
                 <span class="kw">let </span>methods = parser
                     .query(INTERFACE_METHODS_QUERY)
                     .unwrap_or_default()
                     .iter()
-                    .map(|m| m.get(<span class="string">&quot;signature&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).to_string())
+                    .map(|m| m.get(<span class="string">"signature"</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).to_string())
                     .collect::&lt;Vec&lt;String&gt;&gt;()
-                    .join(<span class="string">&quot;\n&quot;</span>);
+                    .join(<span class="string">"\n"</span>);
 
                 <span class="kw">let </span>methods = <span class="kw">if </span>methods.trim().is_empty() {
-                    String::from(<span class="string">&quot;[NOT FOUND]&quot;</span>)
+                    String::from(<span class="string">"[NOT FOUND]"</span>)
                 } <span class="kw">else </span>{
                     methods.trim().to_string()
                 };
 
                 <span class="kw">let </span>consts = <span class="kw">if </span>consts.trim().is_empty() {
-                    String::from(<span class="string">&quot;[NOT FOUND]&quot;</span>)
+                    String::from(<span class="string">"[NOT FOUND]"</span>)
                 } <span class="kw">else </span>{
                     consts.trim().to_string()
                 };
 
                 <span class="kw">let </span><span class="kw-2">mut </span>result = <span class="macro">vec!</span>[];
                 result.push(<span class="macro">format!</span>(
-                    <span class="string">&quot;Interface: {proper_name} {parameters} {extends}:\n&quot;
+                    <span class="string">"Interface: {proper_name} {parameters} {extends}:\n"
                 </span>));
 
-                <span class="kw">if </span>!consts.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
-                    result.push(String::from(<span class="string">&quot;Constants:&quot;</span>));
+                <span class="kw">if </span>!consts.contains(<span class="string">"NOT FOUND"</span>) {
+                    result.push(String::from(<span class="string">"Constants:"</span>));
                     result.push(consts);
                 }
-                <span class="kw">if </span>!methods.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
-                    result.push(String::from(<span class="string">&quot;Methods:&quot;</span>));
+                <span class="kw">if </span>!methods.contains(<span class="string">"NOT FOUND"</span>) {
+                    result.push(String::from(<span class="string">"Methods:"</span>));
                     result.push(methods);
                 }
 
-                <span class="macro">format!</span>(<span class="string">&quot;```\n{r}\n```&quot;</span>, r = result.join(<span class="string">&quot;\n&quot;</span>))
+                <span class="macro">format!</span>(<span class="string">"```\n{r}\n```"</span>, r = result.join(<span class="string">"\n"</span>))
             }
             <span class="kw">_ </span>=&gt; {
                 <span class="kw">let </span>empty_dict = Dict::new();
                 <span class="kw">let </span>empty = String::new();
-                <span class="kw">let </span>not_found = String::from(<span class="string">&quot;[NOT FOUND]&quot;</span>);
+                <span class="kw">let </span>not_found = String::from(<span class="string">"[NOT FOUND]"</span>);
 
                 <span class="kw">let </span>query_result = parser.query(CLASS_DECLARATION_QUERY).unwrap_or_default();
                 <span class="kw">let </span>declaration = query_result.first().unwrap_or(<span class="kw-2">&amp;</span>empty_dict);
 
-                <span class="kw">let </span>parameters = declaration.get(<span class="string">&quot;typeParameters&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty).trim();
-                <span class="kw">let </span>implements = declaration.get(<span class="string">&quot;interfaces&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty).trim();
+                <span class="kw">let </span>parameters = declaration.get(<span class="string">"typeParameters"</span>).unwrap_or(<span class="kw-2">&amp;</span>empty).trim();
+                <span class="kw">let </span>implements = declaration.get(<span class="string">"interfaces"</span>).unwrap_or(<span class="kw-2">&amp;</span>empty).trim();
 
                 <span class="kw">let </span>fields = parser
                     .query(CLASS_FIELDS_QUERY)
                     .unwrap_or_default()
                     .iter()
-                    .map(|f| f.get(<span class="string">&quot;field&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).trim().to_string())
+                    .map(|f| f.get(<span class="string">"field"</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).trim().to_string())
                     .collect::&lt;Vec&lt;String&gt;&gt;()
-                    .join(<span class="string">&quot;, &quot;</span>);
+                    .join(<span class="string">", "</span>);
 
                 <span class="kw">let </span>methods = parser
                     .query(CLASS_METHOD_QUERY)
                     .unwrap_or_default()
                     .iter()
                     .map(|m| {
-                        <span class="kw">let </span>identifier = m.get(<span class="string">&quot;identifier&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).trim();
-                        <span class="kw">let </span>parameters = m.get(<span class="string">&quot;parameters&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
+                        <span class="kw">let </span>identifier = m.get(<span class="string">"identifier"</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).trim();
+                        <span class="kw">let </span>parameters = m.get(<span class="string">"parameters"</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
 
                         <span class="kw">if </span>identifier == not_found.as_str() {
-                            <span class="string">&quot;[NOT FOUND]&quot;</span>.to_string()
+                            <span class="string">"[NOT FOUND]"</span>.to_string()
                         } <span class="kw">else </span>{
-                            <span class="macro">format!</span>(<span class="string">&quot;{}{}&quot;</span>, identifier.trim(), parameters.trim())
+                            <span class="macro">format!</span>(<span class="string">"{}{}"</span>, identifier.trim(), parameters.trim())
                         }
                     })
                     .collect::&lt;Vec&lt;String&gt;&gt;()
-                    .join(<span class="string">&quot;, &quot;</span>);
+                    .join(<span class="string">", "</span>);
 
                 <span class="kw">let </span>constructors = parser
                     .query(CLASS_CONSTRUCTOR_QUERY)
                     .unwrap_or_default()
                     .iter()
                     .map(|m| {
-                        <span class="kw">let </span>identifier = m.get(<span class="string">&quot;identifier&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).trim();
-                        <span class="kw">let </span>parameters = m.get(<span class="string">&quot;parameters&quot;</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
+                        <span class="kw">let </span>identifier = m.get(<span class="string">"identifier"</span>).unwrap_or(<span class="kw-2">&amp;</span>not_found).trim();
+                        <span class="kw">let </span>parameters = m.get(<span class="string">"parameters"</span>).unwrap_or(<span class="kw-2">&amp;</span>empty);
 
                         <span class="kw">if </span>identifier == not_found.as_str() {
-                            <span class="string">&quot;[NOT FOUND]&quot;</span>.to_string()
+                            <span class="string">"[NOT FOUND]"</span>.to_string()
                         } <span class="kw">else </span>{
-                            <span class="macro">format!</span>(<span class="string">&quot;{}{}&quot;</span>, identifier.trim(), parameters.trim())
+                            <span class="macro">format!</span>(<span class="string">"{}{}"</span>, identifier.trim(), parameters.trim())
                         }
                     })
                     .collect::&lt;Vec&lt;String&gt;&gt;()
-                    .join(<span class="string">&quot;, &quot;</span>);
+                    .join(<span class="string">", "</span>);
 
                 <span class="kw">let </span>fields = <span class="kw">if </span>fields.trim().is_empty() {
-                    String::from(<span class="string">&quot;[NOT FOUND]&quot;</span>)
+                    String::from(<span class="string">"[NOT FOUND]"</span>)
                 } <span class="kw">else </span>{
-                    <span class="macro">format!</span>(<span class="string">&quot;\tFields: {}&quot;</span>, fields)
+                    <span class="macro">format!</span>(<span class="string">"\tFields: {}"</span>, fields)
                 };
 
                 <span class="kw">let </span>methods = <span class="kw">if </span>methods.trim().is_empty() {
-                    String::from(<span class="string">&quot;[NOT FOUND]&quot;</span>)
+                    String::from(<span class="string">"[NOT FOUND]"</span>)
                 } <span class="kw">else </span>{
-                    <span class="macro">format!</span>(<span class="string">&quot;\tMethods: {}&quot;</span>, methods)
+                    <span class="macro">format!</span>(<span class="string">"\tMethods: {}"</span>, methods)
                 };
 
                 <span class="kw">let </span>constructors = <span class="kw">if </span>constructors.trim().is_empty() {
-                    String::from(<span class="string">&quot;[NOT FOUND]&quot;</span>)
+                    String::from(<span class="string">"[NOT FOUND]"</span>)
                 } <span class="kw">else </span>{
-                    <span class="macro">format!</span>(<span class="string">&quot;\tConstructors: {}&quot;</span>, constructors)
+                    <span class="macro">format!</span>(<span class="string">"\tConstructors: {}"</span>, constructors)
                 };
 
                 <span class="kw">let </span><span class="kw-2">mut </span>result = <span class="macro">vec!</span>[];
-                result.push(<span class="macro">format!</span>(<span class="string">&quot;Class: {proper_name} {parameters} {implements}:\n&quot;</span>));
+                result.push(<span class="macro">format!</span>(<span class="string">"Class: {proper_name} {parameters} {implements}:\n"</span>));
 
-                <span class="kw">if </span>!fields.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
+                <span class="kw">if </span>!fields.contains(<span class="string">"NOT FOUND"</span>) {
                     result.push(fields);
                 }
-                <span class="kw">if </span>!constructors.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
+                <span class="kw">if </span>!constructors.contains(<span class="string">"NOT FOUND"</span>) {
                     result.push(constructors);
                 }
-                <span class="kw">if </span>!methods.contains(<span class="string">&quot;NOT FOUND&quot;</span>) {
+                <span class="kw">if </span>!methods.contains(<span class="string">"NOT FOUND"</span>) {
                     result.push(methods);
                 }
 
-                result.join(<span class="string">&quot;\n&quot;</span>)
+                result.join(<span class="string">"\n"</span>)
             }
         };
 
@@ -2326,39 +2330,39 @@
             .stdout(out)
             .stdin(in_)
             .args([
-                <span class="string">&quot;--source-path&quot;</span>,
+                <span class="string">"--source-path"</span>,
                 sourcepath()<span class="question-mark">?</span>.as_str(),
-                <span class="string">&quot;-g&quot;</span>,
-                <span class="string">&quot;--class-path&quot;</span>,
+                <span class="string">"-g"</span>,
+                <span class="string">"--class-path"</span>,
                 classpath()<span class="question-mark">?</span>.as_str(),
-                <span class="string">&quot;-d&quot;</span>,
+                <span class="string">"-d"</span>,
                 BUILD_DIR.to_str().unwrap(),
                 <span class="self">self</span>.path.as_path().to_str().unwrap(),
-                <span class="string">&quot;-Xdiags:verbose&quot;</span>,
-                <span class="string">&quot;-Xdoclint&quot;</span>,
-                <span class="comment">// &quot;-Xlint&quot;,
+                <span class="string">"-Xdiags:verbose"</span>,
+                <span class="string">"-Xdoclint"</span>,
+                <span class="comment">// "-Xlint",
             </span>])
             .output()
-            .context(<span class="string">&quot;Failed to spawn javac process.&quot;</span>)
+            .context(<span class="string">"Failed to spawn javac process."</span>)
     }
 
     <span class="doccomment">/// Utility method to ask javac for documentation lints using the -Xdoclint
     /// flag.
     ///
     /// The method simply returns the output produced by javac as a String.
-    /// There is a [&#39;parse_diag method&#39;][fn@crate::parsers::parser::parse_diag]
+    /// There is a ['parse_diag method'][fn@crate::parsers::parser::parse_diag]
     /// that can parse these to yield useful information.
     </span><span class="kw">pub fn </span>doc_check(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;String, JavaFileError&gt; {
         <span class="kw">let </span>child = <span class="self">self</span>.inner_doc_check(Stdio::piped(), Stdio::piped(), Stdio::piped())<span class="question-mark">?</span>;
 
         <span class="kw">let </span>output = unescape(
             <span class="kw-2">&amp;</span>[
-                String::from_utf8(child.stderr).context(<span class="string">&quot;Error when parsing stderr as utf8&quot;</span>)<span class="question-mark">?</span>,
-                String::from_utf8(child.stdout).context(<span class="string">&quot;Error when parsing stdout as utf8&quot;</span>)<span class="question-mark">?</span>,
+                String::from_utf8(child.stderr).context(<span class="string">"Error when parsing stderr as utf8"</span>)<span class="question-mark">?</span>,
+                String::from_utf8(child.stdout).context(<span class="string">"Error when parsing stdout as utf8"</span>)<span class="question-mark">?</span>,
             ]
             .concat(),
         )
-        .context(<span class="string">&quot;Error when un-escaping javac output.&quot;</span>)<span class="question-mark">?</span>;
+        .context(<span class="string">"Error when un-escaping javac output."</span>)<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(output)
     }
@@ -2367,7 +2371,7 @@
     /// flag.
     ///
     /// The method simply returns the output produced by javac as a String.
-    /// There is a [&#39;parse_diag method&#39;][fn@crate::parsers::parser::parse_diag]
+    /// There is a ['parse_diag method'][fn@crate::parsers::parser::parse_diag]
     /// that can parse these to yield useful information.
     </span><span class="kw">pub fn </span>doc_check_mut_script(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;String, Box&lt;EvalAltResult&gt;&gt; {
         <span class="kw">match </span><span class="self">self</span>.inner_doc_check(Stdio::inherit(), Stdio::inherit(), Stdio::inherit()) {
@@ -2376,24 +2380,24 @@
                     <span class="kw">match </span>String::from_utf8(child.stderr) {
                         <span class="prelude-val">Ok</span>(s) =&gt; s,
                         <span class="prelude-val">Err</span>(e) =&gt; {
-                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into());
+                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, e).into());
                         }
                     },
                     <span class="kw">match </span>String::from_utf8(child.stdout) {
                         <span class="prelude-val">Ok</span>(s) =&gt; s,
                         <span class="prelude-val">Err</span>(e) =&gt; {
-                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into());
+                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, e).into());
                         }
                     },
                 ]
                 .concat(),
             ) {
                 <span class="prelude-val">Ok</span>(s) =&gt; <span class="prelude-val">Ok</span>(s),
-                <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into()),
+                <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, e).into()),
             },
             <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(Box::new(
                 unescape(e.to_string().as_str())
-                    .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">format!</span>(<span class="string">&quot;Could not unescape: {:?}&quot;</span>, e))
+                    .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">format!</span>(<span class="string">"Could not unescape: {:?}"</span>, e))
                     .into(),
             )),
         }
@@ -2408,20 +2412,20 @@
             .stdout(out)
             .stdin(in_)
             .args([
-                <span class="string">&quot;--source-path&quot;</span>,
+                <span class="string">"--source-path"</span>,
                 sourcepath()<span class="question-mark">?</span>.as_str(),
-                <span class="string">&quot;-g&quot;</span>,
-                <span class="string">&quot;--class-path&quot;</span>,
+                <span class="string">"-g"</span>,
+                <span class="string">"--class-path"</span>,
                 classpath()<span class="question-mark">?</span>.as_str(),
-                <span class="string">&quot;-d&quot;</span>,
+                <span class="string">"-d"</span>,
                 BUILD_DIR.to_str().unwrap(),
                 path.as_str(),
-                <span class="string">&quot;-Xdiags:verbose&quot;</span>,
-                <span class="comment">// &quot;-Xlint&quot;,
-                </span><span class="string">&quot;-Xprefer:source&quot;</span>,
+                <span class="string">"-Xdiags:verbose"</span>,
+                <span class="comment">// "-Xlint",
+                </span><span class="string">"-Xprefer:source"</span>,
             ])
             .output()
-            .context(<span class="string">&quot;Failed to spawn javac process.&quot;</span>)
+            .context(<span class="string">"Failed to spawn javac process."</span>)
     }
 
     <span class="doccomment">/// Utility method to check for syntax errors using javac flag.
@@ -2430,12 +2434,12 @@
             <span class="prelude-val">Ok</span>(out) =&gt; {
                 <span class="kw">let </span>output = unescape(
                     <span class="kw-2">&amp;</span>[
-                        String::from_utf8(out.stderr).context(<span class="string">&quot;Error parsing stderr as utf8&quot;</span>)<span class="question-mark">?</span>,
-                        String::from_utf8(out.stdout).context(<span class="string">&quot;Error parsing stdout as utf8&quot;</span>)<span class="question-mark">?</span>,
+                        String::from_utf8(out.stderr).context(<span class="string">"Error parsing stderr as utf8"</span>)<span class="question-mark">?</span>,
+                        String::from_utf8(out.stdout).context(<span class="string">"Error parsing stdout as utf8"</span>)<span class="question-mark">?</span>,
                     ]
                     .concat(),
                 )
-                .context(<span class="string">&quot;Error when un-escaping javac output.&quot;</span>)<span class="question-mark">?</span>;
+                .context(<span class="string">"Error when un-escaping javac output."</span>)<span class="question-mark">?</span>;
 
                 <span class="kw">if </span>out.status.success() {
                     <span class="prelude-val">Ok</span>(output)
@@ -2465,24 +2469,24 @@
                     <span class="kw">match </span>String::from_utf8(child.stderr) {
                         <span class="prelude-val">Ok</span>(s) =&gt; s,
                         <span class="prelude-val">Err</span>(e) =&gt; {
-                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into());
+                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, e).into());
                         }
                     },
                     <span class="kw">match </span>String::from_utf8(child.stdout) {
                         <span class="prelude-val">Ok</span>(s) =&gt; s,
                         <span class="prelude-val">Err</span>(e) =&gt; {
-                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into());
+                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, e).into());
                         }
                     },
                 ]
                 .concat(),
             ) {
                 <span class="prelude-val">Ok</span>(s) =&gt; <span class="prelude-val">Ok</span>(s),
-                <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into()),
+                <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, e).into()),
             },
             <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(Box::new(
                 unescape(e.to_string().as_str())
-                    .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">format!</span>(<span class="string">&quot;Could not unescape: {:?}&quot;</span>, e))
+                    .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">format!</span>(<span class="string">"Could not unescape: {:?}"</span>, e))
                     .into(),
             )),
         }
@@ -2492,7 +2496,7 @@
     </span><span class="kw">fn </span>inner_run(<span class="kw-2">&amp;</span><span class="self">self</span>, input: <span class="prelude-ty">Option</span>&lt;String&gt;, err: Stdio, out: Stdio) -&gt; <span class="prelude-ty">Result</span>&lt;Output&gt; {
         <span class="kw">if </span><span class="self">self</span>.kind != FileType::ClassWithMain {
             <span class="prelude-val">Err</span>(JavaFileError::DuringCompilation {
-                stacktrace: <span class="string">&quot;The file you wish to run does not have a main method.&quot;</span>.into(),
+                stacktrace: <span class="string">"The file you wish to run does not have a main method."</span>.into(),
                 diags:      <span class="macro">vec!</span>[],
             })<span class="question-mark">?</span>;
         }
@@ -2500,7 +2504,7 @@
         <span class="kw">if let </span><span class="prelude-val">Some</span>(input_str) = input {
             <span class="kw">let </span><span class="kw-2">mut </span>child = Command::new(java_path()<span class="question-mark">?</span>)
                 .args([
-                    <span class="string">&quot;--class-path&quot;</span>,
+                    <span class="string">"--class-path"</span>,
                     classpath()<span class="question-mark">?</span>.as_str(),
                     <span class="self">self</span>.proper_name.clone().as_str(),
                 ])
@@ -2508,24 +2512,24 @@
                 .stdout(out)
                 .stderr(err)
                 .spawn()
-                .context(<span class="string">&quot;Failed to spawn javac process.&quot;</span>)<span class="question-mark">?</span>;
+                .context(<span class="string">"Failed to spawn javac process."</span>)<span class="question-mark">?</span>;
 
-            <span class="kw">let </span>input = <span class="macro">format!</span>(<span class="string">&quot;{}\r\n&quot;</span>, input_str);
+            <span class="kw">let </span>input = <span class="macro">format!</span>(<span class="string">"{}\r\n"</span>, input_str);
 
             <span class="kw">let </span><span class="kw-2">mut </span>stdin = child.stdin.take().unwrap();
 
             stdin
                 .write_all(input.as_bytes())
-                .context(<span class="string">&quot;Error when trying to write input to stdin&quot;</span>)<span class="question-mark">?</span>;
-            stdin.flush().context(<span class="string">&quot;Error when trying to flush stdin&quot;</span>)<span class="question-mark">?</span>;
+                .context(<span class="string">"Error when trying to write input to stdin"</span>)<span class="question-mark">?</span>;
+            stdin.flush().context(<span class="string">"Error when trying to flush stdin"</span>)<span class="question-mark">?</span>;
 
             child
                 .wait_with_output()
-                .context(<span class="string">&quot;Error when waiting for child process to finish&quot;</span>)
+                .context(<span class="string">"Error when waiting for child process to finish"</span>)
         } <span class="kw">else </span>{
             Command::new(java_path()<span class="question-mark">?</span>)
                 .args([
-                    <span class="string">&quot;--class-path&quot;</span>,
+                    <span class="string">"--class-path"</span>,
                     classpath()<span class="question-mark">?</span>.as_str(),
                     <span class="self">self</span>.proper_name.clone().as_str(),
                 ])
@@ -2534,7 +2538,7 @@
                 .stderr(err)
                 .spawn()<span class="question-mark">?
                 </span>.wait_with_output()
-                .context(<span class="string">&quot;Failed to spawn javac process.&quot;</span>)
+                .context(<span class="string">"Failed to spawn javac process."</span>)
         }
     }
 
@@ -2547,13 +2551,13 @@
                 <span class="kw">let </span>output = unescape(
                     <span class="kw-2">&amp;</span>[
                         String::from_utf8(out.stderr)
-                            .context(<span class="string">&quot;Error when parsing stderr as utf8&quot;</span>)<span class="question-mark">?</span>,
+                            .context(<span class="string">"Error when parsing stderr as utf8"</span>)<span class="question-mark">?</span>,
                         String::from_utf8(out.stdout)
-                            .context(<span class="string">&quot;Error when parsing stdout as utf8&quot;</span>)<span class="question-mark">?</span>,
+                            .context(<span class="string">"Error when parsing stdout as utf8"</span>)<span class="question-mark">?</span>,
                     ]
                     .concat(),
                 )
-                .context(<span class="string">&quot;Error when escaping java output.&quot;</span>)<span class="question-mark">?</span>;
+                .context(<span class="string">"Error when escaping java output."</span>)<span class="question-mark">?</span>;
 
                 <span class="kw">if </span>out.status.success() {
                     <span class="prelude-val">Ok</span>(output)
@@ -2584,24 +2588,24 @@
                     <span class="kw">match </span>String::from_utf8(child.stderr) {
                         <span class="prelude-val">Ok</span>(s) =&gt; s,
                         <span class="prelude-val">Err</span>(e) =&gt; {
-                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into());
+                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, e).into());
                         }
                     },
                     <span class="kw">match </span>String::from_utf8(child.stdout) {
                         <span class="prelude-val">Ok</span>(s) =&gt; s,
                         <span class="prelude-val">Err</span>(e) =&gt; {
-                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into());
+                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, e).into());
                         }
                     },
                 ]
                 .concat(),
             ) {
                 <span class="prelude-val">Ok</span>(s) =&gt; <span class="prelude-val">Ok</span>(s),
-                <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into()),
+                <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, e).into()),
             },
             <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(Box::new(
                 unescape(e.to_string().as_str())
-                    .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">format!</span>(<span class="string">&quot;Could not unescape: {:?}&quot;</span>, e))
+                    .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">format!</span>(<span class="string">"Could not unescape: {:?}"</span>, e))
                     .into(),
             )),
         }
@@ -2612,7 +2616,7 @@
         <span class="kw">let </span>tests = {
             <span class="kw">let </span><span class="kw-2">mut </span>new_tests = Vec::&lt;String&gt;::new();
             <span class="kw">for </span>t <span class="kw">in </span>tests {
-                new_tests.push(<span class="macro">format!</span>(<span class="string">&quot;{}#{}&quot;</span>, <span class="self">self</span>.proper_name.clone(), t));
+                new_tests.push(<span class="macro">format!</span>(<span class="string">"{}#{}"</span>, <span class="self">self</span>.proper_name.clone(), t));
             }
 
             <span class="kw">if </span>new_tests.is_empty() {
@@ -2624,24 +2628,24 @@
 
         <span class="kw">let </span>tests = tests
             .iter()
-            .map(|s| <span class="macro">format!</span>(<span class="string">&quot;-m{s}&quot;</span>))
+            .map(|s| <span class="macro">format!</span>(<span class="string">"-m{s}"</span>))
             .collect::&lt;Vec&lt;String&gt;&gt;();
         <span class="kw">let </span>methods: Vec&lt;<span class="kw-2">&amp;</span>str&gt; = tests.iter().map(String::as_str).collect();
 
-        Command::new(java_path().context(<span class="string">&quot;Could not find `java` command on path.&quot;</span>)<span class="question-mark">?</span>)
+        Command::new(java_path().context(<span class="string">"Could not find `java` command on path."</span>)<span class="question-mark">?</span>)
             .stderr(err)
             .stdout(out)
             .stdin(in_)
             .args(
                 [
                     [
-                        <span class="string">&quot;-jar&quot;</span>,
+                        <span class="string">"-jar"</span>,
                         LIB_DIR.join(JUNIT_PLATFORM).as_path().to_str().unwrap(),
-                        <span class="string">&quot;--disable-banner&quot;</span>,
-                        <span class="string">&quot;--disable-ansi-colors&quot;</span>,
-                        <span class="string">&quot;--details-theme=unicode&quot;</span>,
-                        <span class="string">&quot;--single-color&quot;</span>,
-                        <span class="string">&quot;-cp&quot;</span>,
+                        <span class="string">"--disable-banner"</span>,
+                        <span class="string">"--disable-ansi-colors"</span>,
+                        <span class="string">"--details-theme=unicode"</span>,
+                        <span class="string">"--single-color"</span>,
+                        <span class="string">"-cp"</span>,
                         <span class="kw-2">&amp;</span>classpath()<span class="question-mark">?</span>,
                     ]
                     .as_slice(),
@@ -2650,7 +2654,7 @@
                 .concat(),
             )
             .output()
-            .context(<span class="string">&quot;Failed to spawn javac process.&quot;</span>)
+            .context(<span class="string">"Failed to spawn javac process."</span>)
     }
 
     <span class="doccomment">/// A utility method that takes a list of strings (or types that implement
@@ -2658,7 +2662,7 @@
     /// tests.
     ///
     /// Returns the output from JUnit as a string. There are parsers in
-    /// [&#39;parsers module&#39;][crate::parsers::parser] that helps parse this output.
+    /// ['parsers module'][crate::parsers::parser] that helps parse this output.
     ///
     /// * `tests`: list of strings (or types that implement
     /// `Into&lt;String&gt;`) meant to represent test method names,
@@ -2674,13 +2678,13 @@
                 <span class="kw">let </span>output = unescape(
                     <span class="kw-2">&amp;</span>[
                         String::from_utf8(out.stderr)
-                            .context(<span class="string">&quot;Error when parsing stderr as utf8&quot;</span>)<span class="question-mark">?</span>,
+                            .context(<span class="string">"Error when parsing stderr as utf8"</span>)<span class="question-mark">?</span>,
                         String::from_utf8(out.stdout)
-                            .context(<span class="string">&quot;Error when parsing stdout as utf8&quot;</span>)<span class="question-mark">?</span>,
+                            .context(<span class="string">"Error when parsing stdout as utf8"</span>)<span class="question-mark">?</span>,
                     ]
                     .concat(),
                 )
-                .context(<span class="string">&quot;Error when un-escaping JUnit output.&quot;</span>)<span class="question-mark">?</span>;
+                .context(<span class="string">"Error when un-escaping JUnit output."</span>)<span class="question-mark">?</span>;
 
                 <span class="kw">if </span>out.status.success() {
                     <span class="prelude-val">Ok</span>(output)
@@ -2689,11 +2693,11 @@
                     <span class="kw">let </span><span class="kw-2">mut </span>new_output = Vec::new();
 
                     <span class="kw">for </span>line <span class="kw">in </span>output.lines() {
-                        <span class="kw">if </span>line.contains(<span class="string">&quot;MethodSource&quot;</span>) || line.contains(<span class="string">&quot;Native Method&quot;</span>) {
+                        <span class="kw">if </span>line.contains(<span class="string">"MethodSource"</span>) || line.contains(<span class="string">"Native Method"</span>) {
                             <span class="kw">continue</span>;
                         }
 
-                        <span class="comment">// if line.contains(&quot;Test run finished after&quot;) {
+                        <span class="comment">// if line.contains("Test run finished after") {
                         //     break;
                         // }
 
@@ -2702,7 +2706,7 @@
                                 &amp;&amp; proj.identify(diag.file_name()).is_ok()
                             {
                                 new_output.push(
-                                    line.replace(<span class="string">&quot;\\\\&quot;</span>, <span class="string">&quot;\\&quot;</span>).replace(<span class="string">&quot;\\\&quot;&quot;</span>, <span class="string">&quot;\&quot;&quot;</span>).to_string(),
+                                    line.replace(<span class="string">"\\\\"</span>, <span class="string">"\\"</span>).replace(<span class="string">"\\\""</span>, <span class="string">"\""</span>).to_string(),
                                 );
                             }
                             diags.push(diag);
@@ -2711,18 +2715,18 @@
                                 &amp;&amp; proj.identify(diag.file_name()).is_ok()
                             {
                                 new_output.push(
-                                    line.replace(<span class="string">&quot;\\\\&quot;</span>, <span class="string">&quot;\\&quot;</span>).replace(<span class="string">&quot;\\\&quot;&quot;</span>, <span class="string">&quot;\&quot;&quot;</span>).to_string(),
+                                    line.replace(<span class="string">"\\\\"</span>, <span class="string">"\\"</span>).replace(<span class="string">"\\\""</span>, <span class="string">"\""</span>).to_string(),
                                 );
                             }
                             diags.push(diag.into());
                         } <span class="kw">else </span>{
                             new_output
-                                .push(line.replace(<span class="string">&quot;\\\\&quot;</span>, <span class="string">&quot;\\&quot;</span>).replace(<span class="string">&quot;\\\&quot;&quot;</span>, <span class="string">&quot;\&quot;&quot;</span>).to_string());
+                                .push(line.replace(<span class="string">"\\\\"</span>, <span class="string">"\\"</span>).replace(<span class="string">"\\\""</span>, <span class="string">"\""</span>).to_string());
                         }
                     }
 
                     <span class="prelude-val">Err</span>(JavaFileError::FailedTests {
-                        test_results: new_output.join(<span class="string">&quot;\n&quot;</span>),
+                        test_results: new_output.join(<span class="string">"\n"</span>),
                         diags,
                     })
                 }
@@ -2741,24 +2745,24 @@
                     <span class="kw">match </span>String::from_utf8(child.stderr) {
                         <span class="prelude-val">Ok</span>(s) =&gt; s,
                         <span class="prelude-val">Err</span>(e) =&gt; {
-                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into());
+                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, e).into());
                         }
                     },
                     <span class="kw">match </span>String::from_utf8(child.stdout) {
                         <span class="prelude-val">Ok</span>(s) =&gt; s,
                         <span class="prelude-val">Err</span>(e) =&gt; {
-                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into());
+                            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, e).into());
                         }
                     },
                 ]
                 .concat(),
             ) {
                 <span class="prelude-val">Ok</span>(s) =&gt; <span class="prelude-val">Ok</span>(s),
-                <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, e).into()),
+                <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, e).into()),
             },
             <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(Box::new(
                 unescape(e.to_string().as_str())
-                    .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">format!</span>(<span class="string">&quot;Could not unescape: {:?}&quot;</span>, e))
+                    .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">format!</span>(<span class="string">"Could not unescape: {:?}"</span>, e))
                     .into(),
             )),
         }
@@ -2769,24 +2773,24 @@
     /// tests.
     ///
     /// Returns the output from JUnit as a string. There are parsers in
-    /// [&#39;parsers module&#39;][crate::parsers::parser] that helps parse this output.
+    /// ['parsers module'][crate::parsers::parser] that helps parse this output.
 
-    /// Get a reference to the file&#39;s kind.
+    /// Get a reference to the file's kind.
     </span><span class="kw">pub fn </span>kind(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>FileType {
         <span class="kw-2">&amp;</span><span class="self">self</span>.kind
     }
 
-    <span class="doccomment">/// Get a reference to the file&#39;s file name.
+    <span class="doccomment">/// Get a reference to the file's file name.
     </span><span class="kw">pub fn </span>file_name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
         <span class="self">self</span>.file_name.as_ref()
     }
 
-    <span class="doccomment">/// Get a reference to the file&#39;s test methods.
+    <span class="doccomment">/// Get a reference to the file's test methods.
     </span><span class="kw">pub fn </span>test_methods(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;String&gt; {
         <span class="self">self</span>.test_methods.clone()
     }
 
-    <span class="doccomment">/// Get a reference to the file&#39;s test methods.
+    <span class="doccomment">/// Get a reference to the file's test methods.
     </span><span class="kw">pub fn </span>test_methods_mut_script(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; Array {
         <span class="self">self</span>.test_methods().iter().map(|s| s.into()).collect()
     }
@@ -2806,36 +2810,36 @@
                 }
                 <span class="prelude-val">Ok</span>(arr)
             }
-            <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">&quot;Failed to query file: {e}&quot;</span>).into()),
+            <span class="prelude-val">Err</span>(e) =&gt; <span class="prelude-val">Err</span>(<span class="macro">format!</span>(<span class="string">"Failed to query file: {e}"</span>).into()),
         }
     }
 
-    <span class="doccomment">/// Get a reference to the file&#39;s path.
+    <span class="doccomment">/// Get a reference to the file's path.
     </span><span class="kw">pub fn </span>path(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>PathBuf {
         <span class="kw-2">&amp;</span><span class="self">self</span>.path
     }
 
-    <span class="doccomment">/// Get a reference to the file&#39;s path.
+    <span class="doccomment">/// Get a reference to the file's path.
     </span><span class="kw">pub fn </span>path_mut_script(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; String {
         <span class="self">self</span>.path.display().to_string()
     }
 
-    <span class="doccomment">/// Get a reference to the file&#39;s proper name.
+    <span class="doccomment">/// Get a reference to the file's proper name.
     </span><span class="kw">pub fn </span>package_name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>String&gt; {
         <span class="self">self</span>.package_name.as_ref()
     }
 
-    <span class="doccomment">/// Get a reference to the file&#39;s parser.
+    <span class="doccomment">/// Get a reference to the file's parser.
     </span><span class="kw">pub fn </span>parser(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Parser {
         <span class="self">self</span>.parser.clone()
     }
 
-    <span class="doccomment">/// Get a reference to the file&#39;s description.
+    <span class="doccomment">/// Get a reference to the file's description.
     </span><span class="kw">pub fn </span>description(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
         <span class="self">self</span>.description.clone()
     }
 
-    <span class="doccomment">/// Get the file&#39;s proper name.
+    <span class="doccomment">/// Get the file's proper name.
     </span><span class="kw">pub fn </span>proper_name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
         <span class="self">self</span>.proper_name.clone()
     }
@@ -2846,19 +2850,19 @@
 </span><span class="kw">impl </span>CustomType <span class="kw">for </span>File {
     <span class="kw">fn </span>build(<span class="kw-2">mut </span>builder: rhai::TypeBuilder&lt;<span class="self">Self</span>&gt;) {
         builder
-            .with_name(<span class="string">&quot;JavaFile&quot;</span>)
-            .with_fn(<span class="string">&quot;new_java_file&quot;</span>, File::new_script)
-            .with_fn(<span class="string">&quot;check&quot;</span>, File::check_mut_script)
-            .with_fn(<span class="string">&quot;doc_check&quot;</span>, File::doc_check_mut_script)
-            .with_fn(<span class="string">&quot;run&quot;</span>, File::run_mut_script)
-            .with_fn(<span class="string">&quot;test&quot;</span>, File::test_mut_script)
-            .with_fn(<span class="string">&quot;kind&quot;</span>, File::kind)
-            .with_fn(<span class="string">&quot;file_name&quot;</span>, File::file_name)
-            .with_fn(<span class="string">&quot;test_methods&quot;</span>, File::test_methods_mut_script)
-            .with_fn(<span class="string">&quot;query&quot;</span>, File::query_mut_script)
-            .with_fn(<span class="string">&quot;package_name&quot;</span>, File::package_name)
-            .with_fn(<span class="string">&quot;path&quot;</span>, File::path_mut_script)
-            .with_fn(<span class="string">&quot;parser&quot;</span>, File::parser);
+            .with_name(<span class="string">"JavaFile"</span>)
+            .with_fn(<span class="string">"new_java_file"</span>, File::new_script)
+            .with_fn(<span class="string">"check"</span>, File::check_mut_script)
+            .with_fn(<span class="string">"doc_check"</span>, File::doc_check_mut_script)
+            .with_fn(<span class="string">"run"</span>, File::run_mut_script)
+            .with_fn(<span class="string">"test"</span>, File::test_mut_script)
+            .with_fn(<span class="string">"kind"</span>, File::kind)
+            .with_fn(<span class="string">"file_name"</span>, File::file_name)
+            .with_fn(<span class="string">"test_methods"</span>, File::test_methods_mut_script)
+            .with_fn(<span class="string">"query"</span>, File::query_mut_script)
+            .with_fn(<span class="string">"package_name"</span>, File::package_name)
+            .with_fn(<span class="string">"path"</span>, File::path_mut_script)
+            .with_fn(<span class="string">"parser"</span>, File::parser);
     }
 }
 
@@ -2875,9 +2879,9 @@
         <span class="kw">let </span>handles = FuturesUnordered::new();
 
         <span class="kw">let </span>results = rt.block_on(<span class="kw">async </span>{
-            <span class="kw">let </span>found_files = <span class="kw">match </span>find_files(<span class="string">&quot;java&quot;</span>, <span class="number">15</span>, <span class="kw-2">&amp;</span>ROOT_DIR) {
+            <span class="kw">let </span>found_files = <span class="kw">match </span>find_files(<span class="string">"java"</span>, <span class="number">15</span>, <span class="kw-2">&amp;</span>ROOT_DIR) {
                 <span class="prelude-val">Ok</span>(f) =&gt; f,
-                <span class="prelude-val">Err</span>(e) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Could not find java files: {e}&quot;</span>),
+                <span class="prelude-val">Err</span>(e) =&gt; <span class="macro">panic!</span>(<span class="string">"Could not find java files: {e}"</span>),
             };
 
             <span class="kw">for </span>path <span class="kw">in </span>found_files {
@@ -2893,15 +2897,15 @@
             files.push(file);
         }
 
-        <span class="kw">let </span>classpath = <span class="macro">vec!</span>[LIB_DIR.join(<span class="string">&quot;*.jar&quot;</span>).display().to_string()];
+        <span class="kw">let </span>classpath = <span class="macro">vec!</span>[LIB_DIR.join(<span class="string">"*.jar"</span>).display().to_string()];
 
         <span class="kw">let </span><span class="kw-2">mut </span>sourcepath = <span class="macro">vec!</span>[
-            SOURCE_DIR.join(<span class="string">&quot;&quot;</span>).display().to_string(),
-            TEST_DIR.join(<span class="string">&quot;&quot;</span>).display().to_string(),
+            SOURCE_DIR.join(<span class="string">""</span>).display().to_string(),
+            TEST_DIR.join(<span class="string">""</span>).display().to_string(),
         ];
 
-        <span class="kw">if </span>!find_files(<span class="string">&quot;java&quot;</span>, <span class="number">0</span>, <span class="kw-2">&amp;</span>ROOT_DIR)<span class="question-mark">?</span>.is_empty() {
-            sourcepath.push(ROOT_DIR.join(<span class="string">&quot;&quot;</span>).display().to_string());
+        <span class="kw">if </span>!find_files(<span class="string">"java"</span>, <span class="number">0</span>, <span class="kw-2">&amp;</span>ROOT_DIR)<span class="question-mark">?</span>.is_empty() {
+            sourcepath.push(ROOT_DIR.join(<span class="string">""</span>).display().to_string());
         }
 
         <span class="kw">let </span>proj = <span class="self">Self </span>{
@@ -2952,7 +2956,7 @@
         } <span class="kw">else if let </span><span class="prelude-val">Some</span>(i) = <span class="self">self
             </span>.files
             .iter()
-            .position(|n| n.file_name.replace(<span class="string">&quot;.java&quot;</span>, <span class="string">&quot;&quot;</span>) == name)
+            .position(|n| n.file_name.replace(<span class="string">".java"</span>, <span class="string">""</span>) == name)
         {
             <span class="prelude-val">Ok</span>(<span class="self">self</span>.files[i].clone())
         } <span class="kw">else if let </span><span class="prelude-val">Some</span>(i) = <span class="self">self</span>.files.iter().position(|n| n.name.clone() == name) {
@@ -2966,7 +2970,7 @@
         } <span class="kw">else if let </span><span class="prelude-val">Some</span>(i) = <span class="self">self</span>.files.iter().position(|n| n.proper_name == name) {
             <span class="prelude-val">Ok</span>(<span class="self">self</span>.files[i].clone())
         } <span class="kw">else </span>{
-            <span class="macro">bail!</span>(<span class="string">&quot;Could not find {} in the project&quot;</span>, name)
+            <span class="macro">bail!</span>(<span class="string">"Could not find {} in the project"</span>, name)
         }
     }
 
@@ -2978,13 +2982,13 @@
     <span class="doccomment">/// Downloads certain libraries like JUnit if found in imports.
     /// times out after 20 seconds.
     </span><span class="kw">pub async fn </span>download_libraries_if_needed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
-        <span class="kw">let </span>need_junit = <span class="lifetime">&#39;outer</span>: {
+        <span class="kw">let </span>need_junit = <span class="lifetime">'outer</span>: {
             <span class="kw">for </span>file <span class="kw">in </span><span class="self">self</span>.files.iter() {
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(imports) = <span class="kw-2">&amp;</span>file.imports {
                     <span class="kw">for </span>import <span class="kw">in </span>imports {
-                        <span class="kw">if let </span><span class="prelude-val">Some</span>(path) = import.get(<span class="kw-2">&amp;</span>String::from(<span class="string">&quot;path&quot;</span>)) {
-                            <span class="kw">if </span>path.starts_with(<span class="string">&quot;org.junit&quot;</span>) {
-                                <span class="kw">break </span><span class="lifetime">&#39;outer </span><span class="bool-val">true</span>;
+                        <span class="kw">if let </span><span class="prelude-val">Some</span>(path) = import.get(<span class="kw-2">&amp;</span>String::from(<span class="string">"path"</span>)) {
+                            <span class="kw">if </span>path.starts_with(<span class="string">"org.junit"</span>) {
+                                <span class="kw">break </span><span class="lifetime">'outer </span><span class="bool-val">true</span>;
                             }
                         }
                     }
@@ -3000,7 +3004,7 @@
 
             <span class="kw">let </span>handle1 = tokio::spawn(<span class="kw">async </span>{
                 download(
-                    <span class="string">&quot;https://ummfiles.fra1.digitaloceanspaces.com/jar_files/junit-platform-console-standalone-1.9.0-RC1.jar&quot;</span>,
+                    <span class="string">"https://ummfiles.fra1.digitaloceanspaces.com/jar_files/junit-platform-console-standalone-1.9.0-RC1.jar"</span>,
                     <span class="kw-2">&amp;</span>LIB_DIR.join(JUNIT_PLATFORM),
                 <span class="bool-val">false
                         </span>)
@@ -3009,8 +3013,8 @@
 
             <span class="kw">let </span>handle2 = tokio::spawn(<span class="kw">async </span>{
                 download(
-                    <span class="string">&quot;https://ummfiles.fra1.digitaloceanspaces.com/jar_files/junit-4.13.2.jar&quot;</span>,
-                    <span class="kw-2">&amp;</span>LIB_DIR.join(<span class="string">&quot;junit-4.13.2.jar&quot;</span>),
+                    <span class="string">"https://ummfiles.fra1.digitaloceanspaces.com/jar_files/junit-4.13.2.jar"</span>,
+                    <span class="kw-2">&amp;</span>LIB_DIR.join(<span class="string">"junit-4.13.2.jar"</span>),
                     <span class="bool-val">false</span>,
                 )
                 .<span class="kw">await
@@ -3018,8 +3022,8 @@
 
             <span class="kw">let </span>handle3 = tokio::spawn(<span class="kw">async </span>{
                 download(
-                    <span class="string">&quot;https://ummfiles.fra1.digitaloceanspaces.com/jar_files/pitest-1.9.5.jar&quot;</span>,
-                    <span class="kw-2">&amp;</span>LIB_DIR.join(<span class="string">&quot;pitest.jar&quot;</span>),
+                    <span class="string">"https://ummfiles.fra1.digitaloceanspaces.com/jar_files/pitest-1.9.5.jar"</span>,
+                    <span class="kw-2">&amp;</span>LIB_DIR.join(<span class="string">"pitest.jar"</span>),
                     <span class="bool-val">false</span>,
                 )
                 .<span class="kw">await
@@ -3027,8 +3031,8 @@
 
             <span class="kw">let </span>handle4 = tokio::spawn(<span class="kw">async </span>{
                 download(
-                        <span class="string">&quot;https://ummfiles.fra1.digitaloceanspaces.com/jar_files/pitest-command-line-1.9.5.jar&quot;</span>,
-                        <span class="kw-2">&amp;</span>LIB_DIR.join(<span class="string">&quot;pitest-command-line.jar&quot;</span>),
+                        <span class="string">"https://ummfiles.fra1.digitaloceanspaces.com/jar_files/pitest-command-line-1.9.5.jar"</span>,
+                        <span class="kw-2">&amp;</span>LIB_DIR.join(<span class="string">"pitest-command-line.jar"</span>),
                         <span class="bool-val">false</span>,
                     )
                     .<span class="kw">await
@@ -3036,8 +3040,8 @@
 
             <span class="kw">let </span>handle5 = tokio::spawn(<span class="kw">async </span>{
                 download(
-                    <span class="string">&quot;https://ummfiles.fra1.digitaloceanspaces.com/jar_files/pitest-entry-1.9.5.jar&quot;</span>,
-                    <span class="kw-2">&amp;</span>LIB_DIR.join(<span class="string">&quot;pitest-entry.jar&quot;</span>),
+                    <span class="string">"https://ummfiles.fra1.digitaloceanspaces.com/jar_files/pitest-entry-1.9.5.jar"</span>,
+                    <span class="kw-2">&amp;</span>LIB_DIR.join(<span class="string">"pitest-entry.jar"</span>),
                     <span class="bool-val">false</span>,
                 )
                 .<span class="kw">await
@@ -3045,8 +3049,8 @@
 
             <span class="kw">let </span>handle6 = tokio::spawn(<span class="kw">async </span>{
                 download(
-                        <span class="string">&quot;https://ummfiles.fra1.digitaloceanspaces.com/jar_files/pitest-junit5-plugin-1.0.0.jar&quot;</span>,
-                        <span class="kw-2">&amp;</span>LIB_DIR.join(<span class="string">&quot;pitest-junit5-plugin.jar&quot;</span>),
+                        <span class="string">"https://ummfiles.fra1.digitaloceanspaces.com/jar_files/pitest-junit5-plugin-1.0.0.jar"</span>,
+                        <span class="kw-2">&amp;</span>LIB_DIR.join(<span class="string">"pitest-junit5-plugin.jar"</span>),
                         <span class="bool-val">false</span>,
                     )
                     .<span class="kw">await
@@ -3063,23 +3067,23 @@
     <span class="doccomment">/// Creates a vscode settings.json file for the project.
     </span><span class="kw">pub async fn </span>update_vscode_settings(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
         <span class="comment">// TODO: Move this to an init function that takes CONSTANTS into account
-        </span><span class="kw">if </span>!ROOT_DIR.join(<span class="string">&quot;.vscode&quot;</span>).as_path().is_dir() {
-            tokio::fs::create_dir(ROOT_DIR.join(<span class="string">&quot;.vscode&quot;</span>).as_path())
+        </span><span class="kw">if </span>!ROOT_DIR.join(<span class="string">".vscode"</span>).as_path().is_dir() {
+            tokio::fs::create_dir(ROOT_DIR.join(<span class="string">".vscode"</span>).as_path())
                 .<span class="kw">await
                 </span>.unwrap();
         }
 
-        <span class="kw">if </span>!ROOT_DIR.join(<span class="string">&quot;.vscode/settings.json&quot;</span>).as_path().exists() {
+        <span class="kw">if </span>!ROOT_DIR.join(<span class="string">".vscode/settings.json"</span>).as_path().exists() {
             <span class="kw">let </span><span class="kw-2">mut </span>file = tokio::fs::OpenOptions::new()
                 .write(<span class="bool-val">true</span>)
                 .truncate(<span class="bool-val">true</span>)
                 .create(<span class="bool-val">true</span>)
-                .open(ROOT_DIR.join(<span class="string">&quot;.vscode&quot;</span>).join(<span class="string">&quot;settings.json&quot;</span>).as_path())
+                .open(ROOT_DIR.join(<span class="string">".vscode"</span>).join(<span class="string">"settings.json"</span>).as_path())
                 .<span class="kw">await</span><span class="question-mark">?</span>;
 
             <span class="kw">let </span>settings = vscode::SettingsFile::builder()
                 .java_source_path(<span class="self">self</span>.sourcepath.clone())
-                .java_output_path(BUILD_DIR.join(<span class="string">&quot;&quot;</span>).display().to_string())
+                .java_output_path(BUILD_DIR.join(<span class="string">""</span>).display().to_string())
                 .java_referenced_libs(<span class="self">self</span>.classpath.clone())
                 .umm_binary_path(umm_path())
                 .build();
@@ -3089,29 +3093,31 @@
         }
 
         <span class="comment">// Do the same for extensions.json
-        </span><span class="kw">if </span>!ROOT_DIR.join(<span class="string">&quot;.vscode/extensions.json&quot;</span>).as_path().exists() {
+        </span><span class="kw">if </span>!ROOT_DIR.join(<span class="string">".vscode/extensions.json"</span>).as_path().exists() {
             <span class="kw">let </span><span class="kw-2">mut </span>file = tokio::fs::OpenOptions::new()
                 .write(<span class="bool-val">true</span>)
                 .truncate(<span class="bool-val">true</span>)
                 .create(<span class="bool-val">true</span>)
-                .open(ROOT_DIR.join(<span class="string">&quot;.vscode&quot;</span>).join(<span class="string">&quot;extensions.json&quot;</span>).as_path())
+                .open(ROOT_DIR.join(<span class="string">".vscode"</span>).join(<span class="string">"extensions.json"</span>).as_path())
                 .<span class="kw">await</span><span class="question-mark">?</span>;
 
-            <span class="kw">let </span>extensions = <span class="string">r#&quot;
+            <span class="kw">let </span>extensions = <span class="string">r#"
 {
 	// See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
 	// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
 
 	// List of extensions which should be recommended for users of this workspace.
-	&quot;recommendations&quot;: [
-		&quot;Codeium.codeium&quot;
+	"recommendations": [
+		"Codeium.codeium",
+        "vscjava.vscode-java-pack",
+        "ms-vsliveshare.vsliveshare"
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
-	&quot;unwantedRecommendations&quot;: [
+	"unwantedRecommendations": [
 		
 	]
 }
-            &quot;#</span>;
+            "#</span>;
 
             file.write_all(extensions.as_bytes()).<span class="kw">await</span><span class="question-mark">?</span>;
         }
@@ -3119,7 +3125,7 @@
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="doccomment">/// Get a reference to the project&#39;s files.
+    <span class="doccomment">/// Get a reference to the project's files.
     </span><span class="kw">pub fn </span>files(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[File] {
         <span class="self">self</span>.files.as_ref()
     }
@@ -3127,25 +3133,25 @@
     <span class="attr">#[generate_rhai_variant(Fallible)]
     </span><span class="doccomment">/// Prints project struct as a json
     </span><span class="kw">pub fn </span>info(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
-        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, serde_json::to_string(<span class="kw-2">&amp;</span><span class="self">self</span>)<span class="question-mark">?</span>);
+        <span class="macro">println!</span>(<span class="string">"{}"</span>, serde_json::to_string(<span class="kw-2">&amp;</span><span class="self">self</span>)<span class="question-mark">?</span>);
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="doccomment">/// Returns a short summary of the project, it&#39;s files, their fields and
+    <span class="doccomment">/// Returns a short summary of the project, it's files, their fields and
     /// methods.
     </span><span class="kw">pub fn </span>describe(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
         <span class="kw">let </span><span class="kw-2">mut </span>result = String::new();
         result.push_str(
-            <span class="string">&quot;&gt; What follows is a summary of the student&#39;s submission&#39;s files, their fields and \
-             methods generated via treesitter queries.\n\n&quot;</span>,
+            <span class="string">"&gt; What follows is a summary of the student's submission's files, their fields and \
+             methods generated via treesitter queries.\n\n"</span>,
         );
 
         <span class="kw">for </span>f <span class="kw">in </span><span class="self">self</span>.files.iter() {
-            <span class="kw">if </span>f.proper_name.contains(<span class="string">&quot;Hidden&quot;</span>) {
+            <span class="kw">if </span>f.proper_name.contains(<span class="string">"Hidden"</span>) {
                 <span class="kw">continue</span>;
             }
             result.push_str(f.description().as_str());
-            result.push_str(<span class="string">&quot;\n\n&quot;</span>);
+            result.push_str(<span class="string">"\n\n"</span>);
         }
 
         result
@@ -3156,9 +3162,9 @@
         <span class="kw">let </span><span class="kw-2">mut </span>tasks = Vec::new();
         <span class="kw">let </span><span class="kw-2">mut </span>inputs = Vec::new();
 
-        <span class="kw">let </span>(default_depends_on, default_depends_order) = <span class="kw">if </span>umm_path() == <span class="string">&quot;./umm&quot; </span>{
+        <span class="kw">let </span>(default_depends_on, default_depends_order) = <span class="kw">if </span>umm_path() == <span class="string">"./umm" </span>{
             (
-                <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[<span class="string">&quot;Set umm to be executable&quot;</span>.to_string()]),
+                <span class="prelude-val">Some</span>(<span class="macro">vec!</span>[<span class="string">"Set umm to be executable"</span>.to_string()]),
                 <span class="prelude-val">Some</span>(vscode::DependsOrder::Sequence),
             )
         } <span class="kw">else </span>{
@@ -3167,16 +3173,16 @@
 
         tasks.push(
             vscode::Task::builder()
-                .label(<span class="string">&quot;Set umm to be executable&quot;</span>.to_string())
+                .label(<span class="string">"Set umm to be executable"</span>.to_string())
                 .r#type(vscode::Type::Shell)
-                .command(<span class="string">&quot;chmod&quot;</span>)
+                .command(<span class="string">"chmod"</span>)
                 .args(<span class="macro">vec!</span>[
                     vscode::Args::builder()
-                        .value(<span class="string">&quot;+x&quot;</span>)
+                        .value(<span class="string">"+x"</span>)
                         .quoting(vscode::ArgQuoting::Escape)
                         .build(),
                     vscode::Args::builder()
-                        .value(<span class="string">&quot;${config:ummBinaryPath}&quot;</span>)
+                        .value(<span class="string">"${config:ummBinaryPath}"</span>)
                         .quoting(vscode::ArgQuoting::Weak)
                         .build(),
                 ])
@@ -3186,11 +3192,11 @@
         );
         tasks.push(
             vscode::Task::builder()
-                .label(<span class="string">&quot;Clean library and target folders&quot;</span>.to_string())
+                .label(<span class="string">"Clean library and target folders"</span>.to_string())
                 .r#type(vscode::Type::Shell)
-                .command(<span class="string">&quot;${config:ummBinaryPath}&quot;</span>)
+                .command(<span class="string">"${config:ummBinaryPath}"</span>)
                 .args(<span class="macro">vec!</span>[vscode::Args::builder()
-                    .value(<span class="string">&quot;clean&quot;</span>)
+                    .value(<span class="string">"clean"</span>)
                     .quoting(vscode::ArgQuoting::Escape)
                     .build()])
                 .depends_on(default_depends_on.clone())
@@ -3200,11 +3206,11 @@
 
         tasks.push(
             vscode::Task::builder()
-                .label(<span class="string">&quot;Reset project metadata&quot;</span>.into())
+                .label(<span class="string">"Reset project metadata"</span>.into())
                 .r#type(vscode::Type::Shell)
-                .command(<span class="string">&quot;${config:ummBinaryPath}&quot;</span>)
+                .command(<span class="string">"${config:ummBinaryPath}"</span>)
                 .args(<span class="macro">vec!</span>[vscode::Args::builder()
-                    .value(<span class="string">&quot;reset&quot;</span>)
+                    .value(<span class="string">"reset"</span>)
                     .quoting(vscode::ArgQuoting::Escape)
                     .build()])
                 .depends_on(default_depends_on.clone())
@@ -3214,11 +3220,11 @@
 
         tasks.push(
             vscode::Task::builder()
-                .label(<span class="string">&quot;Check health of the project&quot;</span>.into())
+                .label(<span class="string">"Check health of the project"</span>.into())
                 .r#type(vscode::Type::Shell)
-                .command(<span class="string">&quot;${config:ummBinaryPath}&quot;</span>)
+                .command(<span class="string">"${config:ummBinaryPath}"</span>)
                 .args(<span class="macro">vec!</span>[vscode::Args::builder()
-                    .value(<span class="string">&quot;check-health&quot;</span>)
+                    .value(<span class="string">"check-health"</span>)
                     .quoting(vscode::ArgQuoting::Escape)
                     .build()])
                 .depends_on(default_depends_on.clone())
@@ -3228,11 +3234,11 @@
 
         tasks.push(
             vscode::Task::builder()
-                .label(<span class="string">&quot;Update umm executable&quot;</span>.into())
+                .label(<span class="string">"Update umm executable"</span>.into())
                 .r#type(vscode::Type::Shell)
-                .command(<span class="string">&quot;${config:ummBinaryPath}&quot;</span>)
+                .command(<span class="string">"${config:ummBinaryPath}"</span>)
                 .args(<span class="macro">vec!</span>[vscode::Args::builder()
-                    .value(<span class="string">&quot;update&quot;</span>)
+                    .value(<span class="string">"update"</span>)
                     .quoting(vscode::ArgQuoting::Escape)
                     .build()])
                 .depends_on(default_depends_on.clone())
@@ -3245,12 +3251,12 @@
                 FileType::ClassWithMain =&gt; {
                     tasks.push(
                         vscode::Task::builder()
-                            .label(<span class="macro">format!</span>(<span class="string">&quot;Run {}&quot;</span>, file.name))
+                            .label(<span class="macro">format!</span>(<span class="string">"Run {}"</span>, file.name))
                             .r#type(vscode::Type::Shell)
-                            .command(<span class="string">&quot;${config:ummBinaryPath}&quot;</span>)
+                            .command(<span class="string">"${config:ummBinaryPath}"</span>)
                             .args(<span class="macro">vec!</span>[
                                 vscode::Args::builder()
-                                    .value(<span class="string">&quot;run&quot;</span>)
+                                    .value(<span class="string">"run"</span>)
                                     .quoting(vscode::ArgQuoting::Escape)
                                     .build(),
                                 vscode::Args::builder()
@@ -3266,12 +3272,12 @@
                 FileType::Test =&gt; {
                     tasks.push(
                         vscode::Task::builder()
-                            .label(<span class="macro">format!</span>(<span class="string">&quot;Run tests for {}&quot;</span>, file.name))
+                            .label(<span class="macro">format!</span>(<span class="string">"Run tests for {}"</span>, file.name))
                             .r#type(vscode::Type::Shell)
-                            .command(<span class="string">&quot;${config:ummBinaryPath}&quot;</span>)
+                            .command(<span class="string">"${config:ummBinaryPath}"</span>)
                             .args(<span class="macro">vec!</span>[
                                 vscode::Args::builder()
-                                    .value(<span class="string">&quot;test&quot;</span>)
+                                    .value(<span class="string">"test"</span>)
                                     .quoting(vscode::ArgQuoting::Escape)
                                     .build(),
                                 vscode::Args::builder()
@@ -3279,7 +3285,7 @@
                                     .quoting(vscode::ArgQuoting::Escape)
                                     .build(),
                             ])
-                            .group(<span class="string">&quot;test&quot;</span>.to_string())
+                            .group(<span class="string">"test"</span>.to_string())
                             .depends_on(default_depends_on.clone())
                             .depends_order(default_depends_order)
                             .build(),
@@ -3291,8 +3297,8 @@
                         <span class="kw">let </span>method = method.clone();
                         <span class="attr">#[allow(clippy::or_fun_call)]
                         </span><span class="kw">let </span>method = method
-                            .split_once(<span class="string">&#39;#&#39;</span>)
-                            .ok_or(<span class="macro">anyhow!</span>(<span class="string">&quot;Could not parse test method - {}&quot;</span>, method))<span class="question-mark">?
+                            .split_once(<span class="string">'#'</span>)
+                            .ok_or(<span class="macro">anyhow!</span>(<span class="string">"Could not parse test method - {}"</span>, method))<span class="question-mark">?
                             </span>.<span class="number">1</span>;
                         <span class="comment">// commands.push(method.into());
                         </span>test_methods.push(String::from(method));
@@ -3301,7 +3307,7 @@
                     <span class="kw">if </span>!test_methods.is_empty() {
                         <span class="kw">let </span>input = vscode::Input::PickString {
                             id:          file.proper_name.to_string(),
-                            description: <span class="string">&quot;Which test to run?&quot;</span>.to_string(),
+                            description: <span class="string">"Which test to run?"</span>.to_string(),
                             options:     test_methods.clone(),
                             default:     test_methods.first().unwrap().clone(),
                         };
@@ -3310,12 +3316,12 @@
 
                     tasks.push(
                         vscode::Task::builder()
-                            .label(<span class="macro">format!</span>(<span class="string">&quot;Run specific test from {}&quot;</span>, file.name))
+                            .label(<span class="macro">format!</span>(<span class="string">"Run specific test from {}"</span>, file.name))
                             .r#type(vscode::Type::Shell)
-                            .command(<span class="string">&quot;${config:ummBinaryPath}&quot;</span>)
+                            .command(<span class="string">"${config:ummBinaryPath}"</span>)
                             .args(<span class="macro">vec!</span>[
                                 vscode::Args::builder()
-                                    .value(<span class="string">&quot;test&quot;</span>)
+                                    .value(<span class="string">"test"</span>)
                                     .quoting(vscode::ArgQuoting::Escape)
                                     .build(),
                                 vscode::Args::builder()
@@ -3323,11 +3329,11 @@
                                     .quoting(vscode::ArgQuoting::Escape)
                                     .build(),
                                 vscode::Args::builder()
-                                    .value(<span class="macro">format!</span>(<span class="string">&quot;${{input:{}}}&quot;</span>, file.proper_name))
+                                    .value(<span class="macro">format!</span>(<span class="string">"${{input:{}}}"</span>, file.proper_name))
                                     .quoting(vscode::ArgQuoting::Escape)
                                     .build(),
                             ])
-                            .group(<span class="string">&quot;test&quot;</span>.to_string())
+                            .group(<span class="string">"test"</span>.to_string())
                             .depends_on(default_depends_on.clone())
                             .depends_order(default_depends_order)
                             .build(),
@@ -3338,12 +3344,12 @@
 
             tasks.push(
                 vscode::Task::builder()
-                    .label(<span class="macro">format!</span>(<span class="string">&quot;Check {}&quot;</span>, file.name))
+                    .label(<span class="macro">format!</span>(<span class="string">"Check {}"</span>, file.name))
                     .r#type(vscode::Type::Shell)
-                    .command(<span class="string">&quot;${config:ummBinaryPath}&quot;</span>)
+                    .command(<span class="string">"${config:ummBinaryPath}"</span>)
                     .args(<span class="macro">vec!</span>[
                         vscode::Args::builder()
-                            .value(<span class="string">&quot;check&quot;</span>)
+                            .value(<span class="string">"check"</span>)
                             .quoting(vscode::ArgQuoting::Escape)
                             .build(),
                         vscode::Args::builder()
@@ -3357,12 +3363,12 @@
             );
             tasks.push(
                 vscode::Task::builder()
-                    .label(<span class="macro">format!</span>(<span class="string">&quot;Check JavaDoc for {}&quot;</span>, file.name))
+                    .label(<span class="macro">format!</span>(<span class="string">"Check JavaDoc for {}"</span>, file.name))
                     .r#type(vscode::Type::Shell)
-                    .command(<span class="string">&quot;${config:ummBinaryPath}&quot;</span>)
+                    .command(<span class="string">"${config:ummBinaryPath}"</span>)
                     .args(<span class="macro">vec!</span>[
                         vscode::Args::builder()
-                            .value(<span class="string">&quot;doc-check&quot;</span>)
+                            .value(<span class="string">"doc-check"</span>)
                             .quoting(vscode::ArgQuoting::Escape)
                             .build(),
                         vscode::Args::builder()
@@ -3377,50 +3383,50 @@
         }
 
         <span class="kw">let </span>rhai_scripts = {
-            <span class="kw">let </span>scripts = find_files(<span class="string">&quot;.rhai&quot;</span>, <span class="number">3</span>, <span class="kw-2">&amp;</span>ROOT_DIR)<span class="question-mark">?
+            <span class="kw">let </span>scripts = find_files(<span class="string">".rhai"</span>, <span class="number">3</span>, <span class="kw-2">&amp;</span>ROOT_DIR)<span class="question-mark">?
                 </span>.iter()
                 .map(|f| f.display().to_string())
                 .collect::&lt;Vec&lt;String&gt;&gt;();
 
             <span class="kw">if </span>scripts.is_empty() {
-                <span class="macro">vec!</span>[<span class="string">&quot;script.rhai&quot;</span>.to_string()]
+                <span class="macro">vec!</span>[<span class="string">"script.rhai"</span>.to_string()]
             } <span class="kw">else </span>{
                 scripts
             }
         };
 
         inputs.push(vscode::Input::PickString {
-            id:          <span class="string">&quot;gradable_assignments&quot;</span>.to_string(),
-            description: <span class="string">&quot;What script to use?&quot;</span>.to_string(),
+            id:          <span class="string">"gradable_assignments"</span>.to_string(),
+            description: <span class="string">"What script to use?"</span>.to_string(),
             options:     rhai_scripts.clone(),
             default:     rhai_scripts.first().unwrap().clone(),
         });
 
         tasks.push(
             vscode::Task::builder()
-                .label(<span class="string">&quot;Grade Assignment&quot;</span>.to_string())
+                .label(<span class="string">"Grade Assignment"</span>.to_string())
                 .r#type(vscode::Type::Shell)
-                .command(<span class="string">&quot;${config:ummBinaryPath}&quot;</span>)
+                .command(<span class="string">"${config:ummBinaryPath}"</span>)
                 .args(<span class="macro">vec!</span>[
                     vscode::Args::builder()
-                        .value(<span class="string">&quot;grade&quot;</span>)
+                        .value(<span class="string">"grade"</span>)
                         .quoting(vscode::ArgQuoting::Escape)
                         .build(),
                     vscode::Args::builder()
-                        .value(<span class="string">&quot;${input:gradable_assignments}&quot;</span>.to_string())
+                        .value(<span class="string">"${input:gradable_assignments}"</span>.to_string())
                         .quoting(vscode::ArgQuoting::Escape)
                         .build(),
                 ])
                 .problem_matcher(<span class="prelude-val">Some</span>(<span class="macro">vec!</span>[vscode::ProblemMatcher::builder()
-                    .apply_to(<span class="string">&quot;allDocuments&quot;</span>.to_string())
+                    .apply_to(<span class="string">"allDocuments"</span>.to_string())
                     .file_location(<span class="macro">vec!</span>[
-                        <span class="string">&quot;relative&quot;</span>.to_string(),
-                        <span class="string">&quot;${workspaceFolder}&quot;</span>.to_string(),
+                        <span class="string">"relative"</span>.to_string(),
+                        <span class="string">"${workspaceFolder}"</span>.to_string(),
                     ])
-                    .owner(<span class="string">&quot;umm&quot;</span>.to_string())
+                    .owner(<span class="string">"umm"</span>.to_string())
                     .pattern(
                         vscode::Pattern::builder()
-                            .regexp(<span class="string">r#&quot;\s*[│]\s*([\w./]+)\s*[│]\s*([0-9]+)\s*[│]\s*([\w ]+)&quot;#</span>)
+                            .regexp(<span class="string">r#"\s*[│]\s*([\w./]+)\s*[│]\s*([0-9]+)\s*[│]\s*([\w ]+)"#</span>)
                             .file(<span class="number">1</span>)
                             .line(<span class="number">2</span>)
                             .end_line(<span class="number">2</span>)
@@ -3433,8 +3439,8 @@
                 .build(),
         );
 
-        <span class="kw">if </span>!ROOT_DIR.join(<span class="string">&quot;.vscode&quot;</span>).as_path().is_dir() {
-            tokio::fs::create_dir(ROOT_DIR.join(<span class="string">&quot;.vscode&quot;</span>).as_path())
+        <span class="kw">if </span>!ROOT_DIR.join(<span class="string">".vscode"</span>).as_path().is_dir() {
+            tokio::fs::create_dir(ROOT_DIR.join(<span class="string">".vscode"</span>).as_path())
                 .<span class="kw">await
                 </span>.unwrap();
         }
@@ -3443,7 +3449,7 @@
             .write(<span class="bool-val">true</span>)
             .truncate(<span class="bool-val">true</span>)
             .create(<span class="bool-val">true</span>)
-            .open(ROOT_DIR.join(<span class="string">&quot;.vscode&quot;</span>).join(<span class="string">&quot;tasks.json&quot;</span>).as_path())
+            .open(ROOT_DIR.join(<span class="string">".vscode"</span>).join(<span class="string">"tasks.json"</span>).as_path())
             .<span class="kw">await</span><span class="question-mark">?</span>;
 
         <span class="kw">let </span>task_file = vscode::TasksFile::builder()
@@ -3460,13 +3466,13 @@
     <span class="doccomment">/// Serves the project code as a static website.
     </span><span class="kw">pub fn </span>serve_project_code(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; anyhow::Result&lt;()&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>markdown = <span class="macro">format!</span>(
-            <span class="string">&quot;# Student Submission Source Code\n\n## Overview\n\n{}\n\n## Source Code\n\n&quot;</span>,
+            <span class="string">"# Student Submission Source Code\n\n## Overview\n\n{}\n\n## Source Code\n\n"</span>,
             <span class="self">self</span>.describe()
         );
 
         <span class="kw">for </span>file <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.files {
             markdown.push_str(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-                <span class="string">&quot;### {}\n\n```java\n{}\n```\n\n&quot;</span>,
+                <span class="string">"### {}\n\n```java\n{}\n```\n\n"</span>,
                 file.proper_name(),
                 file.parser().code()
             ));
@@ -3482,14 +3488,14 @@
         <span class="kw">let </span>rt = RUNTIME.handle().clone();
         rt.block_on(<span class="kw">async </span>{
             POSTGREST_CLIENT
-                .from(<span class="string">&quot;submissions&quot;</span>)
+                .from(<span class="string">"submissions"</span>)
                 .insert(submission)
                 .execute()
                 .<span class="kw">await
         </span>})<span class="question-mark">?</span>;
 
         <span class="macro">println!</span>(
-            <span class="string">&quot;Please visit https://feedback.dhruvdh.com/submissions/{} to see your submission code.&quot;</span>,
+            <span class="string">"Please visit https://feedback.dhruvdh.com/submissions/{} to see your submission code."</span>,
             id
         );
 
@@ -3515,11 +3521,11 @@
 </span><span class="kw">impl </span>CustomType <span class="kw">for </span>Project {
     <span class="kw">fn </span>build(<span class="kw-2">mut </span>builder: rhai::TypeBuilder&lt;<span class="self">Self</span>&gt;) {
         builder
-            .with_name(<span class="string">&quot;JavaProject&quot;</span>)
-            .with_fn(<span class="string">&quot;new_java_project&quot;</span>, Project::new_script)
-            .with_fn(<span class="string">&quot;identify&quot;</span>, Project::identify_mut_script)
-            .with_fn(<span class="string">&quot;files&quot;</span>, Project::files)
-            .with_fn(<span class="string">&quot;info&quot;</span>, Project::info_script);
+            .with_name(<span class="string">"JavaProject"</span>)
+            .with_fn(<span class="string">"new_java_project"</span>, Project::new_script)
+            .with_fn(<span class="string">"identify"</span>, Project::identify_mut_script)
+            .with_fn(<span class="string">"files"</span>, Project::files)
+            .with_fn(<span class="string">"info"</span>, Project::info_script);
     }
 }
 </code></pre></div></section></main></body></html>

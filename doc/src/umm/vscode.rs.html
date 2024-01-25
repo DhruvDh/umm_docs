@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/vscode.rs`."><title>vscode.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="umm" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0-nightly (189d6c71f 2023-11-06)" data-channel="nightly" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/vscode.rs`."><title>vscode.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-b1a3e7f8283b8434.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="umm" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0-nightly (5d3d3479d 2024-01-23)" data-channel="nightly" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../umm/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -446,9 +448,9 @@
 };
 <span class="kw">use </span>typed_builder::TypedBuilder;
 
-<span class="doccomment">/// Enum for VSCode task&#39;s type.
+<span class="doccomment">/// Enum for VSCode task's type.
 </span><span class="attr">#[derive(Serialize, Deserialize)]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub enum </span>Type {
     <span class="doccomment">/// If shell is specified, the command is interpreted as a shell command
     /// (for example: bash, cmd, or PowerShell).
@@ -458,24 +460,24 @@
     </span>Process,
 }
 
-<span class="doccomment">/// enum for VSCode task&#39;s arg quoting.
+<span class="doccomment">/// enum for VSCode task's arg quoting.
 </span><span class="attr">#[derive(Serialize, Deserialize)]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub enum </span>ArgQuoting {
     <span class="doccomment">/// escape strings
     </span>Escape,
-    <span class="doccomment">/// ses the shell&#39;s strong quoting mechanism, which suppresses all
+    <span class="doccomment">/// ses the shell's strong quoting mechanism, which suppresses all
     /// evaluations inside the string. Under PowerShell and for shells under
-    /// Linux and macOS, single quotes are used (`&#39;`). For cmd.exe, `&quot;` is used.
+    /// Linux and macOS, single quotes are used (`'`). For cmd.exe, `"` is used.
     </span>Strong,
-    <span class="doccomment">/// Uses the shell&#39;s weak quoting mechanism, which still evaluates
+    <span class="doccomment">/// Uses the shell's weak quoting mechanism, which still evaluates
     /// expression inside the string (for example, environment variables). Under
     /// PowerShell and for shells under Linux and macOS, double quotes are used
-    /// (`&quot;`). cmd.exe doesn&#39;t support weak quoting so VS Code uses `&quot;` as well.
+    /// (`"`). cmd.exe doesn't support weak quoting so VS Code uses `"` as well.
     </span>Weak,
 }
 
-<span class="doccomment">/// Struct for VSCode task&#39;s args.
+<span class="doccomment">/// Struct for VSCode task's args.
 </span><span class="attr">#[derive(Serialize, Deserialize, TypedBuilder)]
 </span><span class="kw">pub struct </span>Args {
     <span class="doccomment">/// value of arg
@@ -486,9 +488,9 @@
     </span>quoting: ArgQuoting,
 }
 
-<span class="doccomment">/// Enum for VSCode task&#39;s dependsOrder.
+<span class="doccomment">/// Enum for VSCode task's dependsOrder.
 </span><span class="attr">#[derive(Serialize, Deserialize, Clone, Copy)]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub enum </span>DependsOrder {
     <span class="doccomment">/// In parallel with other tasks.
     </span>Parallel,
@@ -496,9 +498,9 @@
     </span>Sequence,
 }
 
-<span class="doccomment">/// Struct for VSCode task&#39;s presentation.
+<span class="doccomment">/// Struct for VSCode task's presentation.
 </span><span class="attr">#[derive(Serialize, Deserialize, TypedBuilder)]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 #[builder(doc)]
 #[builder(field_defaults(default, setter(into)))]
 </span><span class="kw">pub struct </span>Presentation {
@@ -510,7 +512,7 @@
     ///   (`kb(workbench.action.terminal.toggleTerminal)`).
     /// * `silent` - The terminal panel is brought to front only if the output
     ///   is not scanned for errors and warnings.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>reveal:             <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Controls whether the Problems panel is revealed when running this task
     /// or not. Takes precedence over option `reveal`. Default is `never`.
@@ -519,19 +521,19 @@
     ///   * `onProblem` - Only reveals the Problems panel if a problem is found.
     ///   * `never` - Never reveals the Problems panel when this task is
     ///     executed.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>reveal_problems:    <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Controls whether the terminal is taking input focus or not. Default is
     /// `false`.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>focus:              <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="doccomment">/// Controls whether the executed command is echoed in the terminal. Default
     /// is `true`.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>echo:               <span class="prelude-ty">Option</span>&lt;bool&gt;,
-    <span class="doccomment">/// Controls whether to show the &quot;Terminal will be reused by tasks, press
-    /// any key to close it&quot; message.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    <span class="doccomment">/// Controls whether to show the "Terminal will be reused by tasks, press
+    /// any key to close it" message.
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>show_reuse_message: <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="doccomment">/// Controls whether the terminal instance is shared between task runs.
     /// Possible values are:
@@ -541,27 +543,27 @@
     ///     task is executed again, the terminal is reused. However, the output
     ///     of a different task is presented in a different terminal.
     ///   * `new` - Every execution of that task is using a new clean terminal.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>panel:              <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Controls whether the terminal is cleared before this task is run.
     /// Default is `false`.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>clear:              <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="doccomment">/// Controls whether the terminal the task runs in is closed when the task
     /// exits.
 
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>close:              <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="doccomment">/// Controls whether the task is executed in a specific terminal group using
     /// split panes. Tasks in the same group (specified by a string value) will
     /// use split terminals to present instead of a new terminal panel.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>group:              <span class="prelude-ty">Option</span>&lt;bool&gt;,
 }
 
-<span class="doccomment">/// Struct for VSCode task&#39;s problem matcher.
+<span class="doccomment">/// Struct for VSCode task's problem matcher.
 </span><span class="attr">#[derive(Serialize, Deserialize, TypedBuilder)]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>ProblemMatcher {
     <span class="doccomment">/// Controls if a problem reported on a text document is applied only to
     /// open, closed or all documents.
@@ -569,17 +571,17 @@
     ///  * `openDocuments` - Only applied to open documents.
     /// * `closedDocuments` - Only applied to closed documents.
     /// * `allDocuments` - Applied to all documents.
-    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    </span><span class="attr">#[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     #[builder(default, setter(into))]
     </span>apply_to:      <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Patterns to track the begin and end of a matcher active on a background
     /// task.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>background:    <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// The name of a base problem matcher to use.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>base:          <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Defines how file names reported in a problem pattern should be
     /// interpreted. A relative fileLocation may be an array, where the second
@@ -589,97 +591,97 @@
     /// * `relative` - File names are interpreted as relative paths.
     /// * `autoDetect` - automatically detects
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>file_location: <span class="prelude-ty">Option</span>&lt;Vec&lt;String&gt;&gt;,
     <span class="doccomment">/// The owner of the problem inside Code. Can be omitted if base is
-    /// specified. Defaults to &#39;external&#39; if omitted and base is not specified.
+    /// specified. Defaults to 'external' if omitted and base is not specified.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>owner:         <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// A problem pattern or the name of a contributed or predefined problem
     /// pattern. Can be omitted if base is specified.
     </span>pattern:       Pattern,
     <span class="doccomment">/// The default severity for captures problems. Is used if the pattern
-    /// doesn&#39;t define a match group for severity.
+    /// doesn't define a match group for severity.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>severity:      <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// A human-readable string describing the source of this diagnostic, e.g.
-    /// &#39;typescript&#39; or &#39;super lint&#39;.
+    /// 'typescript' or 'super lint'.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>source:        <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
-<span class="doccomment">/// Struct for VSCode task&#39;s problem matcher&#39;s pattern.
+<span class="doccomment">/// Struct for VSCode task's problem matcher's pattern.
 </span><span class="attr">#[derive(Serialize, Deserialize, TypedBuilder)]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>Pattern {
-    <span class="doccomment">/// The match group index of the problem&#39;s code. Defaults to undefined
+    <span class="doccomment">/// The match group index of the problem's code. Defaults to undefined
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>code:       <span class="prelude-ty">Option</span>&lt;usize&gt;,
-    <span class="doccomment">/// The match group index of the problem&#39;s line character. Defaults to 3
+    <span class="doccomment">/// The match group index of the problem's line character. Defaults to 3
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>column:     <span class="prelude-ty">Option</span>&lt;usize&gt;,
-    <span class="doccomment">/// The match group index of the problem&#39;s end line character. Defaults to
+    <span class="doccomment">/// The match group index of the problem's end line character. Defaults to
     /// undefined
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>end_column: <span class="prelude-ty">Option</span>&lt;usize&gt;,
-    <span class="doccomment">/// The match group index of the problem&#39;s end line. Defaults to undefined
+    <span class="doccomment">/// The match group index of the problem's end line. Defaults to undefined
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>end_line:   <span class="prelude-ty">Option</span>&lt;usize&gt;,
     <span class="doccomment">/// The match group index of the filename. If omitted 1 is used.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>file:       <span class="prelude-ty">Option</span>&lt;usize&gt;,
     <span class="doccomment">/// whether the pattern matches a location (file and line) or only a file.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>kind:       <span class="prelude-ty">Option</span>&lt;String&gt;,
-    <span class="doccomment">/// The match group index of the problem&#39;s line. Defaults to 2
+    <span class="doccomment">/// The match group index of the problem's line. Defaults to 2
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>line:       <span class="prelude-ty">Option</span>&lt;usize&gt;,
-    <span class="doccomment">/// The match group index of the problem&#39;s location. Valid location patterns
+    <span class="doccomment">/// The match group index of the problem's location. Valid location patterns
     /// are: (line), (line,column) and
     /// (startLine,startColumn,endLine,endColumn). If omitted (line,column) is
     /// assumed.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>location:   <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// In a multi line matcher loop indicated whether this pattern is executed
     /// in a loop as long as it matches. Can only specified on a last pattern in
     /// a multi line pattern.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>r#loop:     <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="doccomment">/// The match group index of the message. If omitted it defaults to 4 if
     /// location is specified. Otherwise it defaults to 5.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>message:    <span class="prelude-ty">Option</span>&lt;usize&gt;,
     <span class="doccomment">/// The regular expression to find an error, warning or info in the output.
     </span><span class="attr">#[builder(setter(into))]
     </span>regexp:     String,
-    <span class="doccomment">/// The match group index of the problem&#39;s severity. Defaults to undefined
+    <span class="doccomment">/// The match group index of the problem's severity. Defaults to undefined
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>severity:   <span class="prelude-ty">Option</span>&lt;usize&gt;,
 }
 
 <span class="doccomment">/// Struct to represent a VSCode task as JSON.
 </span><span class="attr">#[derive(Serialize, Deserialize, TypedBuilder)]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>)]
 </span><span class="kw">pub struct </span>Task {
-    <span class="doccomment">/// The task&#39;s label used in the user interface.
+    <span class="doccomment">/// The task's label used in the user interface.
     </span>label:           String,
-    <span class="doccomment">/// The task&#39;s type.
+    <span class="doccomment">/// The task's type.
     </span><span class="attr">#[builder(default=<span class="prelude-val">Some</span>(Type::Shell), setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>r#type:          <span class="prelude-ty">Option</span>&lt;Type&gt;,
     <span class="doccomment">/// The actual command to execute.
     </span><span class="attr">#[builder(default, setter(into))]
@@ -687,17 +689,17 @@
     <span class="doccomment">/// Any Windows specific properties. Will be used instead of the default
     /// properties when the command is executed on the Windows operating system.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>windows:         <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Defines to which group the task belongs. In the example, it belongs to
     /// the test group. Tasks that belong to the test group can be executed by
     /// running Run Test Task from the Command Palette.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>group:           <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Defines how the task output is handled in the user interface.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>presentation:    <span class="prelude-ty">Option</span>&lt;Presentation&gt;,
     <span class="doccomment">/// Override the defaults for cwd (current working directory), env
     /// (environment variables), or shell (default shell). Options can be set
@@ -706,44 +708,44 @@
     /// process and will not be resolved if they are part of your args, command,
     /// or other task attributes.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>options:         <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Arguments passed to the command when this task is invoked.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>args:            <span class="prelude-ty">Option</span>&lt;Vec&lt;Args&gt;&gt;,
     <span class="doccomment">/// Either a string representing another task or an array of other tasks
     /// that this task depends on.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>depends_on:      <span class="prelude-ty">Option</span>&lt;Vec&lt;String&gt;&gt;,
     <span class="doccomment">/// Run all dependsOn tasks in parallel.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>depends_order:   <span class="prelude-ty">Option</span>&lt;DependsOrder&gt;,
     <span class="doccomment">/// An optional description of a task that shows in the Run Task quick pick
     /// as a detail.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>detail:          <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// An optional icon path.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>icon:            <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Whether the executed task is kept alive and is running in the
     /// background.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>is_background:   <span class="prelude-ty">Option</span>&lt;bool&gt;,
     <span class="doccomment">/// Any linux specific properties. Will be used instead of the default
     /// properties when the command is executed on the Linux operating system.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>linux:           <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// Any macOS specific properties. Will be used instead of the default
     /// properties when the command is executed on the macOS operating system.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>osx:             <span class="prelude-ty">Option</span>&lt;String&gt;,
     <span class="doccomment">/// The problem matcher(s) to use. Can either be a string or a problem
     /// matcher definition or an array of strings and problem matchers.
@@ -751,9 +753,9 @@
     </span>problem_matcher: <span class="prelude-ty">Option</span>&lt;Vec&lt;ProblemMatcher&gt;&gt;,
     <span class="doccomment">/// Whether the user is prompted when VS Code closes with a running task.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>prompt_on_close: <span class="prelude-ty">Option</span>&lt;bool&gt;,
-    <span class="doccomment">/// The task&#39;s run related options.
+    <span class="doccomment">/// The task's run related options.
     /// Valid values are:
     /// * **reevaluateOnRerun**: Controls how variables are evaluated when a
     ///   task is executed through the **Rerun Last Task** command. The default
@@ -771,18 +773,18 @@
     ///   **Allow Automatic Tasks in Folder** and **Disallow Automatic Tasks in
     ///   Folder**.
     </span><span class="attr">#[builder(default, setter(into))]
-    #[serde(skip_serializing_if = <span class="string">&quot;Option::is_none&quot;</span>)]
+    #[serde(skip_serializing_if = <span class="string">"Option::is_none"</span>)]
     </span>run_options:     <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
 <span class="doccomment">/// default run task action
 </span><span class="kw">fn </span>run_task_action() -&gt; <span class="prelude-ty">Option</span>&lt;String&gt; {
-    <span class="prelude-val">Some</span>(<span class="string">&quot;workbench.action.tasks.runTask&quot;</span>.to_string())
+    <span class="prelude-val">Some</span>(<span class="string">"workbench.action.tasks.runTask"</span>.to_string())
 }
 
 <span class="doccomment">/// default run task action
 </span><span class="kw">fn </span>when_keybindings() -&gt; <span class="prelude-ty">Option</span>&lt;String&gt; {
-    <span class="prelude-val">Some</span>(<span class="string">&quot;config:workspaceKeybindings.ummTasksKeys.enabled&quot;</span>.to_string())
+    <span class="prelude-val">Some</span>(<span class="string">"config:workspaceKeybindings.ummTasksKeys.enabled"</span>.to_string())
 }
 
 <span class="doccomment">/// A struct to represent a keybinding for tasks in VSCode.
@@ -791,20 +793,20 @@
     <span class="doccomment">/// The keybinding
     </span>key:     String,
     <span class="doccomment">/// The command to execute, defaults to `workbench.action.tasks.runTask`
-    </span><span class="attr">#[serde(default = <span class="string">&quot;run_task_action&quot;</span>)]
+    </span><span class="attr">#[serde(default = <span class="string">"run_task_action"</span>)]
     #[builder(default, setter(into))]
     </span>command: <span class="prelude-ty">Option</span>&lt;String&gt;,
-    <span class="doccomment">/// The command&#39;s arguments - name of task, etc.
+    <span class="doccomment">/// The command's arguments - name of task, etc.
     </span>args:    String,
     <span class="doccomment">/// when to activate keybinding
-    </span><span class="attr">#[serde(default = <span class="string">&quot;when_keybindings&quot;</span>)]
+    </span><span class="attr">#[serde(default = <span class="string">"when_keybindings"</span>)]
     #[builder(default, setter(into))]
     </span>when:    <span class="prelude-ty">Option</span>&lt;String&gt;,
 }
 
 <span class="doccomment">/// Enum to represent the type of a task input.
 </span><span class="attr">#[derive(Serialize, Deserialize)]
-#[serde(rename_all = <span class="string">&quot;camelCase&quot;</span>, tag = <span class="string">&quot;type&quot;</span>)]
+#[serde(rename_all = <span class="string">"camelCase"</span>, tag = <span class="string">"type"</span>)]
 </span><span class="kw">pub enum </span>Input {
     <span class="doccomment">/// Shows an input box to get a string from the user.
     </span>PromptString {
@@ -812,7 +814,7 @@
         </span>id:          String,
         <span class="doccomment">/// Shown in the quick input, provides context for the input.
         </span>description: String,
-        <span class="doccomment">/// Default value that will be used if the user doesn&#39;t enter something
+        <span class="doccomment">/// Default value that will be used if the user doesn't enter something
         /// else.
         </span>default:     String,
         <span class="doccomment">///  Set to true to input with a password prompt that will not show the
@@ -827,7 +829,7 @@
         </span>description: String,
         <span class="doccomment">/// A list of strings to pick from.
         </span>options:     Vec&lt;String&gt;,
-        <span class="doccomment">/// Default value that will be used if the user doesn&#39;t enter something
+        <span class="doccomment">/// Default value that will be used if the user doesn't enter something
         /// else. It must be one of the option values.
         </span>default:     String,
     },
@@ -837,7 +839,7 @@
 </span><span class="attr">#[derive(Serialize, Deserialize, TypedBuilder)]
 </span><span class="kw">pub struct </span>TasksFile {
     <span class="doccomment">/// The tasks.json version.
-    </span><span class="attr">#[builder(default = <span class="string">&quot;2.0.0&quot;</span>.to_string())]
+    </span><span class="attr">#[builder(default = <span class="string">"2.0.0"</span>.to_string())]
     </span>version: String,
     <span class="doccomment">/// The tasks.json tasks.
     </span><span class="attr">#[builder(default = <span class="macro">vec!</span>[]</span>)]
@@ -850,29 +852,29 @@
 <span class="doccomment">/// Struct representing vscode settings.json file
 /// Only the properties that we need.
 </span><span class="attr">#[derive(Serialize, Deserialize, TypedBuilder)]
-</span><span class="kw">pub struct </span>SettingsFile&lt;<span class="lifetime">&#39;a</span>&gt; {
+</span><span class="kw">pub struct </span>SettingsFile&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// javac source path
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;java.project.sourcePaths&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"java.project.sourcePaths"</span>)]
     </span>java_source_path:     Vec&lt;String&gt;,
     <span class="doccomment">/// javac target path
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;java.project.outputPath&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"java.project.outputPath"</span>)]
     </span>java_output_path:     String,
     <span class="doccomment">/// javac classpath
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;java.project.referencedLibraries&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"java.project.referencedLibraries"</span>)]
     </span>java_referenced_libs: Vec&lt;String&gt;,
     <span class="doccomment">/// whether to use keybindings or not
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;workspaceKeybindings.ummTasksKeys.enabled&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"workspaceKeybindings.ummTasksKeys.enabled"</span>)]
     #[builder(default = <span class="bool-val">true</span>)]
     </span>keybindings_enabled:  bool,
     <span class="doccomment">/// path to umm binary
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;ummBinaryPath&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"ummBinaryPath"</span>)]
     </span>umm_binary_path:      String,
     <span class="doccomment">/// word wrap setting
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;editor.wordWrap&quot;</span>)]
-    #[builder(default = <span class="string">&quot;on&quot;</span>)]
-    </span>word_wrap:            <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    </span><span class="attr">#[serde(rename = <span class="string">"editor.wordWrap"</span>)]
+    #[builder(default = <span class="string">"on"</span>)]
+    </span>word_wrap:            <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
     <span class="doccomment">/// minimap setting
-    </span><span class="attr">#[serde(rename = <span class="string">&quot;editor.minimap.enabled&quot;</span>)]
+    </span><span class="attr">#[serde(rename = <span class="string">"editor.minimap.enabled"</span>)]
     #[builder(default = <span class="bool-val">false</span>)]
     </span>minimap:              bool,
 }
