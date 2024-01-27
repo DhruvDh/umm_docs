@@ -138,6 +138,24 @@
 <a href="#136" id="136">136</a>
 <a href="#137" id="137">137</a>
 <a href="#138" id="138">138</a>
+<a href="#139" id="139">139</a>
+<a href="#140" id="140">140</a>
+<a href="#141" id="141">141</a>
+<a href="#142" id="142">142</a>
+<a href="#143" id="143">143</a>
+<a href="#144" id="144">144</a>
+<a href="#145" id="145">145</a>
+<a href="#146" id="146">146</a>
+<a href="#147" id="147">147</a>
+<a href="#148" id="148">148</a>
+<a href="#149" id="149">149</a>
+<a href="#150" id="150">150</a>
+<a href="#151" id="151">151</a>
+<a href="#152" id="152">152</a>
+<a href="#153" id="153">153</a>
+<a href="#154" id="154">154</a>
+<a href="#155" id="155">155</a>
+<a href="#156" id="156">156</a>
 </pre></div><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
 #![warn(clippy::missing_docs_in_private_items)]
 
@@ -192,6 +210,24 @@
     </span><span class="kw">pub static </span><span class="kw-2">ref </span>RETRIEVAL_MESSAGE_OUTRO: String = <span class="macro">include_str!</span>(<span class="string">"prompts/retrieval_system_message_outro.md"</span>).into();
     <span class="doccomment">/// Rhai script as a AST, behind an mutex.
     </span><span class="kw">pub static </span><span class="kw-2">ref </span>SCRIPT_AST: Arc&lt;Mutex&lt;AST&gt;&gt; = Arc::new(Mutex::new(AST::empty()));
+    <span class="doccomment">/// System Message for Algorithmic Solutions SLO
+    </span><span class="kw">pub static </span><span class="kw-2">ref </span>ALGORITHMIC_SOLUTIONS_SLO: String = <span class="macro">format!</span>(<span class="macro">include_str!</span>(<span class="string">"prompts/slos/system_message_intro.md"</span>), SLO_DESCRIPTION = <span class="macro">include_str!</span>(<span class="string">"prompts/slos/algorithmic_solutions_quant.md"</span>));
+    <span class="doccomment">/// System Message for Code Readability SLO
+    </span><span class="kw">pub static </span><span class="kw-2">ref </span>CODE_READABILITY_SLO: String = <span class="macro">format!</span>(<span class="macro">include_str!</span>(<span class="string">"prompts/slos/system_message_intro.md"</span>), SLO_DESCRIPTION = <span class="macro">include_str!</span>(<span class="string">"prompts/slos/code_readability_written_com.md"</span>));
+    <span class="doccomment">/// System Message for Comments Written SLO
+    </span><span class="kw">pub static </span><span class="kw-2">ref </span>COMMENTS_WRITTEN_SLO: String = <span class="macro">format!</span>(<span class="macro">include_str!</span>(<span class="string">"prompts/slos/system_message_intro.md"</span>), SLO_DESCRIPTION = <span class="macro">include_str!</span>(<span class="string">"prompts/slos/comments_written_com.md"</span>));
+    <span class="doccomment">/// System Message for Error Handling SLO
+    </span><span class="kw">pub static </span><span class="kw-2">ref </span>ERROR_HANDLING_SLO: String = <span class="macro">format!</span>(<span class="macro">include_str!</span>(<span class="string">"prompts/slos/system_message_intro.md"</span>), SLO_DESCRIPTION = <span class="macro">include_str!</span>(<span class="string">"prompts/slos/error_handling_verification.md"</span>));
+    <span class="doccomment">/// System Message for Logic SLO
+    </span><span class="kw">pub static </span><span class="kw-2">ref </span>LOGIC_SLO: String = <span class="macro">format!</span>(<span class="macro">include_str!</span>(<span class="string">"prompts/slos/system_message_intro.md"</span>), SLO_DESCRIPTION = <span class="macro">include_str!</span>(<span class="string">"prompts/slos/logic_programming.md"</span>));
+    <span class="doccomment">/// System Message for Naming Conventions SLO
+    </span><span class="kw">pub static </span><span class="kw-2">ref </span>NAMING_CONVENTIONS_SLO: String = <span class="macro">format!</span>(<span class="macro">include_str!</span>(<span class="string">"prompts/slos/system_message_intro.md"</span>), SLO_DESCRIPTION = <span class="macro">include_str!</span>(<span class="string">"prompts/slos/naming_written_com.md"</span>));
+    <span class="doccomment">/// System Message for Object Oriented Programming SLO
+    </span><span class="kw">pub static </span><span class="kw-2">ref </span>OBJECT_ORIENTED_PROGRAMMING_SLO: String = <span class="macro">format!</span>(<span class="macro">include_str!</span>(<span class="string">"prompts/slos/system_message_intro.md"</span>), SLO_DESCRIPTION = <span class="macro">include_str!</span>(<span class="string">"prompts/slos/oop_programming.md"</span>));
+    <span class="doccomment">/// System Message for Syntax SLO
+    </span><span class="kw">pub static </span><span class="kw-2">ref </span>SYNTAX_SLO: String = <span class="macro">format!</span>(<span class="macro">include_str!</span>(<span class="string">"prompts/slos/system_message_intro.md"</span>), SLO_DESCRIPTION = <span class="macro">include_str!</span>(<span class="string">"prompts/slos/syntax_programming.md"</span>));
+    <span class="doccomment">/// System Message for Testing SLO
+    </span><span class="kw">pub static </span><span class="kw-2">ref </span>TESTING_SLO: String = <span class="macro">format!</span>(<span class="macro">include_str!</span>(<span class="string">"prompts/slos/system_message_intro.md"</span>), SLO_DESCRIPTION = <span class="macro">include_str!</span>(<span class="string">"prompts/slos/testing_verification.md"</span>));
 }
 
 <span class="doccomment">/// Current term. TODO: Move this to init script
