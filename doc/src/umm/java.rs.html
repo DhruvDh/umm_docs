@@ -3439,7 +3439,7 @@
                 .build(),
         );
 
-        <span class="kw">if </span>!ROOT_DIR.join(<span class="string">".vscode"</span>).as_path().is_dir() {
+        <span class="kw">if </span>!ROOT_DIR.join(<span class="string">".vscode"</span>).as_path().exists() {
             tokio::fs::create_dir(ROOT_DIR.join(<span class="string">".vscode"</span>).as_path())
                 .<span class="kw">await
                 </span>.unwrap();

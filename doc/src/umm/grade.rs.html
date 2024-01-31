@@ -3496,6 +3496,14 @@
 <a href="#3494" id="3494">3494</a>
 <a href="#3495" id="3495">3495</a>
 <a href="#3496" id="3496">3496</a>
+<a href="#3497" id="3497">3497</a>
+<a href="#3498" id="3498">3498</a>
+<a href="#3499" id="3499">3499</a>
+<a href="#3500" id="3500">3500</a>
+<a href="#3501" id="3501">3501</a>
+<a href="#3502" id="3502">3502</a>
+<a href="#3503" id="3503">3503</a>
+<a href="#3504" id="3504">3504</a>
 </pre></div><pre class="rust"><code><span class="attr">#![warn(missing_docs)]
 #![warn(clippy::missing_docs_in_private_items)]
 
@@ -5560,10 +5568,13 @@
                     slo_requests.push(runtime.spawn(<span class="kw">async move </span>{
                         <span class="kw">let </span>together_client = async_openai::Client::with_config(
                             OpenAIConfig::new()
-                                .with_api_base(<span class="string">"https://api.together.xyz/v1"</span>)
+                                .with_api_base(
+                                    std::env::var(<span class="string">"OPENAI_ENDPOINT"</span>)
+                                        .expect(<span class="string">"OPENAI_ENDPOINT must be set for SLO feedback"</span>),
+                                )
                                 .with_api_key(
-                                    std::env::var(<span class="string">"TOGETHER_API_KEY"</span>)
-                                        .expect(<span class="string">"TOGETHER_API_KEY must be set for SLO feedback"</span>),
+                                    std::env::var(<span class="string">"OPENAI_API_KEY_SLO"</span>)
+                                        .expect(<span class="string">"OPENAI_API_KEY_SLO must be set for SLO feedback"</span>),
                                 ),
                         );
                         <span class="kw">let </span>together_client = together_client.chat();
@@ -5572,14 +5583,15 @@
                             slo_name,
                             together_client
                                 .create(CreateChatCompletionRequest {
-                                    model: <span class="string">"mistralai/Mixtral-8x7B-Instruct-v0.1"</span>.to_string(),
+                                    model: std::env::var(<span class="string">"OPENAI_MODEL"</span>)
+                                        .expect(<span class="string">"OPENAI_MODEL must be set for SLO feedback"</span>),
                                     messages: messages.clone(),
                                     temperature: <span class="prelude-val">Some</span>(<span class="number">0.0</span>),
                                     top_p: <span class="prelude-val">Some</span>(<span class="number">1.0</span>),
                                     n: <span class="prelude-val">Some</span>(<span class="number">1</span>),
                                     stream: <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
-                                    max_tokens: <span class="prelude-val">Some</span>(<span class="number">3072</span>),
-                                    ..Default::default()
+                                    <span class="comment">// max_tokens: Some(3072),
+                                    </span>..Default::default()
                                 })
                                 .<span class="kw">await</span>,
                         )
@@ -5588,7 +5600,6 @@
 
                 <span class="kw">let </span>slo_requests = slo_requests.into_iter().collect::&lt;FuturesUnordered&lt;<span class="kw">_</span>&gt;&gt;();
                 <span class="kw">let </span>slo_responses = runtime.block_on(<span class="kw">async </span>{ try_join_all(slo_requests).<span class="kw">await </span>})<span class="question-mark">?</span>;
-                <span class="kw">let </span><span class="kw-2">mut </span>slo_feedback = <span class="macro">vec!</span>[String::from(<span class="string">"## SLO Feedback"</span>)];
 
                 <span class="kw">for </span>(name, resp) <span class="kw">in </span>slo_responses {
                     <span class="kw">let </span>resp = resp<span class="question-mark">?
@@ -5599,21 +5610,31 @@
                         .content
                         .clone()
                         .unwrap_or_default();
-                    slo_feedback.push(resp.clone());
 
-                    <span class="kw">let </span>proficiency = <span class="kw">if </span>resp.contains(<span class="string">"## Proficiency: *****"</span>) {
+                    <span class="kw">let </span>proficiency = <span class="kw">if </span>resp.contains(<span class="string">"### Proficiency: *****"</span>) {
                         String::from(<span class="string">"*****"</span>)
-                    } <span class="kw">else if </span>resp.contains(<span class="string">"## Proficiency: ****"</span>) {
+                    } <span class="kw">else if </span>resp.contains(<span class="string">"### Proficiency: ****"</span>) {
                         String::from(<span class="string">"****"</span>)
-                    } <span class="kw">else if </span>resp.contains(<span class="string">"## Proficiency: ***"</span>) {
+                    } <span class="kw">else if </span>resp.contains(<span class="string">"### Proficiency: ***"</span>) {
                         String::from(<span class="string">"***"</span>)
-                    } <span class="kw">else if </span>resp.contains(<span class="string">"## Proficiency: **"</span>) {
+                    } <span class="kw">else if </span>resp.contains(<span class="string">"### Proficiency: **"</span>) {
                         String::from(<span class="string">"**"</span>)
-                    } <span class="kw">else if </span>resp.contains(<span class="string">"## Proficiency: *"</span>) {
+                    } <span class="kw">else if </span>resp.contains(<span class="string">"### Proficiency: *"</span>) {
                         String::from(<span class="string">"*"</span>)
                     } <span class="kw">else </span>{
                         String::from(<span class="string">""</span>)
                     };
+
+                    test_cases.push(
+                        GradescopeTestCase::builder()
+                            .name(name.to_string())
+                            .name_format(GradescopeOutputFormat::Text)
+                            .output(resp.clone())
+                            .output_format(GradescopeOutputFormat::Md)
+                            .max_score(<span class="number">0f64</span>)
+                            .score(<span class="number">0f64</span>)
+                            .build(),
+                    );
 
                     leaderboard_entries.push(
                         GradescopeLeaderboardEntry::builder()
@@ -5623,26 +5644,21 @@
                     );
                 }
 
-                test_cases.push(
-                    GradescopeTestCase::builder()
-                        .name(<span class="string">"SLO Feedback"</span>.to_string())
-                        .name_format(GradescopeOutputFormat::Text)
-                        .output(slo_feedback.join(<span class="string">"\n\n"</span>))
-                        .output_format(GradescopeOutputFormat::Md)
-                        .max_score(<span class="number">0f64</span>)
-                        .score(<span class="number">0f64</span>)
-                        .build(),
-                );
-
                 <span class="prelude-val">Some</span>(leaderboard_entries)
             } <span class="kw">else </span>{
                 <span class="prelude-val">Some</span>(
                     slos.iter()
-                        .map(|(<span class="kw">_</span>, slo_name, <span class="kw">_</span>, <span class="kw">_</span>)| {
-                            GradescopeLeaderboardEntry::builder()
-                                .name(slo_name.to_string())
-                                .value(String::new())
-                                .build()
+                        .filter_map(|(slo_key, slo_name, <span class="kw">_</span>, <span class="kw">_</span>)| {
+                            <span class="kw">if </span>get_or_default(slo_key, <span class="bool-val">false</span>) {
+                                <span class="prelude-val">Some</span>(
+                                    GradescopeLeaderboardEntry::builder()
+                                        .name(slo_name.to_string())
+                                        .value(String::new())
+                                        .build(),
+                                )
+                            } <span class="kw">else </span>{
+                                <span class="prelude-val">None
+                            </span>}
                         })
                         .collect::&lt;Vec&lt;GradescopeLeaderboardEntry&gt;&gt;(),
                 )
@@ -6039,7 +6055,7 @@
         ))
     } <span class="kw">else </span>{
         <span class="prelude-val">Ok</span>(String::from(
-            <span class="string">"Feedback cannot currently be generated for submissions without penalty."</span>,
+            <span class="string">"This type of feedback cannot be generated for submissions without penalty."</span>,
         ))
     }
 }
@@ -6064,7 +6080,7 @@
     } <span class="kw">else </span>{
         fs::write(
             <span class="string">"FEEDBACK"</span>,
-            <span class="string">"Feedback cannot currently be generated for submissions without penalty."</span>,
+            <span class="string">"This type of feedback cannot be generated for submissions without penalty."</span>,
         )
         .context(<span class="string">"Something went wrong writing FEEDBACK file."</span>)<span class="question-mark">?</span>;
     }
